@@ -7,6 +7,8 @@ import App from '@/App';
 import 'virtual:svg-icons-register';
 import './styles/index.css';
 import 'virtual:uno.css';
+import '@unocss/reset/tailwind-compat.css'
+import './locales/i18n';
 
 // 创建一个 client
 const queryClient = new QueryClient({

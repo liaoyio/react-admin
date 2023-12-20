@@ -3,8 +3,7 @@ import { ConfigProvider } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
 
 import Router from './router';
-import { theme } from './theme/antd/theme';
-import './theme/index.css';
+import { theme } from './common/theme/antd-theme';
 
 function App() {
   return (
