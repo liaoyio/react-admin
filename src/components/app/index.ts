@@ -1,4 +1,3 @@
-
 import AppLocalePicker from './LocalePicker';
 
-export { AppLocalePicker }
+export { AppLocalePicker };

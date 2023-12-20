@@ -1,4 +1,10 @@
-import { createBrowserRouter, Navigate, Outlet, type RouteObject, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  type RouteObject,
+  RouterProvider,
+} from 'react-router-dom';
 import { useUserToken } from '@/store/userStore';
 
 import Blog from '@/pages/Blog';
@@ -36,7 +42,6 @@ function Routes() {
     },
   ];
 
-
   // 仅用于未通过身份验证的路由
   const routesForNotAuthenticatedOnly: RouteObject[] = [
     {
@@ -54,7 +59,6 @@ function Routes() {
 
   return <RouterProvider router={router} />;
 }
-
 
 function AuthenticatedRoute() {
   const token = useUserToken();
@@ -81,6 +85,5 @@ function UnauthenticatedRoute() {
   // 如果已经授权，则直接渲染子组件
   return <Outlet />;
 }
-
 
 export default Routes;

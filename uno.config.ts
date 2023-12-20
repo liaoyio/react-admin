@@ -37,5 +37,5 @@ export default defineConfig({
       gray: '#637381',
     },
     extend: {},
-  }
+  },
 });

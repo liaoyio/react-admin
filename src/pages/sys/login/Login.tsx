@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { AppLocalePicker } from '@/components/app';
 
-
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';
 import QrCodeFrom from './QrCodeForm';

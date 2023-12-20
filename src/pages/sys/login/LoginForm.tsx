@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { SignInReq } from '@/api/user';
 import { useSignIn } from '@/store/userStore';
 
-
 function LoginForm() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
@@ -33,7 +32,12 @@ function LoginForm() {
   return (
     <>
       <div className="mb-4 text-2xl font-bold xl:text-3xl">{t('sys.login.signInFormTitle')}</div>
-      <Form name="normal_login" size="large" initialValues={{ remember: true }} onFinish={handleFinish}>
+      <Form
+        name="normal_login"
+        size="large"
+        initialValues={{ remember: true }}
+        onFinish={handleFinish}
+      >
         <div className="mb-4 flex flex-col">
           <Alert
             description={`${t('sys.login.userName')}: demo@minimals.cc / ${t(

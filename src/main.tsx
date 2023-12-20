@@ -9,7 +9,7 @@ import App from '@/App';
 import 'virtual:svg-icons-register';
 import './styles/index.css';
 import 'virtual:uno.css';
-import '@unocss/reset/tailwind-compat.css'
+import '@unocss/reset/tailwind-compat.css';
 import './locales/i18n';
 
 import { theme } from '@/common/theme/antd-theme';
@@ -27,7 +27,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

@@ -21,9 +21,9 @@ i18n
     },
     resources: {
       en: { translation: en },
-      zh: { translation: zh }
-    }
-  })
+      zh: { translation: zh },
+    },
+  });
 
 export default i18n;
-export const { t } = i18n
+export const { t } = i18n;
