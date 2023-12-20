@@ -1,3 +1,5 @@
+import { StyleProvider } from '@ant-design/cssinjs';
+import { ConfigProvider } from 'antd';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
@@ -9,6 +11,8 @@ import './styles/index.css';
 import 'virtual:uno.css';
 import '@unocss/reset/tailwind-compat.css'
 import './locales/i18n';
+
+import { theme } from '@/common/theme/antd-theme';
 
 // 创建一个 client
 const queryClient = new QueryClient({
@@ -23,12 +27,18 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     {/* 提供 client 至 App */}
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <App />
+      <ConfigProvider theme={theme}>
+        <StyleProvider hashPriority="high">
+          <App />
+        </StyleProvider>
+      </ConfigProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 );

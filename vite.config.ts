@@ -5,16 +5,18 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import UnoCSS from 'unocss/vite';
+import { viteMockServe } from 'vite-plugin-mock'
 
 export default defineConfig({
   base: './',
-  esbuild: { drop: ['console', 'debugger'] },
+  // esbuild: { drop: ['console', 'debugger'] },
   css: {
     // 开css sourcemap方便找css
     devSourcemap: true,
   },
   plugins: [
     UnoCSS(),
+    viteMockServe(),
     react(),
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
@@ -36,12 +38,13 @@ export default defineConfig({
   server: {
     // 自动打开浏览器
     open: true,
-    proxy: {
-      '/api': {
-        target: 'https://xxxxxx',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
+    port: 3001,
+    /*  proxy: {
+       '/api': {
+         target: 'http://localhost:3000',
+         changeOrigin: true,
+         rewrite: (path) => path.replace(/^\/api/, ''),
+       },
+     }, */
   },
 });

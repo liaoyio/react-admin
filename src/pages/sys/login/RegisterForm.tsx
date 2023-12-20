@@ -2,7 +2,7 @@ import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { ReturnButton } from './components/ReturnButton';
-import { LoginStateEnum, useLoginStateContext } from './useLogin';
+import { LoginStateEnum, useLoginStateContext } from '@/context/LoginStateProvider';
 
 function RegisterForm() {
   const { t } = useTranslation();

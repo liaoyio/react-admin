@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Input, Select } from 'antd';
 import { useState } from 'react';
 
-import todoService, { Todo } from '@/services/todoService';
+import todoService, { Todo } from '@/api/todo';
 
 const useTodos = () => {
   //  查询

@@ -7,6 +7,8 @@ import { SvgIcon } from '../icon';
 import type { MenuProps } from 'antd';
 
 type Locale = 'zh' | 'en';
+
+
 function AppLocalePicker() {
   const { i18n } = useTranslation();
   const [locale, setLocale] = useState<Locale>(() => {

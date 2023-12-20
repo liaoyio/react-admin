@@ -1,1 +1,4 @@
-export { default as AppLocalePicker } from './AppLocalePicker';
+
+import AppLocalePicker from './LocalePicker';
+
+export { AppLocalePicker }

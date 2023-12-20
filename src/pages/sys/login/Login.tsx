@@ -7,7 +7,7 @@ import MobileForm from './MobileForm';
 import QrCodeFrom from './QrCodeForm';
 import RegisterForm from './RegisterForm';
 import ResetForm from './ResetForm';
-import { LoginStateProvider } from './useLogin';
+import { LoginStateProvider } from '@/context/LoginStateProvider';
 
 function Login() {
   const { t } = useTranslation();
