@@ -1,17 +1,31 @@
 import { Drawer } from 'antd';
-import { useState } from 'react';
+import { type CSSProperties, useState } from 'react';
 
 import { AppLocalePicker } from '@/components/app';
 import { SvgIcon } from '@/components/icon';
 
 import Sidebar from '../sidebar';
-import UserSetting from './UserSetting';
+import Settings from './Settings';
+import UserAvatar from './UserAvatar';
+
+import CyanBlur from '@/assets/images/background/cyan-blur.png';
+import RedBlur from '@/assets/images/background/red-blur.png';
+
+const style: CSSProperties = {
+  backdropFilter: 'blur(20px)',
+  backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
+  backgroundRepeat: 'no-repeat, no-repeat',
+  backgroundPosition: 'right top, left bottom',
+  backgroundSize: '50, 50%',
+  transform: 'none',
+  transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
+};
 
 function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <>
-      <header className="bg-white sticky top-0 w-full">
+      <header className="sticky top-0 w-full">
         <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-11">
           <div className="flex items-center">
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
@@ -32,12 +46,8 @@ function Header() {
 
           <div className="flex">
             <AppLocalePicker />
-            <div className="animate-spin-slow">
-              <button className=" flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover">
-                <SvgIcon icon="ic-setting" size="24" />
-              </button>
-            </div>
-            <UserSetting />
+            <Settings />
+            <UserAvatar />
           </div>
         </div>
       </header>
@@ -48,6 +58,7 @@ function Header() {
         closeIcon={false}
         headerStyle={{ display: 'none' }}
         bodyStyle={{ padding: 0 }}
+        style={style}
         width="auto"
       >
         <Sidebar closeSideBarDrawer={() => setDrawerOpen(false)} />

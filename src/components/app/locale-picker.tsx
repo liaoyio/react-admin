@@ -8,12 +8,12 @@ import type { MenuProps } from 'antd';
 
 type Locale = 'zh' | 'en';
 
+/** Locale Picker */
 function AppLocalePicker() {
   const { i18n } = useTranslation();
-  const [locale, setLocale] = useState<Locale>(() => {
-    // 获取当前语言
-    return i18n.resolvedLanguage as Locale;
-  });
+
+  /** 获取当前语言 */
+  const [locale, setLocale] = useState<Locale>(() => i18n.resolvedLanguage as Locale);
 
   const localeList: MenuProps['items'] = [
     {
@@ -27,11 +27,13 @@ function AppLocalePicker() {
       icon: <SvgIcon icon="ic-locale_en" className="mr-2" size="18" />,
     },
   ];
+
+  /** 切换语言 */
   const handleLocaleChange: MenuProps['onClick'] = ({ key }) => {
     setLocale(key as Locale);
-    // 切换语言
     i18n.changeLanguage(key);
   };
+
   return (
     <Dropdown
       placement="bottomRight"
@@ -39,7 +41,7 @@ function AppLocalePicker() {
       key={locale}
       menu={{ items: localeList, onClick: handleLocaleChange }}
     >
-      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
+      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover hover:scale-105">
         <SvgIcon icon={`ic-locale_${locale}`} size="22" />
       </button>
     </Dropdown>

@@ -1,11 +1,21 @@
 import { StyleProvider } from '@ant-design/cssinjs';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 
-import { theme } from '@/common/theme/antd-theme';
+import { useSettings } from '@/store/settingStore';
+import { colorPrimarys, customAntdTheme } from '@/common/theme/antd-theme';
+
+import { ThemeMode } from '#/enum';
 
 export function AntdConfigProvider({ children }: React.PropsWithChildren<unknown>) {
+  const settings = useSettings();
+  const { themeMode, themeColorPresets } = settings;
+
+  const algorithm = themeMode === ThemeMode.Light ? theme.defaultAlgorithm : theme.darkAlgorithm;
+
+  const colorPrimary = colorPrimarys[themeColorPresets];
+
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={{ token: { ...customAntdTheme.token, colorPrimary }, algorithm }}>
       <StyleProvider hashPriority="high">{children}</StyleProvider>
     </ConfigProvider>
   );

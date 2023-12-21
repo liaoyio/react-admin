@@ -11,7 +11,8 @@ import { useUserInfo, useUserActions } from '@/store/userStore';
 
 const { useToken } = theme;
 
-function UserSetting() {
+/** User Avatar Dropdown */
+export default function UserAvatar() {
   const { token } = useToken();
   const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
@@ -75,5 +76,3 @@ function UserSetting() {
     </Dropdown>
   );
 }
-
-export default UserSetting;
