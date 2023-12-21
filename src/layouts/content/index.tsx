@@ -1,10 +1,7 @@
-import { Layout } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 import { Outlet } from 'react-router-dom';
 
-import { PropsWithChildren } from 'react';
 import BreadCrumb from './BreadCrumb';
-
-const { Content } = Layout;
 
 export default function ProContent() {
   return (

@@ -1,14 +1,7 @@
 import { ThemeConfig } from 'antd';
+import { ThemeColorPresets } from '#/enum';
 
-export enum ThemeColorPresets {
-  Default = 'default',
-  Cyan = 'cyan',
-  Purple = 'purple',
-  Blue = 'blue',
-  Orange = 'orange',
-  Red = 'red',
-}
-
+/** Antd theme editor: https://ant.design/theme-editor-cn */
 const customAntdTheme: ThemeConfig = {
   token: {
     colorSuccess: '#22c55e',
@@ -32,4 +25,9 @@ const colorPrimarys: {
   red: '#FF3030',
 };
 
-export { customAntdTheme, colorPrimarys };
+const baseColor = {
+  dark: {},
+  light: {},
+};
+
+export { customAntdTheme, colorPrimarys, baseColor };

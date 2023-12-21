@@ -1,25 +1,29 @@
-import { Drawer } from 'antd';
+import { Drawer, theme } from 'antd';
 import { useState } from 'react';
 import { useSettings } from '@/store/settingStore';
 
 import { AppLocalePicker } from '@/components/app';
 import { SvgIcon } from '@/components/icon';
 
-import Sidebar from '../sidebar';
 import Settings from './settings';
 import UserAvatar from './user-avatar';
+import ProSider from '../sidebar';
 import Logo from '@/components/app/logo';
 
 import { ThemeLayout } from '#/enum';
 import { BG_STYLE } from '@/styles/ui';
 
-function Header() {
+export default function ProHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
 
+  const {
+    token: { colorBgBase },
+  } = theme.useToken();
+
   return (
     <>
-      <header className="sticky top-0 w-full">
+      <header className="bg-white sticky top-0 h-20 w-full" style={{ background: colorBgBase }}>
         <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-11">
           <div className="flex items-center">
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
@@ -59,9 +63,8 @@ function Header() {
         style={BG_STYLE}
         width="auto"
       >
-        <Sidebar closeSideBarDrawer={() => setDrawerOpen(false)} />
+        <ProSider closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
     </>
   );
 }
-export default Header;

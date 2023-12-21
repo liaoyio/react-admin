@@ -6,7 +6,7 @@ const { useToken } = theme;
 
 export default function ThemeLayoutSettings() {
   const {
-    token: { colorPrimary, colorPrimaryBg, colorTextSecondary },
+    token: { colorPrimary, colorBgBase, colorPrimaryBg, colorTextSecondary },
   } = useToken();
 
   const settings = useSettings();
@@ -22,7 +22,7 @@ export default function ThemeLayoutSettings() {
 
   const layoutBackground = (layout: ThemeLayout) =>
     themeLayout === layout
-      ? `linear-gradient(135deg, ${colorPrimaryBg} 0%, ${colorPrimary} 100%)`
+      ? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)`
       : '#919eab';
 
   return (
