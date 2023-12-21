@@ -20,24 +20,21 @@ function Sidebar(props: SidebarProps) {
 
   const { t } = useTranslation();
 
-  // submenu keys of first level
-  const rootSubmenuKeys = ['management'];
-
   // router -> menu
   const routeToMenu = useCallback(
-    (items: AppRouteObject[], parentPath = '') => {
+    (items: AppRouteObject[]) => {
       return items.map((item) => {
-        const menuItem: any = {
-          key: parentPath + (item.path!.startsWith('/') ? item.path : `/${item.path}`),
-        };
-        if (item.meta?.title) {
-          menuItem.label = t(item.meta?.title as any);
+        const menuItem: any = {};
+        const { meta, children } = item;
+        if (meta) {
+          menuItem.key = meta.key;
+          menuItem.label = t(meta?.title as any);
+          if (meta.icon) {
+            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="20" />;
+          }
         }
-        if (item.meta?.icon) {
-          menuItem.icon = <SvgIcon icon={item.meta?.icon} size="24" className="mr-6" />;
-        }
-        if (item.children) {
-          menuItem.children = routeToMenu(item.children, item.path);
+        if (children) {
+          menuItem.children = routeToMenu(children);
         }
         return menuItem;
       });
@@ -89,7 +86,7 @@ function Sidebar(props: SidebarProps) {
       collapsible
       collapsed={collapsed}
       collapsedWidth={90}
-      className="relative h-screen w-64 duration-300 ease-linear hidden lg:block"
+      className="relative h-screen duration-300 ease-linear"
     >
       {/* hidden when screen < lg */}
 
@@ -99,19 +96,17 @@ function Sidebar(props: SidebarProps) {
       </NavLink>
 
       {/* <!-- Sidebar Menu --> */}
-      <div className="pl-2">
-        <Menu
-          mode="inline"
-          items={menuList}
-          className="!border-none"
-          defaultOpenKeys={openKeys}
-          defaultSelectedKeys={selectedKeys}
-          selectedKeys={selectedKeys}
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
-          onClick={onClick}
-        />
-      </div>
+      <Menu
+        mode="inline"
+        items={menuList}
+        className="!border-none"
+        defaultOpenKeys={openKeys}
+        defaultSelectedKeys={selectedKeys}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+        onClick={onClick}
+      />
 
       <button
         onClick={toggleCollapsed}
