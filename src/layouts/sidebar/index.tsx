@@ -3,7 +3,7 @@ import Sider from 'antd/es/layout/Sider';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/assets/icons/ic-logo.svg';
 import { SvgIcon } from '@/components/icon';
@@ -14,9 +14,11 @@ type SidebarProps = {
   closeSideBarDrawer?: () => void;
 };
 function Sidebar(props: SidebarProps) {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const matches = useMatches();
+
+  const { t } = useTranslation();
 
   // submenu keys of first level
   const rootSubmenuKeys = ['management'];
@@ -24,7 +26,6 @@ function Sidebar(props: SidebarProps) {
   // router -> menu
   const routeToMenu = useCallback(
     (items: AppRouteObject[], parentPath = '') => {
-      console.log('routeToMenu');
       return items.map((item) => {
         const menuItem: any = {
           key: parentPath + (item.path!.startsWith('/') ? item.path : `/${item.path}`),
@@ -51,24 +52,27 @@ function Sidebar(props: SidebarProps) {
   const [menuList, setMenuList] = useState<ItemType[]>([]);
 
   useEffect(() => {
+    const openKeys = matches
+      .filter((match) => match.pathname !== '/')
+      .map((match) => match.pathname);
+
+    setOpenKeys(openKeys);
     setSelectedKeys([pathname]);
-    console.log('pathname', pathname);
-  }, [pathname, openKeys]);
+  }, [pathname, matches]);
 
   useEffect(() => {
     const menuRoutes = getMenuRoutes();
     const menus = routeToMenu(menuRoutes);
     setMenuList(menus);
-    console.log('created -> menus', menus);
   }, [routeToMenu]);
 
   /** events */
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
-      setOpenKeys(keys);
+    if (latestOpenKey) {
+      setOpenKeys([latestOpenKey]);
     } else {
-      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+      setOpenKeys([]);
     }
   };
 
