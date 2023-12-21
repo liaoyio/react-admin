@@ -14,8 +14,8 @@
     "*.{js,jsx,ts,tsx,css,scss,sass,less,md,json}": "prettier --write"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.14.2",
-    "@tanstack/react-query-devtools": "^5.14.2",
+    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query-devtools": "^4.36.1",
     "@vitejs/plugin-react": "^4.2.1",
     "antd": "^5.12.4",
     "axios": "^1.6.2",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@ant-design/cssinjs": "^1.18.1",
+    "@ant-design/icons": "^5.2.6",
     "@types/ramda": "^0.29.9",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -54,6 +55,7 @@
     "mockjs": "^1.1.0",
     "react-icons": "^4.12.0",
     "rollup-plugin-visualizer": "^5.11.0",
+    "sass": "^1.69.5",
     "swr": "^2.2.4",
     "typescript": "^5.2.2",
     "vite-plugin-mock": "^3.0.0",

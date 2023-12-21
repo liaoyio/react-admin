@@ -2,8 +2,8 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-import en from './lang/en';
-import zh from './lang/zh-CN';
+import en_US from './lang/en_US';
+import zh_CN from './lang/zh_CN';
 
 // learn more: https://github.com/i18next/i18next-browser-languageDetector
 i18n
@@ -16,12 +16,13 @@ i18n
   .init({
     // debug: true,
     fallbackLng: 'en',
+
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
     resources: {
-      en: { translation: en },
-      zh: { translation: zh },
+      en: { translation: en_US },
+      zh: { translation: zh_CN },
     },
   });
 

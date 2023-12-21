@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
-import userApi, { SignInReq } from '@/api/user';
+import userApi, { SignInReq, SignInRes } from '@/api/user';
 import { getItem, setItem } from '@/utils/storage';
 
 import { UserToken, UserInfo } from '#/entity';
 import { StorageEnum } from '#/enum';
+import { useMutation } from '@tanstack/react-query';
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
@@ -37,10 +38,23 @@ export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
   const { setUserToken, setUserInfo } = useUserActions();
+  // const signInMutation = useMutation(userApi.signin);
   const navigatge = useNavigate();
 
   const signIn = async (data: SignInReq) => {
     const res = await userApi.signin(data);
+    /* TODO: remove
+      let res: SignInRes = {
+        user: { id: '111', email: 'demo@admin.com', password: '123', username: 'admin' },
+        accessToken: 'admin',
+        refreshToken: 'admin',
+      };
+      try {
+        res = await signInMutation.mutateAsync(data);
+      } catch (error) {
+        console.log(error);
+      }
+    */
     const { user, accessToken, refreshToken } = res;
     setUserToken({ accessToken, refreshToken });
     setUserInfo(user);
