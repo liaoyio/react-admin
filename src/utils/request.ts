@@ -1,6 +1,6 @@
 import { message as Message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
-import { isNil, isEmpty } from 'ramda';
+import { isEmpty } from 'ramda';
 
 import { t } from '@/locales/i18n';
 
@@ -39,11 +39,9 @@ axiosInstance.interceptors.response.use(
     // 业务请求成功
     const hasSuccess = data && Reflect.has(res.data, 'status') && status === ResultEnum.SUCCESS;
     if (hasSuccess) {
-      let successMsg = message;
-      if (isNil(message) || isEmpty(message)) {
-        successMsg = t(`sys.api.operationSuccess`);
-      }
-      Message.success(successMsg);
+      /* let successMsg = message;
+      if (isEmpty(message)) { successMsg = t(`sys.api.operationSuccess`) }
+      Message.success(successMsg); */
       return data;
     }
 

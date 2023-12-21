@@ -19,12 +19,12 @@ function AppLocalePicker() {
     {
       key: 'zh',
       label: 'Chinese',
-      icon: <SvgIcon icon="ic-locale_zh" className="mr-2" size="20" />,
+      icon: <SvgIcon icon="ic-locale_zh" className="mr-2" size="18" />,
     },
     {
       key: 'en',
       label: 'English',
-      icon: <SvgIcon icon="ic-locale_en" className="mr-2" size="20" />,
+      icon: <SvgIcon icon="ic-locale_en" className="mr-2" size="18" />,
     },
   ];
   const handleLocaleChange: MenuProps['onClick'] = ({ key }) => {
@@ -40,7 +40,7 @@ function AppLocalePicker() {
       menu={{ items: localeList, onClick: handleLocaleChange }}
     >
       <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
-        <SvgIcon icon={`ic-locale_${locale}`} size="24" />
+        <SvgIcon icon={`ic-locale_${locale}`} size="22" />
       </button>
     </Dropdown>
   );

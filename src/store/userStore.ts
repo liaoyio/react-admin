@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
 import userApi, { SignInReq, SignInRes } from '@/api/user';
-import { getItem, setItem } from '@/utils/storage';
+import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserToken, UserInfo } from '#/entity';
 import { StorageEnum } from '#/enum';
@@ -14,6 +14,7 @@ type UserStore = {
   actions: {
     setUserInfo: (userInfo: UserInfo) => void;
     setUserToken: (token: UserToken) => void;
+    clearUserInfoAndToken: () => void;
   };
 };
 
@@ -29,6 +30,10 @@ const useUserStore = create<UserStore>((set) => ({
       set({ userToken });
       setItem(StorageEnum.Token, userToken);
     },
+    clearUserInfoAndToken() {
+      removeItem(StorageEnum.User);
+      removeItem(StorageEnum.Token);
+    },
   },
 }));
 
@@ -43,24 +48,11 @@ export const useSignIn = () => {
 
   const signIn = async (data: SignInReq) => {
     const res = await userApi.signin(data);
-    /* TODO: remove
-      let res: SignInRes = {
-        user: { id: '111', email: 'demo@admin.com', password: '123', username: 'admin' },
-        accessToken: 'admin',
-        refreshToken: 'admin',
-      };
-      try {
-        res = await signInMutation.mutateAsync(data);
-      } catch (error) {
-        console.log(error);
-      }
-    */
+    // const res = await signInMutation.mutateAsync(data);
     const { user, accessToken, refreshToken } = res;
     setUserToken({ accessToken, refreshToken });
     setUserInfo(user);
-
     navigatge('/dashboard', { replace: true });
-    return res;
   };
   return signIn;
 };

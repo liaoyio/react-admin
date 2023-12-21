@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
+import Content from './content';
 import Header from './header';
 import Sidebar from './sidebar';
 
@@ -11,9 +12,9 @@ export default function BasicLayout() {
       </div>
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <Header />
-        <main>
+        <Content>
           <Outlet />
-        </main>
+        </Content>
       </div>
     </div>
   );

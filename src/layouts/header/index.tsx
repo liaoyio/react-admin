@@ -5,10 +5,10 @@ import { AppLocalePicker } from '@/components/app';
 import { SvgIcon } from '@/components/icon';
 
 import Sidebar from '../sidebar';
+import UserSetting from './UserSetting';
 
 function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-
   return (
     <>
       <header className="bg-white sticky top-0 w-full">
@@ -37,13 +37,7 @@ function Header() {
                 <SvgIcon icon="ic-setting" size="24" />
               </button>
             </div>
-            <button className=" flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover">
-              <img
-                className="h-8 w-8 rounded-full"
-                src="https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_25.jpg"
-                alt=""
-              />
-            </button>
+            <UserSetting />
           </div>
         </div>
       </header>
