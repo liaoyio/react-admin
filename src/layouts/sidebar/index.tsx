@@ -7,10 +7,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation, useMatches, useNavigate } from 'react-router-dom';
 
-import Logo from '@/assets/icons/ic-logo.svg';
+import Logo from '@/components/app/logo';
 import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject } from '#/router';
+import { ThemeLayout } from '#/enum';
+
+import { useSettingActions, useSettings } from '@/store/settingStore';
 
 type SidebarProps = {
   closeSideBarDrawer?: () => void;
@@ -22,9 +25,11 @@ function Sidebar(props: SidebarProps) {
 
   const { t } = useTranslation();
 
-  const {
-    token: { colorTextBase, colorPrimary },
-  } = theme.useToken();
+  const colorTextBase = theme.useToken().token.colorTextBase;
+
+  const settings = useSettings();
+  const { themeLayout } = settings;
+  const { setSettings } = useSettingActions();
 
   // router -> menu
   const routeToMenu = useCallback(
@@ -53,6 +58,7 @@ function Sidebar(props: SidebarProps) {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>(['']);
   const [menuList, setMenuList] = useState<ItemType[]>([]);
+  const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
 
   useEffect(() => {
     const openKeys = matches
@@ -69,6 +75,17 @@ function Sidebar(props: SidebarProps) {
     setMenuList(menus);
   }, [routeToMenu]);
 
+  useEffect(() => {
+    if (themeLayout === ThemeLayout.Vertical) {
+      setCollapsed(false);
+      setMenuMode('inline');
+    }
+    if (themeLayout === ThemeLayout.Mini) {
+      setCollapsed(true);
+      setMenuMode('inline');
+    }
+  }, [themeLayout]);
+
   /** events */
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -84,7 +101,21 @@ function Sidebar(props: SidebarProps) {
     props?.closeSideBarDrawer?.();
   };
 
-  const toggleCollapsed = () => setCollapsed(!collapsed);
+  const setThemeLayout = (themeLayout: ThemeLayout) => {
+    setSettings({
+      ...settings,
+      themeLayout,
+    });
+  };
+
+  const toggleCollapsed = () => {
+    if (!collapsed) {
+      setThemeLayout(ThemeLayout.Mini);
+    } else {
+      setThemeLayout(ThemeLayout.Vertical);
+    }
+    setCollapsed(!collapsed);
+  };
 
   return (
     <Sider
@@ -95,14 +126,11 @@ function Sidebar(props: SidebarProps) {
       className="relative h-screen duration-300 ease-linear"
     >
       <div className="h-screen">
-        {/* SIDEBAR HEADER */}
-        <NavLink to="/">
-          <img src={Logo} alt="" className="mb-2 ml-8 mt-6 h-10 w-10" />
-        </NavLink>
+        <Logo className="mb-2 ml-8 mt-6 h-10 w-10" />
 
         {/* Sidebar Menu  */}
         <Menu
-          mode="inline"
+          mode={menuMode}
           items={menuList}
           className="h-full !border-none"
           defaultOpenKeys={openKeys}

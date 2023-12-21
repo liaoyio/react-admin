@@ -5,15 +5,19 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Content from './content';
 import Header from './header';
 import Sidebar from './sidebar';
+import TopMenu from './sidebar/top-inline-menu';
 import { Progress } from '@/components/app';
+
+import { useSettings } from '@/store/settingStore';
+import { ThemeLayout } from '#/enum';
 
 export default function BasicLayout() {
   const [isLoading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
 
-  const {
-    token: { colorBgBase },
-  } = theme.useToken();
+  const colorBgBase = theme.useToken().token.colorBgBase;
+
+  const { themeLayout } = useSettings();
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,10 +35,15 @@ export default function BasicLayout() {
       <Progress isAnimating={isLoading} />
       <div className="flex h-screen overflow-hidden" style={{ background: colorBgBase }}>
         <div className="hidden lg:block">
-          <Sidebar />
+          {themeLayout !== ThemeLayout.Horizontal ? (
+            <div className="hidden lg:block">
+              <Sidebar />
+            </div>
+          ) : null}
         </div>
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           <Header />
+          {themeLayout === ThemeLayout.Horizontal ? <TopMenu /> : null}
           <Content>
             <Outlet />
           </Content>
