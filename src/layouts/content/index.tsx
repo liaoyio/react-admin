@@ -1,12 +1,16 @@
+import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
+
 import { PropsWithChildren } from 'react';
 import BreadCrumb from './BreadCrumb';
 
-export default function Content({ children }: PropsWithChildren) {
+const { Content } = Layout;
+
+export default function ProContent() {
   return (
-    <main className="border-[1px] border-gray-400 p-4">
+    <Content className="p-4">
       <BreadCrumb />
-      {/* Menu Content */}
-      {children}
-    </main>
+      <Outlet />
+    </Content>
   );
 }
