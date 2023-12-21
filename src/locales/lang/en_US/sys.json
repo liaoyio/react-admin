@@ -46,6 +46,7 @@
       "sendSmsText": "Reacquire in {{second}}s",
       "sendEmailButton": "Send Email",
       "loginSuccessTitle": "Login successful",
+      "logout": "Logout",
       "loginSuccessDesc": "Welcome back",
       "accountPlaceholder": "Please input username",
       "passwordPlaceholder": "Please input password",

@@ -55,7 +55,7 @@ function Sidebar(props: SidebarProps) {
 
     setOpenKeys(openKeys);
     setSelectedKeys([pathname]);
-  }, [pathname, matches]);
+  }, [pathname, matches, collapsed]);
 
   useEffect(() => {
     const menuRoutes = getMenuRoutes();

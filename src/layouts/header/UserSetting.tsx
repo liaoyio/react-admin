@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Divider, MenuProps, theme } from 'antd';
 import Dropdown, { DropdownProps } from 'antd/es/dropdown/dropdown';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import userService from '@/api/user';
@@ -14,8 +15,9 @@ function UserSetting() {
   const { token } = useToken();
   const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
-  const logoutMutation = useMutation(userService.logout);
   const { backToLogin } = useLoginStateContext();
+  const { t } = useTranslation();
+  const logoutMutation = useMutation(userService.logout);
 
   const logout = () => {
     try {
@@ -49,14 +51,12 @@ function UserSetting() {
   );
 
   const items: MenuProps['items'] = [
-    { label: <NavLink to="/dashboard">Home</NavLink>, key: '0' },
-    { label: <NavLink to="/dashboard">Profile</NavLink>, key: '1' },
-    { label: <NavLink to="/dashboard">Settings</NavLink>, key: '2' },
+    { label: <NavLink to="/dashboard">{t('sys.menu.dashboard')}</NavLink>, key: '0' },
     { type: 'divider' },
     {
       label: (
         <button onClick={logout} className="font-bold text-orange">
-          Logout
+          {t('sys.login.logout')}
         </button>
       ),
       key: '3',

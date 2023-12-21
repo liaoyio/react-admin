@@ -45,6 +45,7 @@
       "sendSmsText": "{{second}}秒后重新获取",
       "sendEmailButton": "发送邮件",
       "loginSuccessTitle": "登录成功",
+      "logout": "退出",
       "loginSuccessDesc": "欢迎回来",
       "accountPlaceholder": "请输入账号",
       "passwordPlaceholder": "请输入密码",

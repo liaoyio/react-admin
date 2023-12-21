@@ -32,6 +32,7 @@
   "devDependencies": {
     "@ant-design/cssinjs": "^1.18.1",
     "@ant-design/icons": "^5.2.6",
+    "@tanem/react-nprogress": "^5.0.51",
     "@types/ramda": "^0.29.9",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
