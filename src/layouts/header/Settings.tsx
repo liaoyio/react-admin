@@ -1,20 +1,21 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { Button, Card, Drawer, theme } from 'antd';
-import { CSSProperties, useState } from 'react';
+import { useState } from 'react';
 import { MdCircle } from 'react-icons/md';
+import { useFullscreen } from 'ahooks';
 
-import CyanBlur from '@/assets/images/background/cyan-blur.png';
-import RedBlur from '@/assets/images/background/red-blur.png';
 import { SvgIcon } from '@/components/icon';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { colorPrimarys } from '@/common/theme/antd-theme';
 import { ThemeColorPresets, ThemeMode } from '#/enum';
+import { BG_STYLE } from '@/styles/ui';
 
 const { useToken } = theme;
 
-/** App Setting*/
-function Settings() {
+/** App Setting */
+export default function Settings() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
   const {
     token: { colorPrimary, colorTextSecondary },
   } = useToken();
@@ -37,25 +38,12 @@ function Settings() {
     });
   };
 
-  const style: CSSProperties = {
-    backdropFilter: 'blur(20px)',
-    backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
-    backgroundRepeat: 'no-repeat, no-repeat',
-    backgroundPosition: 'right top, left bottom',
-    backgroundSize: '50, 50%',
-    transform: 'none',
-    transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
-  };
-  const bodyStyle: CSSProperties = {
-    padding: 0,
-  };
-
   return (
     <>
       <div className="animate-spin-slow">
         <button
           onClick={() => setDrawerOpen(true)}
-          className=" flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
+          className="flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
         >
           <SvgIcon icon="ic-setting" size="24" />
         </button>
@@ -67,9 +55,9 @@ function Settings() {
         open={drawerOpen}
         closable={false}
         width={280}
-        bodyStyle={bodyStyle}
         maskStyle={{ backgroundColor: 'transparent' }}
-        style={style}
+        style={BG_STYLE}
+        styles={{ body: { padding: 0 } }}
         extra={
           <button
             onClick={() => setDrawerOpen(false)}
@@ -78,11 +66,7 @@ function Settings() {
             <CloseOutlined className="text-gray-400" />
           </button>
         }
-        footer={
-          <Button type="dashed" block size="large" className="w-full">
-            <span className="text-gray-400">FullScreen</span>
-          </Button>
-        }
+        footer={<FullScreenButton />}
       >
         <div className="flex flex-col gap-6 p-6">
           <div>
@@ -137,4 +121,28 @@ function Settings() {
     </>
   );
 }
-export default Settings;
+
+function FullScreenButton() {
+  const {
+    token: { colorPrimary },
+  } = useToken();
+  const [isFullscreen, { toggleFullscreen }] = useFullscreen(document.body);
+
+  return (
+    <Button type="dashed" block size="large" onClick={() => toggleFullscreen()} className="w-full">
+      <div className="flex items-center justify-center">
+        {isFullscreen ? (
+          <>
+            <SvgIcon icon="ic-settings-exit-fullscreen" color={colorPrimary} className="!m-0" />
+            <span className="ml-2">Exit FullScreen</span>
+          </>
+        ) : (
+          <>
+            <SvgIcon icon="ic-settings-fullscreen" className="!m-0" />
+            <span className="ml-2 text-gray">FullScreen</span>
+          </>
+        )}
+      </div>
+    </Button>
+  );
+}

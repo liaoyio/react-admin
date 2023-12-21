@@ -6,7 +6,7 @@ interface SvgIconProps {
   className?: string;
 }
 
-function SvgIcon({
+export default function SvgIcon({
   prefix = 'icon',
   icon,
   color = 'currentColor',
@@ -14,21 +14,21 @@ function SvgIcon({
   className = '',
 }: SvgIconProps) {
   const symbolId = `#${prefix}-${icon}`;
+
   const svgStyle = {
     width: size,
     height: size,
     verticalAlign: '-0.15em',
   };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
-      className={`fill-current m-auto inline-block h-[1em] w-[1em] overflow-hidden outline-none ${className}`}
+      className={`fill-current inline-block h-[1em] w-[1em] overflow-hidden outline-none ${className}}`}
       style={svgStyle}
     >
       <use xlinkHref={symbolId} fill={color} color={color} />
     </svg>
   );
 }
-
-export default SvgIcon;
