@@ -8,7 +8,9 @@ export default function Main() {
   return (
     <Content className="px-4">
       <BreadCrumb />
-      <div className={`mx-auto h-full w-full sm:px-2 ${themeStretch ? '' : 'xl:max-w-screen-xl'}`}>
+      <div
+        className={`mx-auto h-full w-full pt-4 sm:px-2 ${themeStretch ? '' : 'xl:max-w-screen-xl'}`}
+      >
         <Outlet />
       </div>
     </Content>
