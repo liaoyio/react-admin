@@ -19,4 +19,6 @@ export type AppRouteObject = {
   element?: RouteObject['element'];
   children?: AppRouteObject[];
   meta?: RouteMeta;
+  /* 菜单排序 */
+  order?: number;
 };

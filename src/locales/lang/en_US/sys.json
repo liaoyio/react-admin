@@ -72,7 +72,9 @@
       "analysis": "Analysis",
       "management": "Management",
       "user": "User",
-      "blog": "Blog"
+      "blog": "Blog",
+      "components": "Components",
+      "animate": "Animate"
     }
   }
 }
