@@ -5,6 +5,7 @@ import SettingIcon from './setting-icon';
 import FullScreenButton from './full-screen-button';
 import DarkModeToggle from './dark-mode-toggle';
 import ThemeLayoutSettings from './theme-layout';
+import ThemeContentStretch from './theme-stretch';
 import ThemeColorPresetsToggle from './theme-color-presets-toggle';
 import { CloseOutlined } from '@ant-design/icons';
 
@@ -42,6 +43,8 @@ export default function SettingButton() {
           <DarkModeToggle />
           {/* Layout 布局设置 */}
           <ThemeLayoutSettings />
+          {/* 页面内容屏幕尺寸拉伸 */}
+          <ThemeContentStretch />
           {/* 全局主题颜色选择 */}
           <ThemeColorPresetsToggle />
         </div>

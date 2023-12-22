@@ -3,9 +3,14 @@ import { getItem, removeItem, setItem } from '@/utils/storage';
 import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
 
 type SettingsType = {
+  /** 主题色预设: 'default' ｜ 'cyan' ｜ 'purple', ｜ 'blue' ｜ 'orange' ｜ 'red' */
   themeColorPresets: ThemeColorPresets;
+  /** 主题模式: 'light' | 'dark' */
   themeMode: ThemeMode;
+  /** 布局模式:  'vertical' ｜ 'horizontal' ｜ 'mini' */
   themeLayout: ThemeLayout;
+  /** 页面布局是否拉伸 */
+  themeStretch: boolean;
 };
 
 type SettingStore = {
@@ -21,6 +26,7 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeColorPresets: ThemeColorPresets.Default,
     themeMode: ThemeMode.Light,
     themeLayout: ThemeLayout.Vertical,
+    themeStretch: false,
   },
   actions: {
     setSettings: (settings) => {

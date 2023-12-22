@@ -1,7 +1,4 @@
-import { theme } from 'antd';
-import { useMemo } from 'react';
+import { useReponsive } from './useReponsive';
+import { useThemeToken } from './useThemeToken';
 
-export function useThemeToken() {
-  const { token } = theme.useToken();
-  return useMemo(() => token, [token]);
-}
+export { useReponsive, useThemeToken };
