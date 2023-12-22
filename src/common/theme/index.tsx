@@ -1,12 +1,13 @@
 import { StyleProvider } from '@ant-design/cssinjs';
 import { ConfigProvider, theme } from 'antd';
-
 import { useSettings } from '@/store/settingStore';
-import { colorPrimarys, customAntdTheme, baseColor } from '@/common/theme/antd-theme';
 
+import { customAntdTheme, baseColor, colorPrimarys } from './antd';
 import { ThemeMode } from '#/enum';
 
-export function AntdConfigProvider({ children }: React.PropsWithChildren<unknown>) {
+type Props = { children: React.ReactNode };
+
+export default function AntdThemeProvider({ children }: Props) {
   const charAt = `
      ██╗   ██╗██╗     █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
      ╚██╗ ██╔╝██║    ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
@@ -17,11 +18,9 @@ export function AntdConfigProvider({ children }: React.PropsWithChildren<unknown
   `;
   console.info(`%c${charAt}`, 'color: #5BE49B');
 
-  const settings = useSettings();
-  const { themeMode, themeColorPresets } = settings;
+  const { themeMode, themeColorPresets } = useSettings();
 
   const algorithm = themeMode === ThemeMode.Light ? theme.defaultAlgorithm : theme.darkAlgorithm;
-
   const colorPrimary = colorPrimarys[themeColorPresets];
 
   return (

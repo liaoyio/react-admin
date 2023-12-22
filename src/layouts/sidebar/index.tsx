@@ -1,5 +1,5 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Menu, MenuProps, theme } from 'antd';
+import { Menu, MenuProps } from 'antd';
 
 import Sider from 'antd/es/layout/Sider';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
@@ -12,7 +12,7 @@ import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject } from '#/router';
 import { ThemeLayout } from '#/enum';
-
+import { useThemeToken } from '@/common/theme/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 
 type SidebarProps = {
@@ -25,10 +25,7 @@ export default function ProSider(props: SidebarProps) {
   const matches = useMatches();
 
   const { t } = useTranslation();
-
-  const {
-    token: { colorTextBase, colorPrimary, colorBgElevated },
-  } = theme.useToken();
+  const { colorTextBase, colorPrimary, colorBgElevated } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;

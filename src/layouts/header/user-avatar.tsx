@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { Divider, MenuProps, theme } from 'antd';
+import { Divider, MenuProps } from 'antd';
 import Dropdown, { DropdownProps } from 'antd/es/dropdown/dropdown';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,12 +8,11 @@ import { NavLink } from 'react-router-dom';
 import userService from '@/api/user';
 import { useLoginStateContext } from '@/context/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
-
-const { useToken } = theme;
+import { useThemeToken } from '@/common/theme/hooks';
 
 /** User Avatar Dropdown */
 export default function UserAvatar() {
-  const { token } = useToken();
+  const token = useThemeToken();
   const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const { backToLogin } = useLoginStateContext();

@@ -1,13 +1,13 @@
-import { Card, theme } from 'antd';
+import { Card } from 'antd';
 import { ThemeColorPresets } from '#/enum';
 import { useSettingActions, useSettings } from '@/store/settingStore';
-import { colorPrimarys } from '@/common/theme/antd-theme';
+import { colorPrimarys } from '@/common/theme/antd';
 import { MdCircle } from 'react-icons/md';
-
-const { useToken } = theme;
+import { useThemeToken } from '@/common/theme/hooks';
 
 const ThemeColorPresetsToggle = () => {
-  const colorTextSecondary = useToken().token.colorTextSecondary;
+  const { colorTextSecondary } = useThemeToken();
+
   const settings = useSettings();
   const { themeColorPresets } = settings;
 

@@ -1,6 +1,6 @@
-import { Layout, theme } from 'antd';
+import { Layout } from 'antd';
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import ProContent from './content';
 import ProHeader from './header';
@@ -9,29 +9,12 @@ import TopMenu from './sidebar/top-inline-menu';
 import { ProgressBar } from '@/components/app';
 
 import { useSettings } from '@/store/settingStore';
+import { useThemeToken } from '@/common/theme/hooks';
 import { ThemeLayout } from '#/enum';
 
 export default function BasicLayout() {
-  const [isLoading, setIsLoading] = useState(false);
-  const { pathname } = useLocation();
-
-  const {
-    token: { colorBgElevated, colorTextBase },
-  } = theme.useToken();
-
+  const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout } = useSettings();
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 50);
-    return () => setIsLoading(true);
-  }, [pathname]);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
-
   return (
     <>
       <ProgressBar />

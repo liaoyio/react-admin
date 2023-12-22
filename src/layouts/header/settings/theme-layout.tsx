@@ -1,13 +1,10 @@
-import { Card, theme } from 'antd';
+import { Card } from 'antd';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { ThemeLayout } from '#/enum';
-
-const { useToken } = theme;
+import { useThemeToken } from '@/common/theme/hooks';
 
 export default function ThemeLayoutSettings() {
-  const {
-    token: { colorPrimary, colorBgBase, colorPrimaryBg, colorTextSecondary },
-  } = useToken();
+  const { colorPrimary, colorBgBase, colorTextSecondary } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;

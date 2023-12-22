@@ -1,14 +1,11 @@
-import { Card, theme } from 'antd';
+import { Card } from 'antd';
 import { SvgIcon } from '@/components/icon';
 import { ThemeMode } from '#/enum';
 import { useSettingActions, useSettings } from '@/store/settingStore';
-
-const { useToken } = theme;
+import { useThemeToken } from '@/common/theme/hooks';
 
 const DarkModeToggle = () => {
-  const {
-    token: { colorPrimary, colorTextSecondary },
-  } = useToken();
+  const { colorPrimary, colorTextSecondary } = useThemeToken();
 
   const settings = useSettings();
   const { themeMode } = settings;

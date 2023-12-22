@@ -1,4 +1,4 @@
-import { Drawer, theme } from 'antd';
+import { Drawer } from 'antd';
 import { useState } from 'react';
 import { useSettings } from '@/store/settingStore';
 
@@ -9,6 +9,7 @@ import Settings from './settings';
 import UserAvatar from './user-avatar';
 import ProSider from '../sidebar';
 import Logo from '@/components/app/logo';
+import { useThemeToken } from '@/common/theme/hooks';
 
 import { ThemeLayout } from '#/enum';
 import { BG_STYLE } from '@/styles/ui';
@@ -16,10 +17,7 @@ import { BG_STYLE } from '@/styles/ui';
 export default function ProHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
-
-  const {
-    token: { colorBgElevated },
-  } = theme.useToken();
+  const { colorBgElevated } = useThemeToken();
 
   return (
     <>

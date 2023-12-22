@@ -1,10 +1,8 @@
-import { theme } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { useThemeToken } from '@/common/theme/hooks';
 
 export default function Logo({ className = '' }: { className?: string }) {
-  const {
-    token: { colorPrimary, colorPrimaryBg },
-  } = theme.useToken();
+  const { colorPrimary, colorPrimaryBg } = useThemeToken();
   return (
     <NavLink to="/" className={className}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

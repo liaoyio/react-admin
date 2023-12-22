@@ -1,13 +1,10 @@
-import { Button, theme } from 'antd';
+import { Button } from 'antd';
 import { SvgIcon } from '@/components/icon';
 import { useFullscreen } from 'ahooks';
-
-const { useToken } = theme;
+import { useThemeToken } from '@/common/theme/hooks';
 
 export default function FullScreenButton() {
-  const {
-    token: { colorPrimary },
-  } = useToken();
+  const { colorPrimary } = useThemeToken();
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(document.body);
 
   return (

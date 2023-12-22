@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import { ReactQueryProvider } from '@/context/QueryClientProvider';
-import { AntdConfigProvider } from '@/context/AntdConfigProvider';
 import { Suspense } from 'react';
 
 import App from '@/App';
@@ -14,10 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <ReactQueryProvider>
-    <AntdConfigProvider>
-      <Suspense>
-        <App />
-      </Suspense>
-    </AntdConfigProvider>
+    <Suspense>
+      <App />
+    </Suspense>
   </ReactQueryProvider>,
 );
