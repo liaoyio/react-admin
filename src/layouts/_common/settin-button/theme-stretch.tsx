@@ -1,34 +1,18 @@
 import { useState } from 'react';
 import { Card, Tooltip } from 'antd';
-import {
-  DashOutlined,
-  LeftOutlined,
-  QuestionCircleOutlined,
-  RightOutlined,
-} from '@ant-design/icons';
-
+import { LeftOutlined, QuestionCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/common/theme/hooks';
-import { repeat } from 'ramda';
 
 export default function ThemeContentStretch() {
-  const [_, setWidthAnimate] = useState(120);
-
   const { colorPrimary, colorTextSecondary } = useThemeToken();
   const settings = useSettings();
   const { themeStretch } = settings;
   const { setSettings } = useSettingActions();
 
   const setThemeStretch = (themeStretch: boolean) => {
-    if (themeStretch) {
-      setWidthAnimate(120);
-    } else {
-      setWidthAnimate(50);
-    }
     setSettings({ ...settings, themeStretch });
   };
-  // < -------- >
-  const DashOutLinedRepeat = (n = 1) => repeat(<DashOutlined />, n);
 
   return (
     <div>
