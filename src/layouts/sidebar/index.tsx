@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
-import Logo from '@/components/app/logo';
+import Logo from '@/components/logo';
 import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject } from '#/router';

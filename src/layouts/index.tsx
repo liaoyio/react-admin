@@ -6,7 +6,7 @@ import ProContent from './content';
 import ProHeader from './header';
 import ProSider from './sidebar';
 import TopMenu from './sidebar/top-inline-menu';
-import { ProgressBar } from '@/components/app';
+import ProgressBar from '@/components/progress-bar';
 
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/common/theme/hooks';

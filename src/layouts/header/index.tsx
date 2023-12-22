@@ -2,13 +2,13 @@ import { Drawer } from 'antd';
 import { useState } from 'react';
 import { useSettings } from '@/store/settingStore';
 
-import { LocalePicker } from '@/components/app';
+import Logo from '@/components/logo';
+import LocalePicker from '@/components/locale-picker';
 import { SvgIcon } from '@/components/icon';
 
 import Settings from './settings';
 import UserAvatar from './user-avatar';
 import ProSider from '../sidebar';
-import Logo from '@/components/app/logo';
 import { useThemeToken } from '@/common/theme/hooks';
 
 import { ThemeLayout } from '#/enum';

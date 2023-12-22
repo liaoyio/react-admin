@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { LocalePicker } from '@/components/app';
+import LocalePicker from '@/components/locale-picker';
 
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';

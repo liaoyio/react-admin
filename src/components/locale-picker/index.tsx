@@ -2,7 +2,7 @@ import { Dropdown } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SvgIcon } from '../../icon';
+import { SvgIcon } from '../icon';
 
 import type { MenuProps } from 'antd';
 
