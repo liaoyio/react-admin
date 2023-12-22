@@ -1,10 +1,10 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import Loading from '@/components/loading';
-import Scroll from '@/pages/components/scroll';
-
 import { AppRouteObject } from '#/router';
+
 const Animate = lazy(() => import('@/pages/components/animate'));
+const Scroll = lazy(() => import('@/pages/components/scroll'));
 
 const components: AppRouteObject = {
   order: 3,
