@@ -1,7 +1,7 @@
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card, Button } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useState } from 'react';
-
+import { useThemeToken } from '@/common/theme/hooks';
 import Markdown from '@/components/markdown';
 
 const TEXT = `
@@ -67,6 +67,26 @@ ReactDOM.render(
 `;
 
 export default function MarkdownPage() {
+  const { colorPrimary } = useThemeToken();
+  const [content] = useState(TEXT);
+  return (
+    <>
+      <a
+        href="https://github.com/remarkjs/react-markdown"
+        target="_blank"
+        className="my-4 block"
+        style={{ color: colorPrimary }}
+      >
+        https://github.com/remarkjs/react-markdown
+      </a>
+      <Card title="Mardown content">
+        <Markdown>{content}</Markdown>
+      </Card>
+    </>
+  );
+}
+
+function MarkdownPageShow() {
   const [content, setContent] = useState(TEXT);
   return (
     <Row justify="space-between" gutter={20}>

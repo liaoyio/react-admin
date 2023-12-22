@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   transformers: [transformerDirectives(), transformerVariantGroup(), transformerAttributifyJsx()],
   theme: {
-    screens: {
+    breakpoints: {
       xs: '480px',
       sm: '576px',
       md: '768px',
@@ -23,6 +23,15 @@ export default defineConfig({
       xl: '1200px',
       '2xl': '1600px',
     },
+    // 在 unocss 无效
+    /* screens: {
+      'xs': '480px',
+      'sm': '576px',
+      'md': '768px',
+      'lg': '992px',
+      'xl': '1200px',
+      '2xl': '1600px',
+    }, */
     fontFamily: {
       sans: ['Public Sans', 'sans-serif'],
     },
