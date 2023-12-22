@@ -2,7 +2,7 @@ import { Drawer, theme } from 'antd';
 import { useState } from 'react';
 import { useSettings } from '@/store/settingStore';
 
-import { AppLocalePicker } from '@/components/app';
+import { LocalePicker } from '@/components/app';
 import { SvgIcon } from '@/components/icon';
 
 import Settings from './settings';
@@ -18,12 +18,12 @@ export default function ProHeader() {
   const { themeLayout } = useSettings();
 
   const {
-    token: { colorBgBase },
+    token: { colorBgElevated },
   } = theme.useToken();
 
   return (
     <>
-      <header className="bg-white sticky top-0 h-20 w-full" style={{ background: colorBgBase }}>
+      <header className="bg-white sticky top-0 h-20 w-full" style={{ background: colorBgElevated }}>
         <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-11">
           <div className="flex items-center">
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
@@ -48,7 +48,7 @@ export default function ProHeader() {
           </div>
 
           <div className="flex">
-            <AppLocalePicker />
+            <LocalePicker />
             <Settings />
             <UserAvatar />
           </div>

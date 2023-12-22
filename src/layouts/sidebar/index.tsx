@@ -5,7 +5,7 @@ import Sider from 'antd/es/layout/Sider';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink, useLocation, useMatches, useNavigate } from 'react-router-dom';
+import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/app/logo';
 import { SvgIcon } from '@/components/icon';
@@ -27,7 +27,7 @@ export default function ProSider(props: SidebarProps) {
   const { t } = useTranslation();
 
   const {
-    token: { colorTextBase, colorPrimary },
+    token: { colorTextBase, colorPrimary, colorBgElevated },
   } = theme.useToken();
 
   const settings = useSettings();
@@ -143,7 +143,7 @@ export default function ProSider(props: SidebarProps) {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        collapsedWidth={90}
+        collapsedWidth={100}
         className="duration-300 ease-linear"
       >
         <div className="h-full">
@@ -158,7 +158,7 @@ export default function ProSider(props: SidebarProps) {
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             onClick={onClick}
-            inlineCollapsed={false}
+            style={{ background: colorBgElevated }}
           />
         </div>
       </Sider>

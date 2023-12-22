@@ -1,7 +1,7 @@
 import { theme } from 'antd';
 import { NavLink } from 'react-router-dom';
 
-function Logo({ className = '' }: { className?: string }) {
+export default function Logo({ className = '' }: { className?: string }) {
   const {
     token: { colorPrimary, colorPrimaryBg },
   } = theme.useToken();
@@ -40,5 +40,3 @@ function Logo({ className = '' }: { className?: string }) {
     </NavLink>
   );
 }
-
-export default Logo;

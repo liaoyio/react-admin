@@ -34,15 +34,11 @@ function BreadCrumb() {
   useEffect(() => {
     const paths = matches.filter((item) => item.pathname !== '/').map((item) => item.pathname);
 
+    console.log('🚀 BreadCrumb -> useEffect -> paths', paths);
+
     const pathRouteMetas = flattenedRoutes.filter((item: any) => paths.indexOf(item.key) !== -1);
-    // const rootRouteMeta = {
-    //   key: '/',
-    //   href: '',
-    //   title: t('sys.menu.dashboard'),
-    // };
-    // if (paths.indexOf('/dashboard') === -1) {
-    //   pathRouteMetas.unshift(rootRouteMeta);
-    // }
+
+    console.log('🚀 BreadCrumb -> useEffect -> pathRouteMetas', pathRouteMetas);
 
     const breadCrumbs = pathRouteMetas.map((routeMeta: any) => {
       const { key, title } = routeMeta;
@@ -51,6 +47,8 @@ function BreadCrumb() {
         title: t(title),
       };
     });
+    console.log('🚀 BreadCrumb -> useEffect -> breadCrumbs', breadCrumbs);
+
     setBreadCrumbs(breadCrumbs);
   }, [matches, flattenedRoutes, t]);
 

@@ -7,6 +7,16 @@ import { colorPrimarys, customAntdTheme, baseColor } from '@/common/theme/antd-t
 import { ThemeMode } from '#/enum';
 
 export function AntdConfigProvider({ children }: React.PropsWithChildren<unknown>) {
+  const charAt = `
+     ██╗   ██╗██╗     █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
+     ╚██╗ ██╔╝██║    ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
+      ╚████╔╝ ██║    ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
+       ╚██╔╝  ██║    ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
+        ██║   ██║    ██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
+        ╚═╝   ╚═╝    ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
+  `;
+  console.info(`%c${charAt}`, 'color: #5BE49B');
+
   const settings = useSettings();
   const { themeMode, themeColorPresets } = settings;
 
@@ -18,6 +28,7 @@ export function AntdConfigProvider({ children }: React.PropsWithChildren<unknown
     <ConfigProvider
       theme={{
         token: { ...customAntdTheme.token, colorPrimary, ...baseColor[themeMode] },
+        components: { ...customAntdTheme.components },
         algorithm,
       }}
     >

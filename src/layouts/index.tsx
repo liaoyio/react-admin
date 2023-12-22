@@ -6,7 +6,7 @@ import ProContent from './content';
 import ProHeader from './header';
 import ProSider from './sidebar';
 import TopMenu from './sidebar/top-inline-menu';
-import { Progress } from '@/components/app';
+import { ProgressBar } from '@/components/app';
 
 import { useSettings } from '@/store/settingStore';
 import { ThemeLayout } from '#/enum';
@@ -16,7 +16,7 @@ export default function BasicLayout() {
   const { pathname } = useLocation();
 
   const {
-    token: { colorBgElevated },
+    token: { colorBgElevated, colorTextBase },
   } = theme.useToken();
 
   const { themeLayout } = useSettings();
@@ -34,7 +34,7 @@ export default function BasicLayout() {
 
   return (
     <>
-      <Progress isAnimating={isLoading} />
+      <ProgressBar />
       <Layout className="flex h-screen overflow-hidden">
         {themeLayout !== ThemeLayout.Horizontal ? (
           <div
@@ -47,7 +47,10 @@ export default function BasicLayout() {
           </div>
         ) : null}
 
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div
+          className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+          style={{ color: colorTextBase, background: colorBgElevated }}
+        >
           <ProHeader />
           {themeLayout === ThemeLayout.Horizontal ? <TopMenu /> : null}
           <ProContent />

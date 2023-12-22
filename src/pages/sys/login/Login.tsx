@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { AppLocalePicker } from '@/components/app';
+import { LocalePicker } from '@/components/app';
 
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';
@@ -48,7 +48,7 @@ function Login() {
         </LoginStateProvider>
       </div>
       <div className="absolute right-0 top-0">
-        <AppLocalePicker />
+        <LocalePicker />
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { ReactQueryProvider } from '@/context/QueryClientProvider';
 import { AntdConfigProvider } from '@/context/AntdConfigProvider';
+import { Suspense } from 'react';
 
 import App from '@/App';
 import 'virtual:svg-icons-register';
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <ReactQueryProvider>
     <AntdConfigProvider>
-      <App />
+      <Suspense>
+        <App />
+      </Suspense>
     </AntdConfigProvider>
   </ReactQueryProvider>,
 );

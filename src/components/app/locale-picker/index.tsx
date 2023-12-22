@@ -2,14 +2,14 @@ import { Dropdown } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SvgIcon } from '../icon';
+import { SvgIcon } from '../../icon';
 
 import type { MenuProps } from 'antd';
 
 type Locale = 'zh' | 'en';
 
 /** Locale Picker */
-function AppLocalePicker() {
+export default function LocalePicker() {
   const { i18n } = useTranslation();
 
   /** 获取当前语言 */
@@ -47,5 +47,3 @@ function AppLocalePicker() {
     </Dropdown>
   );
 }
-
-export default AppLocalePicker;
