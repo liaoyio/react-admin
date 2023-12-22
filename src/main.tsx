@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { ReactQueryProvider } from '@/context/QueryClientProvider';
 import { Suspense } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
 import App from '@/App';
 import 'virtual:svg-icons-register';
@@ -12,9 +13,11 @@ import '@/locales/i18n';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <ReactQueryProvider>
-    <Suspense>
-      <App />
-    </Suspense>
-  </ReactQueryProvider>,
+  <HelmetProvider>
+    <ReactQueryProvider>
+      <Suspense>
+        <App />
+      </Suspense>
+    </ReactQueryProvider>
+  </HelmetProvider>,
 );

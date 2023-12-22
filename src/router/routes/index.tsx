@@ -5,7 +5,7 @@ import SimpleLayout from '@/layouts/simple';
 import AuthRouter from '../components/AuthRouter';
 import { AppRouteObject } from '#/router';
 
-const Page404 = lazy(() => import('@/pages/Page404'));
+const Page404 = lazy(() => import('@/pages/sys/error/Page404'));
 const Login = lazy(() => import('@/pages/sys/login/Login'));
 
 // 基于 src/router/routes/modules 文件结构动态生成路由
