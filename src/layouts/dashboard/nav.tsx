@@ -1,7 +1,6 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 
-import Sider from 'antd/es/layout/Sider';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -41,7 +40,9 @@ export default function Nav(props: Props) {
           menuItem.key = meta.key;
           menuItem.label = t(meta?.title as any);
           if (meta.icon) {
-            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="20" />;
+            menuItem.icon = (
+              <SvgIcon icon={meta.icon} className="ant-menu-item-icon mr-2" size="24px" />
+            );
           }
         }
         if (children) {
@@ -119,14 +120,14 @@ export default function Nav(props: Props) {
   };
 
   return (
-    <>
-      <div className="relative flex h-20 w-full items-center justify-center">
+    <div style={{ width: collapsed ? '100px' : '280px' }}>
+      <div className="relative flex h-20 items-center justify-center">
         <Logo className="h-10 w-10" />
         {themeLayout !== ThemeLayout.Mini ? (
           <h1 className="ml-2 text-base font-semibold" style={{ color: colorPrimary }}>
             Yi Admin
           </h1>
-        ) : null}{' '}
+        ) : null}
         <button
           onClick={toggleCollapsed}
           className="absolute right-0 top-6 z-10 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
@@ -136,29 +137,20 @@ export default function Nav(props: Props) {
         </button>
       </div>
 
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        collapsedWidth={100}
-        className="duration-300 ease-linear"
-      >
-        <div className="h-full">
-          {/* Sidebar Menu  */}
-          <Menu
-            mode={menuMode}
-            items={menuList}
-            className="!border-none"
-            defaultOpenKeys={openKeys}
-            defaultSelectedKeys={selectedKeys}
-            selectedKeys={selectedKeys}
-            openKeys={openKeys}
-            onOpenChange={onOpenChange}
-            onClick={onClick}
-            style={{ background: colorBgElevated }}
-          />
-        </div>
-      </Sider>
-    </>
+      {/* Sidebar Menu  */}
+      <Menu
+        mode={menuMode}
+        items={menuList}
+        className="!border-none"
+        defaultOpenKeys={openKeys}
+        defaultSelectedKeys={selectedKeys}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+        onClick={onClick}
+        style={{ background: colorBgElevated }}
+        inlineCollapsed={collapsed}
+      />
+    </div>
   );
 }

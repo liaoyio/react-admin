@@ -25,9 +25,9 @@ export default function NavHorizontal() {
         const { meta, children } = item;
         if (meta) {
           menuItem.key = meta.key;
-          menuItem.label = t((meta?.title as any) ?? '');
+          menuItem.label = t(meta?.title as any);
           if (meta.icon) {
-            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="20" />;
+            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="24" />;
           }
         }
         if (children) {

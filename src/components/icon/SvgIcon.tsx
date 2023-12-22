@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 interface SvgIconProps {
   prefix?: string;
   icon: string;
@@ -15,10 +17,11 @@ export default function SvgIcon({
 }: SvgIconProps) {
   const symbolId = `#${prefix}-${icon}`;
 
-  const svgStyle = {
+  const svgStyle: CSSProperties = {
     width: size,
     height: size,
-    verticalAlign: '-0.15em',
+    verticalAlign: 'middle',
+    color,
   };
 
   return (
@@ -28,7 +31,7 @@ export default function SvgIcon({
       className={`fill-current inline-block h-[1em] w-[1em] overflow-hidden outline-none ${className}}`}
       style={svgStyle}
     >
-      <use xlinkHref={symbolId} fill={color} color={color} />
+      <use xlinkHref={symbolId} fill="currentColor" />
     </svg>
   );
 }

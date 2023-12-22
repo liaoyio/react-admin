@@ -1,5 +1,3 @@
-import { Layout } from 'antd';
-
 import Header from './header';
 import Main from './main';
 import Nav from './nav';
@@ -16,7 +14,7 @@ export default function DashboardLayout() {
   return (
     <>
       <ProgressBar />
-      <Layout
+      <div
         className="flex h-screen overflow-hidden"
         style={{ color: colorTextBase, background: colorBgElevated }}
       >
@@ -26,12 +24,12 @@ export default function DashboardLayout() {
           </div>
         ) : null}
 
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-1 flex-col">
           <Header />
           {themeLayout === ThemeLayout.Horizontal ? <NavHorizontal /> : null}
           <Main />
         </div>
-      </Layout>
+      </div>
     </>
   );
 }

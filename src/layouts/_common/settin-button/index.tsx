@@ -1,26 +1,22 @@
-import { CloseOutlined } from '@ant-design/icons';
 import { Drawer } from 'antd';
 import { useState } from 'react';
-import { SvgIcon } from '@/components/icon';
+
+import SettingIcon from './setting-icon';
 import FullScreenButton from './full-screen-button';
 import DarkModeToggle from './dark-mode-toggle';
 import ThemeLayoutSettings from './theme-layout';
 import ThemeColorPresetsToggle from './theme-color-presets-toggle';
+import { CloseOutlined } from '@ant-design/icons';
+
 import { BG_STYLE } from '@/styles/ui';
 
 /** App Setting */
 export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <>
-      <div className="animate-spin-slow">
-        <button
-          onClick={() => setDrawerOpen(true)}
-          className="flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
-        >
-          <SvgIcon icon="ic-setting" size="24" />
-        </button>
-      </div>
+      <SettingIcon onClick={() => setDrawerOpen(true)} drawerOpen={drawerOpen} />
       <Drawer
         placement="right"
         title="Settings"
