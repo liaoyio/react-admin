@@ -5,6 +5,7 @@ import { colorPrimarys } from '@/common/theme/antd';
 import { MdCircle } from 'react-icons/md';
 import { useThemeToken } from '@/common/theme/hooks';
 
+/** 全局主题色预设选择 */
 const ThemeColorPresetsToggle = () => {
   const { colorTextSecondary } = useThemeToken();
 

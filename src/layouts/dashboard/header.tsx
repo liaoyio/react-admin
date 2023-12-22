@@ -3,18 +3,19 @@ import { useState } from 'react';
 import { useSettings } from '@/store/settingStore';
 
 import Logo from '@/components/logo';
-import LocalePicker from '@/components/locale-picker';
 import { SvgIcon } from '@/components/icon';
 
-import Settings from './settings';
-import UserAvatar from './user-avatar';
-import ProSider from '../sidebar';
+import AccountDropdown from '../_common/account-dropdown';
+import LocalePicker from '@/components/locale-picker';
+import SearchBar from '../_common/search-bar';
+import SettingButton from '../_common/settin-button';
+import ProSider from './nav';
 import { useThemeToken } from '@/common/theme/hooks';
 
 import { ThemeLayout } from '#/enum';
 import { BG_STYLE } from '@/styles/ui';
 
-export default function ProHeader() {
+export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
   const { colorBgElevated } = useThemeToken();
@@ -36,19 +37,13 @@ export default function ProHeader() {
             ) : (
               <Logo className="mr-4 h-10 w-10" />
             )}
-
-            <button className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
-              <SvgIcon icon="ic-search" size="20" />
-            </button>
-            <span className="flex h-6 cursor-pointer items-center justify-center rounded-md bg-hover px-2 py-0 text-xs font-bold">
-              ⌘K
-            </span>
+            <SearchBar />
           </div>
 
           <div className="flex">
             <LocalePicker />
-            <Settings />
-            <UserAvatar />
+            <SettingButton />
+            <AccountDropdown />
           </div>
         </div>
       </header>

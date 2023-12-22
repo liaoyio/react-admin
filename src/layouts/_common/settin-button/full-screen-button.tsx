@@ -3,6 +3,7 @@ import { SvgIcon } from '@/components/icon';
 import { useFullscreen } from 'ahooks';
 import { useThemeToken } from '@/common/theme/hooks';
 
+/** 全屏切换按钮 */
 export default function FullScreenButton() {
   const { colorPrimary } = useThemeToken();
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(document.body);

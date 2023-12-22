@@ -1,28 +1,32 @@
-import { lazy } from 'react';
-import lazyLoad from '@/components/lazy-load';
-import { Navigate } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 import { AppRouteObject } from '#/router';
+import Loading from '@/components/loading';
 
-const Workbench = lazy(() => import('@/pages/dashboard/workbench'));
+const IndexPage = lazy(() => import('@/pages/dashboard/workbench'));
 const Analysis = lazy(() => import('@/pages/dashboard/analysis'));
 
 const dashboard: AppRouteObject = {
-  path: '/dashboard',
+  path: 'dashboard',
+  element: (
+    <Suspense fallback={<Loading />}>
+      <Outlet />
+    </Suspense>
+  ),
   meta: { title: 'sys.menu.dashboard', icon: 'ic-dashboard', key: '/dashboard' },
   children: [
     {
       index: true,
       element: <Navigate to="workbench" replace />,
-      meta: { hideMenu: true },
     },
     {
       path: 'workbench',
-      element: lazyLoad(Workbench),
+      element: <IndexPage />,
       meta: { title: 'sys.menu.workbench', icon: 'ic-workbench', key: '/dashboard/workbench' },
     },
     {
       path: 'analysis',
-      element: lazyLoad(Analysis),
+      element: <Analysis />,
       meta: { title: 'sys.menu.analysis', icon: 'ic-analysis', key: '/dashboard/analysis' },
     },
   ],

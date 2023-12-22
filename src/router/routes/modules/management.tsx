@@ -1,13 +1,18 @@
-import { lazy } from 'react';
-import lazyLoad from '@/components/lazy-load';
+import { Suspense, lazy } from 'react';
 import { AppRouteObject } from '#/router';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import Loading from '@/components/loading';
 
-const User = lazy(() => import('@/pages/management/user'));
+const IndexPage = lazy(() => import('@/pages/management/user'));
 const Blog = lazy(() => import('@/pages/management/blog'));
 
 const management: AppRouteObject = {
-  path: '/management',
+  path: 'management',
+  element: (
+    <Suspense fallback={<Loading />}>
+      <Outlet />
+    </Suspense>
+  ),
   meta: { title: 'sys.menu.management', icon: 'ic-management', key: '/management' },
   children: [
     {
@@ -16,12 +21,12 @@ const management: AppRouteObject = {
     },
     {
       path: 'user',
-      element: lazyLoad(User),
+      element: <IndexPage />,
       meta: { title: 'sys.menu.user', icon: 'ic-user', key: '/management/user' },
     },
     {
       path: 'blog',
-      element: lazyLoad(Blog),
+      element: <Blog />,
       meta: { title: 'sys.menu.blog', icon: 'ic-blog', key: '/management/blog' },
     },
   ],

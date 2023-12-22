@@ -4,6 +4,7 @@ import { ThemeMode } from '#/enum';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/common/theme/hooks';
 
+/** 暗黑模式切换 */
 const DarkModeToggle = () => {
   const { colorPrimary, colorTextSecondary } = useThemeToken();
 

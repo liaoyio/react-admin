@@ -15,11 +15,11 @@ import { ThemeLayout } from '#/enum';
 import { useThemeToken } from '@/common/theme/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 
-type SidebarProps = {
+type Props = {
   closeSideBarDrawer?: () => void;
 };
 
-export default function ProSider(props: SidebarProps) {
+export default function Nav(props: Props) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const matches = useMatches();
@@ -124,7 +124,7 @@ export default function ProSider(props: SidebarProps) {
         <Logo className="h-10 w-10" />
         {themeLayout !== ThemeLayout.Mini ? (
           <h1 className="ml-2 text-base font-semibold" style={{ color: colorPrimary }}>
-            Slash Admin
+            Yi Admin
           </h1>
         ) : null}{' '}
         <button

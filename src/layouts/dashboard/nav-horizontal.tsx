@@ -9,7 +9,8 @@ import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject } from '#/router';
 
-export default function TopMenu() {
+/** layout 布局隐藏左侧竖向(列)菜单栏时，顶部显示横向(行)菜单栏 */
+export default function NavHorizontal() {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();

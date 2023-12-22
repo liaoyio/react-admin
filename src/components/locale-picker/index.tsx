@@ -8,7 +8,7 @@ import type { MenuProps } from 'antd';
 
 type Locale = 'zh' | 'en';
 
-/** Locale Picker */
+/** i8n 语言切换 */
 export default function LocalePicker() {
   const { i18n } = useTranslation();
 

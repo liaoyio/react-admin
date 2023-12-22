@@ -10,7 +10,7 @@ import { useLoginStateContext } from '@/context/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
 import { useThemeToken } from '@/common/theme/hooks';
 
-/** User Avatar Dropdown */
+/** 用户头像点击下拉菜单 */
 export default function UserAvatar() {
   const token = useThemeToken();
   const { username, email } = useUserInfo();

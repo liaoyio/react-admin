@@ -31,9 +31,7 @@ function Login() {
           background: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center center / cover no-repeat,url(${Overlay2})`,
         }}
       >
-        <h3 className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">
-          {t('sys.login.signInPrimaryTitle')}
-        </h3>
+        <h3 className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">Yi Admin</h3>
         <img className="max-w-[720px]" src={DashboardImg} alt="dashboard-img" />
         <div className="flex flex-row gap-[16px] text-2xl">{t('sys.login.signInSecondTitle')}</div>
       </div>

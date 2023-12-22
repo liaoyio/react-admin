@@ -9,7 +9,7 @@ import ThemeColorPresetsToggle from './theme-color-presets-toggle';
 import { BG_STYLE } from '@/styles/ui';
 
 /** App Setting */
-export default function Settings() {
+export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <>
@@ -42,8 +42,11 @@ export default function Settings() {
         footer={<FullScreenButton />}
       >
         <div className="flex flex-col gap-6 p-6">
+          {/* 切换暗黑模式 */}
           <DarkModeToggle />
+          {/* Layout 布局设置 */}
           <ThemeLayoutSettings />
+          {/* 全局主题颜色选择 */}
           <ThemeColorPresetsToggle />
         </div>
       </Drawer>

@@ -1,18 +1,16 @@
 import { Layout } from 'antd';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
-import ProContent from './content';
-import ProHeader from './header';
-import ProSider from './sidebar';
-import TopMenu from './sidebar/top-inline-menu';
+import Header from './header';
+import Main from './main';
+import Nav from './nav';
+import NavHorizontal from './nav-horizontal';
+
 import ProgressBar from '@/components/progress-bar';
-
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/common/theme/hooks';
 import { ThemeLayout } from '#/enum';
 
-export default function BasicLayout() {
+export default function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout } = useSettings();
   return (
@@ -26,7 +24,7 @@ export default function BasicLayout() {
               background: colorBgElevated,
             }}
           >
-            <ProSider />
+            <Nav />
           </div>
         ) : null}
 
@@ -34,9 +32,9 @@ export default function BasicLayout() {
           className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
           style={{ color: colorTextBase, background: colorBgElevated }}
         >
-          <ProHeader />
-          {themeLayout === ThemeLayout.Horizontal ? <TopMenu /> : null}
-          <ProContent />
+          <Header />
+          {themeLayout === ThemeLayout.Horizontal ? <NavHorizontal /> : null}
+          <Main />
         </div>
       </Layout>
     </>

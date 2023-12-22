@@ -7,8 +7,11 @@ import { useMatches } from 'react-router-dom';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject, RouteMeta } from '#/router';
 
-/** 动态面包屑解决方案：https://github.com/MinjieChang/myblog/issues/29 */
-function BreadCrumb() {
+/**
+ * 动态面包屑
+ * 动态面包屑解决方案：https://github.com/MinjieChang/myblog/issues/29
+ */
+export default function BreadCrumb() {
   const { t } = useTranslation();
   const matches = useMatches();
 
@@ -58,5 +61,3 @@ function BreadCrumb() {
   }, [flattenRoutes]);
   return <Breadcrumb items={breadCrumbs} separator={separator} />;
 }
-
-export default BreadCrumb;
