@@ -6,9 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { SignInReq } from '@/api/user';
 import { useSignIn } from '@/store/userStore';
+import { useThemeToken } from '@/common/theme/hooks';
+
+export const DEFAULT_USER = { username: 'demo@gmail.com', password: 'demo1234' };
 
 function LoginForm() {
   const { t } = useTranslation();
+  const themeToken = useThemeToken();
   const [loading, setLoading] = useState(false);
   const { loginState, setLoginState } = useLoginStateContext();
   const { notification } = App.useApp();
@@ -34,17 +38,30 @@ function LoginForm() {
     <>
       <div className="mb-4 text-2xl font-bold xl:text-3xl">{t('sys.login.signInFormTitle')}</div>
       <Form
-        name="normal_login"
+        name="login"
         size="large"
-        initialValues={{ remember: true }}
+        initialValues={{
+          remember: true,
+          username: DEFAULT_USER.username,
+          password: DEFAULT_USER.password,
+        }}
         onFinish={handleFinish}
       >
         <div className="mb-4 flex flex-col">
           <Alert
-            description={`${t('sys.login.userName')}: demo@minimals.cc / ${t(
-              'sys.login.password',
-            )}: demo1234`}
             type="info"
+            description={
+              <>
+                {t('sys.login.userName')}:
+                <strong className="ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                  {DEFAULT_USER.username}
+                </strong>
+                {` / ${t('sys.login.password')}`}:
+                <strong className=" ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                  {DEFAULT_USER.password}
+                </strong>
+              </>
+            }
             showIcon
           />
         </div>
