@@ -1,7 +1,7 @@
 import { RouteObject, createHashRouter } from 'react-router-dom';
 
-import { asyncRoutes } from './routes';
+import { routes } from './routes';
 
-const router = createHashRouter(asyncRoutes as RouteObject[]);
+const router: any = createHashRouter(routes as RouteObject[]);
 
 export default router;

@@ -1,3 +1,4 @@
+import { Layout, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import LocalePicker from '@/components/locale-picker';
 
@@ -8,14 +9,18 @@ import RegisterForm from './RegisterForm';
 import ResetForm from './ResetForm';
 import { Navigate } from 'react-router-dom';
 import { LoginStateProvider } from '@/context/LoginStateProvider';
+import { useSettings } from '@/store/settingStore';
 import { useUserToken } from '@/store/userStore';
 
 import DashboardImg from '@/assets/images/background/dashboard.png';
 import Overlay2 from '@/assets/images/background/overlay_2.jpg';
 
+import { ThemeMode } from '#/enum';
+
 function Login() {
   const { t } = useTranslation();
   const token = useUserToken();
+  const { themeMode } = useSettings();
 
   // 判断用户是否有权限
   if (token.accessToken) {
@@ -23,17 +28,24 @@ function Login() {
     return <Navigate to="/dashboard" replace />;
   }
 
+  const gradientBg =
+    themeMode === ThemeMode.Light ? 'rgba(255, 255, 255, 0.88)' : 'rgba(22, 28, 36, 0.94)';
+
+  const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)`;
+
   return (
-    <main className="relative flex min-h-screen flex-row">
+    <Layout className="relative flex min-h-screen flex-row">
       <div
         className="hidden grow flex-col items-center justify-center gap-[80px] bg-center bg-no-repeat xl:flex"
-        style={{
-          background: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center center / cover no-repeat,url(${Overlay2})`,
-        }}
+        style={{ background: bg }}
       >
-        <h3 className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">Yi Admin</h3>
-        <img className="max-w-[720px]" src={DashboardImg} alt="dashboard-img" />
-        <div className="flex flex-row gap-[16px] text-2xl">{t('sys.login.signInSecondTitle')}</div>
+        <Typography.Text className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">
+          Slash Admin
+        </Typography.Text>
+        <img className="max-w-[720px]" src={DashboardImg} alt="" />
+        <Typography.Text className="flex flex-row gap-[16px] text-2xl">
+          {t('sys.login.signInSecondTitle')}
+        </Typography.Text>
       </div>
 
       <div className="mx-auto flex w-full !min-w-[400px] max-w-[480px] flex-col px-[16px] py-[120px] lg:px-[64px] lg:py-[240px]">
@@ -48,7 +60,7 @@ function Login() {
       <div className="absolute right-0 top-0">
         <LocalePicker />
       </div>
-    </main>
+    </Layout>
   );
 }
 export default Login;

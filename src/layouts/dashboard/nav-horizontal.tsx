@@ -6,7 +6,7 @@ import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 import { useThemeToken } from '@/common/theme/hooks';
 import { SvgIcon } from '@/components/icon';
 
-import { getMenuRoutes } from '@/router/menus';
+import { getMenuRoutes } from '@/router/utils';
 import { AppRouteObject } from '#/router';
 
 /** layout 布局隐藏左侧竖向(列)菜单栏时，顶部显示横向(行)菜单栏 */
@@ -86,7 +86,7 @@ export default function NavHorizontal() {
   };
 
   return (
-    <div className="relative mx-6">
+    <div className="relative w-screen">
       <Menu
         mode="horizontal"
         items={menuList}

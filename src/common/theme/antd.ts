@@ -8,7 +8,7 @@ const customAntdTheme: ThemeConfig = {
     colorWarning: '#ffab00',
     colorError: '#ff5630',
     colorInfo: '#00b8d9',
-    colorInfoBg: '#CAFDF5',
+
     wireframe: false /** 线性化 */,
     borderRadiusSM: 2,
     borderRadius: 4,

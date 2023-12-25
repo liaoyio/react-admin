@@ -11,7 +11,6 @@ import LocalePicker from '@/components/locale-picker';
 import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/settin-button';
 import ProSider from './nav';
-import { useThemeToken } from '@/common/theme/hooks';
 
 import { ThemeLayout } from '#/enum';
 import { BG_STYLE } from '@/styles/ui';
@@ -19,14 +18,12 @@ import { BG_STYLE } from '@/styles/ui';
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
-  const { colorBgElevated } = useThemeToken();
 
   return (
     <>
       <header
-        className="bg-white sticky top-0 w-full"
+        className="w-full"
         style={{
-          background: colorBgElevated,
           borderBottom:
             themeLayout === ThemeLayout.Horizontal ? `1px dashed rgba(145, 158, 171, 0.2)` : '',
         }}

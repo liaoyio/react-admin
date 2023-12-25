@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
-import { getMenuRoutes } from '@/router/menus';
+import { getMenuRoutes } from '@/router/utils';
 import { AppRouteObject } from '#/router';
 import { ThemeLayout } from '#/enum';
 import { useThemeToken } from '@/common/theme/hooks';

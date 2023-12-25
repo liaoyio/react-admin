@@ -1,4 +1,4 @@
-import { Button, Form, Input, Alert, Checkbox, Row, Col, Divider, notification } from 'antd';
+import { Alert, App, Button, Checkbox, Col, Divider, Form, Input, Row } from 'antd';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';
 import { LoginStateEnum, useLoginStateContext } from '@/context/LoginStateProvider';
 
@@ -11,6 +11,7 @@ function LoginForm() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { loginState, setLoginState } = useLoginStateContext();
+  const { notification } = App.useApp();
 
   const signIn = useSignIn();
   if (loginState !== LoginStateEnum.LOGIN) return null;
@@ -69,7 +70,7 @@ function LoginForm() {
             </Col>
             <Col span={12} className="text-right">
               <button
-                className="!text-black !underline"
+                className="!underline"
                 onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)}
               >
                 {t('sys.login.forgetPassword')}
@@ -78,7 +79,7 @@ function LoginForm() {
           </Row>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full !bg-black" loading={loading}>
+          <Button type="primary" htmlType="submit" className="w-full" loading={loading}>
             {t('sys.login.loginButton')}
           </Button>
         </Form.Item>
@@ -105,12 +106,12 @@ function LoginForm() {
           </Col>
         </Row>
 
-        <Divider className="!text-xs !text-[#00000073]">{t('sys.login.otherSignIn')}</Divider>
+        <Divider className="!text-xs">{t('sys.login.otherSignIn')}</Divider>
 
         <div className="flex cursor-pointer justify-around text-2xl">
-          <AiFillGithub className="hover:text-[#00A76F]" />
-          <AiFillWechat className="hover:text-[#00A76F]" />
-          <AiFillGoogleCircle className="hover:text-[#00A76F]" />
+          <AiFillGithub />
+          <AiFillWechat />
+          <AiFillGoogleCircle />
         </div>
       </Form>
     </>
