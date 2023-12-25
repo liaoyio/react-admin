@@ -1,10 +1,12 @@
+import { ReactNode } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 export type RouteMeta = {
   // unique
   key: string;
   title: string;
-  icon?: string;
+  /** 菜单栏图标，传入string时使用 SvgIcon 组件渲染   */
+  icon?: ReactNode;
   // show in tab
   hideTab?: boolean;
   // show in menu

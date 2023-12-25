@@ -4,8 +4,8 @@ import { useCallback, useState, useEffect, CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 import { useThemeToken } from '@/common/theme/hooks';
-
 import { SvgIcon } from '@/components/icon';
+
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject } from '#/router';
 
@@ -24,10 +24,16 @@ export default function NavHorizontal() {
         const menuItem: any = {};
         const { meta, children } = item;
         if (meta) {
-          menuItem.key = meta.key;
-          menuItem.label = t(meta?.title as any);
-          if (meta.icon) {
-            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="24" />;
+          const { key, title, icon } = meta;
+          menuItem.key = key;
+          menuItem.label = t(title as any);
+          if (icon) {
+            if (typeof icon === 'string') {
+              menuItem.icon = (
+                <SvgIcon icon={icon} className="ant-menu-item-icon mr-2" size="24px" />
+              );
+            }
+            menuItem.icon = icon;
           }
         }
         if (children) {
@@ -58,7 +64,7 @@ export default function NavHorizontal() {
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (latestOpenKey) {
-      setOpenKeys([latestOpenKey]);
+      setOpenKeys(keys);
     } else {
       setOpenKeys([]);
     }

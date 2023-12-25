@@ -5,6 +5,7 @@ import Loading from '@/components/loading';
 
 const IndexPage = lazy(() => import('@/pages/dashboard/workbench'));
 const Analysis = lazy(() => import('@/pages/dashboard/analysis'));
+import { SvgIcon } from '@/components/icon';
 
 const dashboard: AppRouteObject = {
   order: 1,

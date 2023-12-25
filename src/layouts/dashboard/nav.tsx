@@ -7,12 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
-import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject } from '#/router';
 import { ThemeLayout } from '#/enum';
 import { useThemeToken } from '@/common/theme/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
+import { SvgIcon } from '@/components/icon';
 
 type Props = {
   closeSideBarDrawer?: () => void;
@@ -24,7 +24,7 @@ export default function Nav(props: Props) {
   const matches = useMatches();
 
   const { t } = useTranslation();
-  const { colorTextBase, colorPrimary, colorBgElevated } = useThemeToken();
+  const { colorTextBase, colorBgElevated } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;
@@ -37,12 +37,16 @@ export default function Nav(props: Props) {
         const menuItem: any = {};
         const { meta, children } = item;
         if (meta) {
-          menuItem.key = meta.key;
-          menuItem.label = t(meta?.title as any);
-          if (meta.icon) {
-            menuItem.icon = (
-              <SvgIcon icon={meta.icon} className="ant-menu-item-icon mr-2" size="24px" />
-            );
+          const { key, title, icon } = meta;
+          menuItem.key = key;
+          menuItem.label = t(title as any);
+          if (icon) {
+            if (typeof icon === 'string') {
+              menuItem.icon = (
+                <SvgIcon icon={icon} className="ant-menu-item-icon mr-2" size="24px" />
+              );
+            }
+            menuItem.icon = icon;
           }
         }
         if (children) {
