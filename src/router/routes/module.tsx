@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { LineLoading } from '@/components/loading';
+import { CircleLoading } from '@/components/loading';
 import DashboardLayout from '@/layouts/dashboard';
 
 import AuthGuard from '../components/auth-guard';
@@ -15,7 +15,7 @@ export const moduleRoutes: AppRouteObject = {
   path: '/',
   element: (
     <AuthGuard>
-      <Suspense fallback={<LineLoading />}>
+      <Suspense fallback={<CircleLoading />}>
         <DashboardLayout />
       </Suspense>
     </AuthGuard>

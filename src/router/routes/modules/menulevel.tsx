@@ -2,7 +2,7 @@ import { Typography } from 'antd';
 import { Suspense } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { SvgIcon } from '@/components/icon';
-import { LineLoading } from '@/components/loading';
+import { CircleLoading } from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
@@ -14,7 +14,7 @@ const menulevel: AppRouteObject = {
   order: 5,
   path: 'menu_level',
   element: (
-    <Suspense fallback={<LineLoading />}>
+    <Suspense fallback={<CircleLoading />}>
       <Outlet />
     </Suspense>
   ),

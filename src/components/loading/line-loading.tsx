@@ -1,9 +1,10 @@
 import { Progress } from 'antd';
 import { useEffect, useState } from 'react';
 import { useThemeToken } from '@/common/theme/hooks';
+import Color from 'color';
 
 export default function LineLoading() {
-  const { colorTextBase } = useThemeToken();
+  const { colorTextBase, colorBgContainerDisabled } = useThemeToken();
   const [percent, setPercent] = useState(10);
   const [increasing, setIncreasing] = useState(true);
 
@@ -29,7 +30,7 @@ export default function LineLoading() {
     <div className="m-auto flex h-full w-96 items-center justify-center">
       <Progress
         percent={percent}
-        trailColor="rgba(145, 158, 171, 0.2)"
+        trailColor={Color(colorBgContainerDisabled).alpha(0.8).toString()}
         strokeColor={colorTextBase}
         showInfo={false}
         size="small"

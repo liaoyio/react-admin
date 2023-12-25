@@ -1,5 +1,6 @@
 import { useScroll } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Color from 'color';
 
 import Header from './header';
 import Main from './main';
@@ -12,7 +13,7 @@ import { useThemeToken } from '@/common/theme/hooks';
 import { ThemeLayout } from '#/enum';
 
 export default function DashboardLayout() {
-  const { colorBgElevated, colorTextBase } = useThemeToken();
+  const { colorBgElevated, colorTextBase, colorBorder } = useThemeToken();
 
   const { themeLayout } = useSettings();
   const mainEl = useRef<HTMLDivElement>(null);
@@ -38,7 +39,7 @@ export default function DashboardLayout() {
     <>
       <div
         className="hidden h-full lg:block"
-        style={{ borderRight: '1px dashed rgba(145, 158, 171, 0.2)' }}
+        style={{ borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}` }}
       >
         <Nav />
       </div>

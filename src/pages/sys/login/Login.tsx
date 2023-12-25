@@ -1,6 +1,7 @@
 import { Layout, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import LocalePicker from '@/components/locale-picker';
+import Color from 'color';
 
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';
@@ -11,16 +12,14 @@ import { Navigate } from 'react-router-dom';
 import { LoginStateProvider } from '@/context/LoginStateProvider';
 import { useSettings } from '@/store/settingStore';
 import { useUserToken } from '@/store/userStore';
+import { useThemeToken } from '@/common/theme/hooks';
 
 import DashboardImg from '@/assets/images/background/dashboard.png';
-import Overlay2 from '@/assets/images/background/overlay_2.jpg';
-
-import { ThemeMode } from '#/enum';
 
 function Login() {
   const { t } = useTranslation();
   const token = useUserToken();
-  const { themeMode } = useSettings();
+  const { colorBgElevated } = useThemeToken();
 
   // 判断用户是否有权限
   if (token.accessToken) {
@@ -28,8 +27,7 @@ function Login() {
     return <Navigate to="/dashboard" replace />;
   }
 
-  const gradientBg =
-    themeMode === ThemeMode.Light ? 'rgba(255, 255, 255, 0.88)' : 'rgba(22, 28, 36, 0.94)';
+  const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
 
   const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)`;
 

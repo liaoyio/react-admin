@@ -1,10 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-
-import { LineLoading } from '@/components/loading';
-
-import { AppRouteObject } from '#/router';
 import { Iconify } from '@/components/icon';
+import { CircleLoading } from '@/components/loading';
+import { AppRouteObject } from '#/router';
 
 const ClipboardPage = lazy(() => import('@/pages/functions/clipboard'));
 
@@ -12,7 +10,7 @@ const functions: AppRouteObject = {
   order: 4,
   path: 'functions',
   element: (
-    <Suspense fallback={<LineLoading />}>
+    <Suspense fallback={<CircleLoading />}>
       <Outlet />
     </Suspense>
   ),

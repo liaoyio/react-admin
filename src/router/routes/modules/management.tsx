@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { AppRouteObject } from '#/router';
 import { Navigate, Outlet } from 'react-router-dom';
-import { LineLoading } from '@/components/loading';
+import { CircleLoading } from '@/components/loading';
 import { SvgIcon } from '@/components/icon';
 
 const IndexPage = lazy(() => import('@/pages/management/user'));
@@ -11,7 +11,7 @@ const management: AppRouteObject = {
   order: 2,
   path: 'management',
   element: (
-    <Suspense fallback={<LineLoading />}>
+    <Suspense fallback={<CircleLoading />}>
       <Outlet />
     </Suspense>
   ),

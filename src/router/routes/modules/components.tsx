@@ -1,9 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { LineLoading } from '@/components/loading';
+import { CircleLoading } from '@/components/loading';
 import { Iconify } from '@/components/icon';
 import { AppRouteObject } from '#/router';
-
 const AnimatePage = lazy(() => import('@/pages/components/animate'));
 const ScrollPage = lazy(() => import('@/pages/components/scroll'));
 const MarkdownPage = lazy(() => import('@/pages/components/markdown'));
@@ -17,7 +16,7 @@ const components: AppRouteObject = {
   order: 3,
   path: 'components',
   element: (
-    <Suspense fallback={<LineLoading />}>
+    <Suspense fallback={<CircleLoading />}>
       <Outlet />
     </Suspense>
   ),
