@@ -64,6 +64,9 @@ devDependencies:
   '@types/nprogress':
     specifier: ^0.2.3
     version: 0.2.3
+  '@types/numeral':
+    specifier: ^2.0.5
+    version: 2.0.5
   '@types/ramda':
     specifier: ^0.29.9
     version: 0.29.9
@@ -139,6 +142,9 @@ devDependencies:
   nprogress:
     specifier: ^0.2.0
     version: 0.2.0
+  numeral:
+    specifier: ^2.0.6
+    version: 2.0.6
   react-helmet-async:
     specifier: ^2.0.4
     version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
@@ -1321,6 +1327,10 @@ packages:
 
   /@types/nprogress@0.2.3:
     resolution: {integrity: sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==}
+    dev: true
+
+  /@types/numeral@2.0.5:
+    resolution: {integrity: sha512-kH8I7OSSwQu9DS9JYdFWbuvhVzvFRoCPCkGxNwoGgaPeDfEPJlcxNvEOypZhQ3XXHsGbfIuYcxcJxKUfJHnRfw==}
     dev: true
 
   /@types/prop-types@15.7.11:
@@ -5007,6 +5017,10 @@ packages:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
     dependencies:
       boolbase: 1.0.0
+    dev: true
+
+  /numeral@2.0.6:
+    resolution: {integrity: sha512-qaKRmtYPZ5qdw4jWJD6bxEf1FJEqllJrwxCLIm0sQU/A7v2/czigzOb+C2uSiFsa9lBUzeH7M1oK+Q+OLxL3kA==}
     dev: true
 
   /object-assign@4.1.1:
