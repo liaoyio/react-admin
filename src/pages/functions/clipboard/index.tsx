@@ -3,19 +3,14 @@ import { ChangeEvent, useState } from 'react';
 
 import { IconButton, Iconify } from '@/components/icon';
 import { useCopyToClipboard } from '@/hooks/event/use-copy-to-clipboard';
+import { faker } from '@faker-js/faker';
 
 export default function ClipboardPage() {
   const { copyFn } = useCopyToClipboard();
 
   const [value, setValue] = useState('https://www.npmjs.com/package/');
 
-  const textOnClick = `Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-  Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat
-  dolor lectus quis orci. Cras non dolor. Praesent egestas neque eu enim. Ut varius
-  tincidunt libero. Fusce fermentum odio nec arcu. Etiam rhoncus. Nulla sit amet est.
-  Donec posuere vulputate arcu. Vestibulum ullamcorper mauris at ligula. Praesent ut
-  ligula non mi varius sagittis. Pellentesque posuere. Praesent adipiscing. Sed
-  libero. Duis leo. Nulla porta dolor.`;
+  const textOnClick = faker.lorem.paragraphs({ min: 3, max: 5 });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
   const CopyButton = (

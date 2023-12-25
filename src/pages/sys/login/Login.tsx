@@ -14,6 +14,7 @@ import { useUserToken } from '@/store/userStore';
 import { useThemeToken } from '@/common/theme/hooks';
 
 import DashboardImg from '@/assets/images/background/dashboard.png';
+import Overlay2 from '@/assets/images/background/overlay_2.jpg';
 
 function Login() {
   const { t } = useTranslation();
@@ -28,24 +29,23 @@ function Login() {
 
   const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
 
-  const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)`;
+  const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
 
   return (
-    <Layout className="relative flex min-h-screen flex-row">
+    <Layout className="relative flex !min-h-screen !w-full !flex-row">
       <div
-        className="hidden grow flex-col items-center justify-center gap-[80px] bg-center bg-no-repeat xl:flex"
+        className="hidden grow flex-col items-center justify-center gap-[80px] bg-center bg-no-repeat md:flex"
         style={{ background: bg }}
       >
-        <Typography.Text className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">
-          Slash Admin
-        </Typography.Text>
-        <img className="max-w-[720px]" src={DashboardImg} alt="" />
+        <div className="text-3xl font-bold leading-normal lg:text-4xl xl:text-5xl">Slash Admin</div>
+        <img className="max-w-[480px] xl:max-w-[560px]" src={DashboardImg} alt="DashboardImg" />
+
         <Typography.Text className="flex flex-row gap-[16px] text-2xl">
           {t('sys.login.signInSecondTitle')}
         </Typography.Text>
       </div>
 
-      <div className="mx-auto flex w-full !min-w-[400px] max-w-[480px] flex-col px-[16px] py-[120px] lg:px-[64px] lg:py-[240px]">
+      <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
         <LoginStateProvider>
           <LoginForm />
           <MobileForm />

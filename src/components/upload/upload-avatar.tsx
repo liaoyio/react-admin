@@ -6,6 +6,7 @@ import { Iconify } from '../icon';
 
 import { StyledUploadAvatar } from './styles';
 import { beforeAvatarUpload, getBase64 } from './utils';
+import { faker } from '@faker-js/faker';
 
 interface Props extends UploadProps {
   helperText?: React.ReactElement | string;
@@ -30,7 +31,7 @@ export default function UploadAvatar({ helperText, ...other }: Props) {
       });
     }
     if (info.file.status === 'error') {
-      setImageUrl('src/assets/images/characters/character_6.png');
+      setImageUrl(faker.image.avatar());
     }
   };
 
