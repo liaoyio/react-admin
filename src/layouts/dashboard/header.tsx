@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSettings } from '@/store/settingStore';
 
 import Logo from '@/components/logo';
-import { SvgIcon } from '@/components/icon';
+import { IconButton, SvgIcon } from '@/components/icon';
 
 import AccountDropdown from '../_common/account-dropdown';
 import LocalePicker from '@/components/locale-picker';
@@ -28,15 +28,13 @@ export default function Header() {
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
 
             {themeLayout !== ThemeLayout.Horizontal ? (
-              <button
-                onClick={() => setDrawerOpen(true)}
-                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full hover:bg-hover lg:hidden"
-              >
+              <IconButton onClick={() => setDrawerOpen(true)} className="h-9 w-9 lg:hidden">
                 <SvgIcon icon="ic-menu" size="24" />
-              </button>
+              </IconButton>
             ) : (
               <Logo />
             )}
+
             <SearchBar />
           </div>
 

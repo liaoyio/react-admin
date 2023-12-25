@@ -1,5 +1,4 @@
-import { SvgIcon } from '@/components/icon';
-
+import { IconButton, SvgIcon } from '@/components/icon';
 import { m } from 'framer-motion';
 import { varHover } from '@/components/animate/variants/action';
 
@@ -21,16 +20,14 @@ export default function SettingIcon({ onClick, drawerOpen }: Props) {
           ease: 'linear',
           repeat: Infinity,
         }}
+        whileTap="tap"
+        whileHover="hover"
+        variants={varHover(1.05)}
+        onClick={() => onClick()}
       >
-        <m.button
-          whileTap="tap"
-          whileHover="hover"
-          variants={varHover(1.05)}
-          onClick={onClick}
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover"
-        >
+        <IconButton className="h-10 w-10">
           <SvgIcon icon="ic-setting" size="24" />
-        </m.button>
+        </IconButton>
       </m.div>
     </div>
   );

@@ -8,6 +8,7 @@ import ThemeLayoutSettings from './theme-layout';
 import ThemeContentStretch from './theme-stretch';
 import ThemeColorPresetsToggle from './theme-color-presets-toggle';
 import { CloseOutlined } from '@ant-design/icons';
+import { IconButton } from '@/components/icon';
 
 import { BG_STYLE } from '@/styles/ui';
 
@@ -29,12 +30,9 @@ export default function SettingButton() {
         style={BG_STYLE}
         styles={{ body: { padding: 0 } }}
         extra={
-          <button
-            onClick={() => setDrawerOpen(false)}
-            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
-          >
+          <IconButton onClick={() => setDrawerOpen(false)} className="h-9 w-9 hover:scale-105">
             <CloseOutlined className="text-gray-400" />
-          </button>
+          </IconButton>
         }
         footer={<FullScreenButton />}
       >
