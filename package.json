@@ -34,6 +34,7 @@
   "devDependencies": {
     "@ant-design/cssinjs": "^1.18.1",
     "@ant-design/icons": "^5.2.6",
+    "@faker-js/faker": "^8.3.1",
     "@iconify/react": "^4.1.1",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/color": "^3.0.6",
