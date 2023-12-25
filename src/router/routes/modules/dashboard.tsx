@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AppRouteObject } from '#/router';
-import Loading from '@/components/loading';
+import { LineLoading } from '@/components/loading';
 
 const IndexPage = lazy(() => import('@/pages/dashboard/workbench'));
 const Analysis = lazy(() => import('@/pages/dashboard/analysis'));
@@ -10,7 +10,7 @@ const dashboard: AppRouteObject = {
   order: 1,
   path: 'dashboard',
   element: (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<LineLoading />}>
       <Outlet />
     </Suspense>
   ),

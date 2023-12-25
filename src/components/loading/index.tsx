@@ -1,9 +1,4 @@
-import { Spin } from 'antd';
+import LineLoading from './line-loading';
+import CircleLoading from './circle-loading';
 
-export default function Loading() {
-  return (
-    <div className="flex h-full items-center justify-center">
-      <Spin size="large" />
-    </div>
-  );
-}
+export { LineLoading, CircleLoading };
