@@ -46,7 +46,7 @@ axiosInstance.interceptors.response.use(
     }
 
     // 业务请求错误
-    throw new Error(t('sys.api.apiRequestFailed'));
+    throw new Error(message || t('sys.api.apiRequestFailed'));
   },
   (error: AxiosError<Result>) => {
     const { response, message } = error || {};

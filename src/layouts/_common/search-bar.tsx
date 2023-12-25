@@ -106,7 +106,7 @@ export default function SearchBar() {
             const partsTitle = parse(t(title), match(t(title), searchQuery));
             const partsKey = parse(key, match(key, searchQuery));
             return (
-              <StyledListItemButton key={key} themeToken={themeToken}>
+              <StyledListItemButton key={key} $themeToken={themeToken}>
                 <button
                   onClick={() => {
                     replace(key);
@@ -149,16 +149,16 @@ export default function SearchBar() {
   );
 }
 
-const StyledListItemButton = styled.div<{ themeToken: GlobalToken }>`
+const StyledListItemButton = styled.div<{ $themeToken: GlobalToken }>`
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 8px 16px;
   border-radius: 8px;
-  border-bottom: ${(props) => `1px dashed ${props.themeToken.colorSplit}`};
+  border-bottom: ${(props) => `1px dashed ${props.$themeToken.colorSplit}`};
 
   &:hover {
-    border: ${(props) => `1px dashed ${props.themeToken.colorPrimary}`};
-    background-color: ${(props) => `${props.themeToken.colorPrimaryBg}`};
+    border: ${(props) => `1px dashed ${props.$themeToken.colorPrimary}`};
+    background-color: ${(props) => `${props.$themeToken.colorPrimaryBg}`};
   }
 `;

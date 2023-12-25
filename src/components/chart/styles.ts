@@ -4,16 +4,16 @@ import Color from 'color';
 
 import { ThemeMode } from '#/enum';
 
-export const StyledApexChart = styled.div<{ thememode: ThemeMode; theme: GlobalToken }>`
+export const StyledApexChart = styled.div<{ $thememode: ThemeMode; $theme: GlobalToken }>`
   .apexcharts-canvas {
     /* tooltip */
     .apexcharts-tooltip {
       color: ${(props) => props.theme.colorText};
       border-radius: 10px;
       backdrop-filter: blur(6px);
-      background-color: ${(props) => Color(props.theme.colorBgElevated).alpha(0.8).toString()};
+      background-color: ${(props) => Color(props.$theme.colorBgElevated).alpha(0.8).toString()};
       box-shadow: ${(props) =>
-        props.thememode === ThemeMode.Light
+        props.$thememode === ThemeMode.Light
           ? `rgba(145, 158, 171, 0.24) 0px 0px 2px 0px, rgba(145, 158, 171, 0.24) -20px 20px 40px -4px`
           : `rgba(0, 0, 0, 0.24) 0px 0px 2px 0px, rgba(0, 0, 0, 0.24) -20px 20px 40px -4px;`};
       .apexcharts-tooltip-title {
@@ -25,15 +25,15 @@ export const StyledApexChart = styled.div<{ thememode: ThemeMode; theme: GlobalT
 
     /* tooltip X */
     .apexcharts-xaxistooltip {
-      color: ${(props) => props.theme.colorText};
+      color: ${(props) => props.$theme.colorText};
       border-radius: 10px;
       backdrop-filter: blur(6px);
       border-color: transparent;
       box-shadow: ${(props) =>
-        props.thememode === ThemeMode.Light
+        props.$thememode === ThemeMode.Light
           ? `rgba(145, 158, 171, 0.24) 0px 0px 2px 0px, rgba(145, 158, 171, 0.24) -20px 20px 40px -4px`
           : `rgba(0, 0, 0, 0.24) 0px 0px 2px 0px, rgba(0, 0, 0, 0.24) -20px 20px 40px -4px;`};
-      background-color: ${(props) => Color(props.theme.colorBgElevated).alpha(0.8).toString()};
+      background-color: ${(props) => Color(props.$theme.colorBgElevated).alpha(0.8).toString()};
       &::before {
         border-bottom-color: rgba(145, 158, 171, 0.24);
       }

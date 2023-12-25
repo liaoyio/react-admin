@@ -13,8 +13,7 @@ import { useThemeToken } from '@/common/theme/hooks';
 
 /** 用户头像点击下拉菜单 */
 export default function UserAvatar() {
-  const token = useThemeToken();
-  const { username, email } = useUserInfo();
+  const { username, email, avatar } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const { backToLogin } = useLoginStateContext();
   const { t } = useTranslation();
@@ -30,24 +29,22 @@ export default function UserAvatar() {
     backToLogin();
   };
 
-  const contentStyle: React.CSSProperties = {
-    backgroundColor: token.colorBgElevated,
-    borderRadius: token.borderRadiusLG,
-    boxShadow: token.boxShadowSecondary,
-  };
-
-  const menuStyle: React.CSSProperties = {
-    boxShadow: 'none',
-  };
+  const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken();
 
   const dropdownRender: DropdownProps['dropdownRender'] = (menu) => (
-    <div style={contentStyle}>
+    <div
+      style={{
+        backgroundColor: colorBgElevated,
+        borderRadius: borderRadiusLG,
+        boxShadow: boxShadowSecondary,
+      }}
+    >
       <div className="flex flex-col items-start p-4">
         <div>{username}</div>
         <div className="text-gray">{email}</div>
       </div>
       <Divider style={{ margin: 0 }} />
-      {React.cloneElement(menu as React.ReactElement, { style: menuStyle })}
+      {React.cloneElement(menu as React.ReactElement, { style: { boxShadow: 'none' } })}
     </div>
   );
 
@@ -67,11 +64,7 @@ export default function UserAvatar() {
   return (
     <Dropdown menu={{ items }} trigger={['click']} dropdownRender={dropdownRender}>
       <IconButton className="h-10 w-10 transform-none px-0 hover:scale-105">
-        <img
-          className="h-8 w-8 rounded-full"
-          src="https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_25.jpg"
-          alt=""
-        />
+        <img className="h-8 w-8 rounded-full" src={avatar} alt="avatar" />
       </IconButton>
     </Dropdown>
   );

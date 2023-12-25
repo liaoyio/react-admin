@@ -27,7 +27,7 @@ const itemRender: (thumbnail: boolean) => ItemRender = (thumbnail) => {
 export default function Upload({ thumbnail = false, ...other }: Props) {
   const { colorPrimary } = useThemeToken();
   return (
-    <StyledUpload display={thumbnail ? 'flex' : 'block'}>
+    <StyledUpload $display={thumbnail ? 'flex' : 'block'}>
       <Dragger {...other} itemRender={itemRender(thumbnail)}>
         <div className="opacity-100 hover:opacity-80">
           <p className="m-auto max-w-[200px]">

@@ -1,12 +1,14 @@
+import { App } from 'antd';
+import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
-import userApi, { SignInReq, SignInRes } from '@/api/user';
+import userApi, { SignInReq } from '@/api/user';
 import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserToken, UserInfo } from '#/entity';
 import { StorageEnum } from '#/enum';
-import { useMutation } from '@tanstack/react-query';
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
@@ -43,18 +45,30 @@ export const useUserToken = () => useUserStore((state) => state.userToken);
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const { setUserToken, setUserInfo } = useUserActions();
-  // const signInMutation = useMutation(userApi.signin);
-  const navigatge = useNavigate();
-  // const { notification, message } = App.useApp();
+  const { notification, message } = App.useApp();
 
   const signIn = async (data: SignInReq) => {
-    const res = await userApi.signin(data);
-    // const res = await signInMutation.mutateAsync(data);
-    const { user, accessToken, refreshToken } = res;
-    setUserToken({ accessToken, refreshToken });
-    setUserInfo(user);
-    navigatge('/dashboard', { replace: true });
+    try {
+      const res = await userApi.sign(data);
+      const { user, accessToken, refreshToken } = res;
+      setUserToken({ accessToken, refreshToken });
+      setUserInfo(user);
+      navigate('/dashboard', { replace: true });
+
+      notification.success({
+        message: t('sys.login.loginSuccessTitle'),
+        description: `${t('sys.login.loginSuccessDesc')}: ${data.username}`,
+        duration: 3,
+      });
+    } catch (err: any) {
+      message.warning({
+        content: err.message,
+        duration: 3,
+      });
+    }
   };
-  return signIn;
+  return useCallback(signIn, []);
 };

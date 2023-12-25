@@ -10,13 +10,12 @@ export default [
         message: '',
         data: {
           user: {
-            id: '425b35a3-363f-49dd-bb35-3215e094e30d',
+            id: '123',
             username: 'admin@gmail.com',
             email: 'Mack76@yahoo.com',
-            avatar:
-              'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/509.jpg',
-            createdAt: '2024-10-28T04:28:32.836Z',
-            updatedAt: '2023-12-20T05:46:45.651Z',
+            avatar: 'https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_25.jpg',
+            createdAt: '2023-12-20 05:46:45',
+            updatedAt: '2023-12-20 05:46:45',
             password: 'demo1234',
             role: {
               id: '4281707933534332',
@@ -859,6 +858,29 @@ export default [
           },
           accessToken: 'ce1418bc-7ce6-428f-9c36-87d207843bf6',
           refreshToken: 'e36b1bd0-be97-41c5-bb82-2a3cf18e2dee',
+        },
+      };
+    },
+  },
+  {
+    url: '/api/users/id',
+    method: 'get',
+    response: () => {
+      return {
+        status: 0,
+        message: '',
+        data: {
+          'rows|10-20': [
+            {
+              'id|+1': '1',
+              fullname: '@cname',
+              avatar: '@image(100x100)',
+              email: '@email',
+              'age|16-36': 18,
+              address: '@county(true)',
+              'job|1': ['前端工程师', '后端工程师', 'UI工程师', '需求工程师'],
+            },
+          ],
         },
       };
     },

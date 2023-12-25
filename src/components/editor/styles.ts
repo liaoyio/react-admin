@@ -18,21 +18,21 @@ const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
   };
 };
 
-const StyledEditor = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
+const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   h1 {
-    ${(props) => getHeadingStyle(1, props.token)};
+    ${(props) => getHeadingStyle(1, props.$token)};
   }
   h2 {
-    ${(props) => getHeadingStyle(2, props.token)};
+    ${(props) => getHeadingStyle(2, props.$token)};
   }
   h3 {
-    ${(props) => getHeadingStyle(3, props.token)};
+    ${(props) => getHeadingStyle(3, props.$token)};
   }
   h4 {
-    ${(props) => getHeadingStyle(4, props.token)};
+    ${(props) => getHeadingStyle(4, props.$token)};
   }
   h5 {
-    ${(props) => getHeadingStyle(5, props.token)};
+    ${(props) => getHeadingStyle(5, props.$token)};
   }
   overflow: hidden;
   position: relative;

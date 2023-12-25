@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const StyledUpload = styled.div<{ display?: string }>`
+export const StyledUpload = styled.div<{ $display?: string }>`
   .ant-upload {
     border: none !important;
   }
   .ant-upload-list {
-    display: ${(props) => props.display};
+    display: ${(props) => props.$display};
     flex-wrap: wrap;
   }
 `;

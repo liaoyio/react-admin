@@ -10,7 +10,6 @@ import RegisterForm from './RegisterForm';
 import ResetForm from './ResetForm';
 import { Navigate } from 'react-router-dom';
 import { LoginStateProvider } from '@/context/LoginStateProvider';
-import { useSettings } from '@/store/settingStore';
 import { useUserToken } from '@/store/userStore';
 import { useThemeToken } from '@/common/theme/hooks';
 

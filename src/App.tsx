@@ -3,8 +3,12 @@ import { RouterProvider } from 'react-router-dom';
 import AntdConfig from './common/theme';
 import { MotionLazy } from '@/components/animate/motion-lazy';
 import router from '@/router';
-
+import axios from 'axios';
 export default function App() {
+  axios.get('/api/getUsers').then((res) => {
+    console.log(res);
+  });
+
   return (
     <AntdConfig>
       <AntdApp>
