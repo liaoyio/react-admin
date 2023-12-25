@@ -1,48 +1,32 @@
-import { Dropdown } from 'antd';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-
+import { Dropdown, type MenuProps } from 'antd';
 import { SvgIcon } from '../icon';
 
-import type { MenuProps } from 'antd';
-
-type Locale = 'zh' | 'en';
+import useLocale, { LANGUAGE_MAP } from '@/locales/useLocale';
+import { LocalEnum } from '#/enum';
+type Locale = keyof typeof LocalEnum;
 
 /** i8n 语言切换 */
 export default function LocalePicker() {
-  const { i18n } = useTranslation();
-
   /** 获取当前语言 */
-  const [locale, setLocale] = useState<Locale>(() => i18n.resolvedLanguage as Locale);
+  const { setLocale, locale } = useLocale();
 
-  const localeList: MenuProps['items'] = [
-    {
-      key: 'zh',
-      label: 'Chinese',
-      icon: <SvgIcon icon="ic-locale_zh" className="mr-2" size="18" />,
-    },
-    {
-      key: 'en',
-      label: 'English',
-      icon: <SvgIcon icon="ic-locale_en" className="mr-2" size="18" />,
-    },
-  ];
-
-  /** 切换语言 */
-  const handleLocaleChange: MenuProps['onClick'] = ({ key }) => {
-    setLocale(key as Locale);
-    i18n.changeLanguage(key);
-  };
+  const localeList: MenuProps['items'] = Object.values(LANGUAGE_MAP).map((item) => {
+    return {
+      key: item.locale,
+      label: item.label,
+      icon: <SvgIcon icon={item.icon} size="20" className="rounded-md" />,
+    };
+  });
 
   return (
     <Dropdown
       placement="bottomRight"
       trigger={['click']}
       key={locale}
-      menu={{ items: localeList, onClick: handleLocaleChange }}
+      menu={{ items: localeList, onClick: (e) => setLocale(e.key as Locale) }}
     >
-      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover hover:scale-105">
-        <SvgIcon icon={`ic-locale_${locale}`} size="22" />
+      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover">
+        <SvgIcon icon={`ic-locale_${locale}`} size="24" className="rounded-md" />
       </button>
     </Dropdown>
   );
