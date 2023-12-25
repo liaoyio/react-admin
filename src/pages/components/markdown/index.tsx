@@ -1,4 +1,4 @@
-import { Row, Col, Card, Button } from 'antd';
+import { Row, Col, Card, Button, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useState } from 'react';
 import { useThemeToken } from '@/common/theme/hooks';
@@ -67,18 +67,18 @@ ReactDOM.render(
 `;
 
 export default function MarkdownPage() {
-  const { colorPrimary } = useThemeToken();
   const [content] = useState(TEXT);
+  const { colorPrimary } = useThemeToken();
   return (
     <>
-      <a
+      <Typography.Link
         href="https://github.com/remarkjs/react-markdown"
-        target="_blank"
-        className="my-4 block"
         style={{ color: colorPrimary }}
+        className="mb-4 block"
       >
         https://github.com/remarkjs/react-markdown
-      </a>
+      </Typography.Link>
+
       <Card title="Mardown content">
         <Markdown>{content}</Markdown>
       </Card>
