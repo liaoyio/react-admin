@@ -2,8 +2,7 @@ import { Breadcrumb } from 'antd';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMatches } from 'react-router-dom';
-
+import { useMatches, Link } from 'react-router-dom';
 import { getMenuRoutes } from '@/router/menus';
 import { AppRouteObject, RouteMeta } from '#/router';
 
@@ -18,12 +17,6 @@ export default function BreadCrumb() {
   const [breadCrumbs, setBreadCrumbs] = useState<ItemType[]>([]);
   const [flattenedRoutes, setFlattenedRoutes] = useState<RouteMeta[]>([]);
 
-  const separator = (
-    <div className="flex h-full w-full items-center justify-center px-2">
-      <div className="!h-1 !w-1 rounded-full bg-gray" />
-    </div>
-  );
-
   /** flatten the routes */
   const flattenRoutes = useCallback((routes: AppRouteObject[]) => {
     return routes.reduce<RouteMeta[]>((prev, item) => {
@@ -35,6 +28,12 @@ export default function BreadCrumb() {
   }, []);
 
   useEffect(() => {
+    const menuRoutes = getMenuRoutes();
+    setFlattenedRoutes(flattenRoutes(menuRoutes));
+  }, [flattenRoutes]);
+
+  useEffect(() => {
+    const menuRoutes = getMenuRoutes();
     const paths = matches.filter((item) => item.pathname !== '/').map((item) => item.pathname);
 
     console.log('🚀 BreadCrumb -> useEffect -> paths', paths);
@@ -43,21 +42,29 @@ export default function BreadCrumb() {
 
     console.log('🚀 BreadCrumb -> useEffect -> pathRouteMetas', pathRouteMetas);
 
+    let items: AppRouteObject[] | undefined = [...menuRoutes];
+
     const breadCrumbs = pathRouteMetas.map((routeMeta: any) => {
       const { key, title } = routeMeta;
-      return {
+      items = items!.find((item) => item.meta?.key === key)?.children;
+      const result: ItemType = {
         key,
         title: t(title),
       };
+      if (items) {
+        result.menu = {
+          items: items.map((item) => ({
+            key: item.meta?.key,
+            label: <Link to={item.meta!.key!}>{t(item.meta!.title as any)}</Link>,
+          })),
+        };
+      }
+      return result;
     });
-    console.log('🚀 BreadCrumb -> useEffect -> breadCrumbs', breadCrumbs);
 
     setBreadCrumbs(breadCrumbs);
+    console.log('🚀 BreadCrumb -> useEffect -> after setBreadCrumbs ', breadCrumbs);
   }, [matches, flattenedRoutes, t]);
 
-  useEffect(() => {
-    const menuRoutes = getMenuRoutes();
-    setFlattenedRoutes(flattenRoutes(menuRoutes));
-  }, [flattenRoutes]);
-  return <Breadcrumb items={breadCrumbs} separator={separator} />;
+  return <Breadcrumb items={breadCrumbs} />;
 }

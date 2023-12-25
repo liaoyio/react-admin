@@ -5,9 +5,9 @@ export default function Logo({ className = '' }: { className?: string }) {
   const { colorPrimary, colorPrimaryBg } = useThemeToken();
   return (
     <NavLink to="/" className="no-underline">
-      <h1 className={`font-semibold ${className} text-4xl`} style={{ color: colorPrimary }}>
+      <button className={`font-semibold ${className}`} style={{ color: colorPrimary }}>
         Logo
-      </h1>
+      </button>
       {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className={className}>
         <defs>
           <linearGradient id="BG1" x1="100%" x2="50%" y1="9.946%" y2="50%">
