@@ -3,7 +3,13 @@ import { ConfigProvider, theme } from 'antd';
 import { useSettings } from '@/store/settingStore';
 
 import useLocale from '@/locales/useLocale';
-import { customAntdTheme, baseColor, colorPrimarys } from './antd';
+import {
+  customThemeTokenConfig,
+  themeModeToken,
+  colorPrimarys,
+  customComponentConfig,
+} from './antd';
+
 import { ThemeMode } from '#/enum';
 
 type Props = { children: React.ReactNode };
@@ -29,8 +35,8 @@ export default function AntdConfig({ children }: Props) {
     <ConfigProvider
       locale={language.antdLocal}
       theme={{
-        token: { ...customAntdTheme.token, colorPrimary, ...baseColor[themeMode] },
-        components: { ...customAntdTheme.components },
+        token: { colorPrimary, ...customThemeTokenConfig, ...themeModeToken[themeMode].token },
+        components: { ...customComponentConfig, ...themeModeToken[themeMode].components },
         algorithm,
       }}
     >

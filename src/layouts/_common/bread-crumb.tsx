@@ -1,9 +1,9 @@
 import { Breadcrumb } from 'antd';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches, Link } from 'react-router-dom';
-import { getMenuRoutes } from '@/router/utils';
+import { getMenuRoutes, flattenMenuRoutes } from '@/router/utils';
 import { AppRouteObject, RouteMeta } from '#/router';
 
 /**
@@ -13,23 +13,13 @@ import { AppRouteObject, RouteMeta } from '#/router';
 export default function BreadCrumb() {
   const { t } = useTranslation();
   const matches = useMatches();
-
   const [breadCrumbs, setBreadCrumbs] = useState<ItemType[]>([]);
-  const [flattenedRoutes, setFlattenedRoutes] = useState<RouteMeta[]>([]);
 
-  /** flatten the routes */
-  const flattenRoutes = useCallback((routes: AppRouteObject[]) => {
-    return routes.reduce<RouteMeta[]>((prev, item) => {
-      const { meta, children } = item;
-      if (meta) prev.push(meta);
-      if (children) prev.push(...flattenRoutes(children));
-      return prev;
-    }, []);
-  }, []);
+  const flattenRoutes = useCallback(flattenMenuRoutes, []);
 
-  useEffect(() => {
+  const flattenedRoutes = useMemo(() => {
     const menuRoutes = getMenuRoutes();
-    setFlattenedRoutes(flattenRoutes(menuRoutes));
+    return flattenRoutes(menuRoutes);
   }, [flattenRoutes]);
 
   useEffect(() => {

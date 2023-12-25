@@ -1,6 +1,6 @@
 import { ascend } from 'ramda';
 
-import { AppRouteObject } from '#/router';
+import { AppRouteObject, RouteMeta } from '#/router';
 
 /** 返回将在侧边栏菜单中展示的 routes，根据 order 排序 */
 export const menuFilter = (items: AppRouteObject[]) => {
@@ -31,4 +31,14 @@ export function getMenuModules() {
 /** return the routes will be used in sidebar menu */
 export function getMenuRoutes() {
   return menuFilter(getMenuModules());
+}
+
+/** return flatten routes */
+export function flattenMenuRoutes(routes: AppRouteObject[]) {
+  return routes.reduce<RouteMeta[]>((prev, item) => {
+    const { meta, children } = item;
+    if (meta) prev.push(meta);
+    if (children) prev.push(...flattenMenuRoutes(children));
+    return prev;
+  }, []);
 }

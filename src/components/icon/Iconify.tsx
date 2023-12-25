@@ -8,7 +8,7 @@ interface Props extends IconProps {
 export default function Iconify({ icon, size = '1em', ...other }: Props) {
   return (
     <StyledIconify className="anticon">
-      <Icon icon={icon} width={size} height={size} {...other} />
+      <Icon icon={icon} width={size} height={size} {...other} className="m-auto" />
     </StyledIconify>
   );
 }
