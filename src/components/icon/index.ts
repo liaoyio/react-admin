@@ -1,1 +1,4 @@
-export { default as SvgIcon } from './SvgIcon';
+import SvgIcon from './SvgIcon';
+import Iconify from './Iconify';
+
+export { SvgIcon, Iconify };
