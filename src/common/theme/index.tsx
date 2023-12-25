@@ -5,6 +5,7 @@ import { useSettings } from '@/store/settingStore';
 import useLocale from '@/locales/useLocale';
 import { customAntdTheme, baseColor, colorPrimarys } from './antd';
 import { ThemeMode } from '#/enum';
+// import '@/styles/reset.css'
 
 type Props = { children: React.ReactNode };
 
@@ -34,6 +35,7 @@ export default function AntdConfig({ children }: Props) {
         algorithm,
       }}
     >
+      {/* https://ant.design/docs/react/compatible-style-cn#styleprovider */}
       <StyleProvider hashPriority="high">{children}</StyleProvider>
     </ConfigProvider>
   );

@@ -9,10 +9,14 @@ const customAntdTheme: ThemeConfig = {
     colorError: '#ff5630',
     colorInfo: '#00b8d9',
     colorInfoBg: '#CAFDF5',
-    wireframe: false,
+    wireframe: false /** 线性化 */,
+    borderRadiusSM: 2,
     borderRadius: 4,
+    borderRadiusLG: 8,
   },
-  components: {},
+  components: {
+    Switch: {},
+  },
 };
 
 const colorPrimarys: {

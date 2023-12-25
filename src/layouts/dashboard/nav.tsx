@@ -120,14 +120,10 @@ export default function Nav(props: Props) {
   };
 
   return (
-    <div style={{ width: collapsed ? '100px' : '280px' }}>
+    <div style={{ width: collapsed ? '90px' : '260px' }}>
       <div className="relative flex h-20 items-center justify-center">
-        <Logo className="h-10 w-10" />
-        {themeLayout !== ThemeLayout.Mini ? (
-          <h1 className="ml-2 text-base font-semibold" style={{ color: colorPrimary }}>
-            Yi Admin
-          </h1>
-        ) : null}
+        {themeLayout === ThemeLayout.Mini ? <Logo className="text-lg" /> : <Logo />}
+
         <button
           onClick={toggleCollapsed}
           className="absolute right-0 top-6 z-10 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
