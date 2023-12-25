@@ -5,7 +5,6 @@ import { useSettings } from '@/store/settingStore';
 import useLocale from '@/locales/useLocale';
 import { customAntdTheme, baseColor, colorPrimarys } from './antd';
 import { ThemeMode } from '#/enum';
-// import '@/styles/reset.css'
 
 type Props = { children: React.ReactNode };
 

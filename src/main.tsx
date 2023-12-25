@@ -4,8 +4,7 @@ import { Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
 import 'virtual:uno.css';
-// import '@unocss/reset/tailwind.css';
-import '@unocss/reset/tailwind-compat.css';
+import '@/styles/reset.css';
 import '@/styles/index.css';
 import 'virtual:svg-icons-register';
 import 'react-quill/dist/quill.snow.css'; /** 富文本 */
