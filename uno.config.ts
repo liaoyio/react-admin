@@ -32,9 +32,6 @@ export default defineConfig({
       'xl': '1200px',
       '2xl': '1600px',
     }, */
-    fontFamily: {
-      sans: ['Public Sans', 'sans-serif'],
-    },
     colors: {
       black: '#000000',
       green: '#00A76F',
