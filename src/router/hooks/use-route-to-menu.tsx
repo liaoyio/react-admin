@@ -1,23 +1,39 @@
+import { SvgIcon } from '@/components/icon';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSettings } from '@/store/settingStore';
 
 import { AppRouteObject } from '#/router';
-import { SvgIcon } from '@/components/icon';
+import { ThemeLayout } from '#/enum';
 
 /** routes -> menus */
 export function useRouteToMenu() {
   const { t } = useTranslation();
+  const { themeLayout } = useSettings();
+
   const routeToMenu = useCallback(
     (items: AppRouteObject[]) => {
       return items.map((item) => {
-        const menuItem: any = {};
+        const menuItem: any = [];
         const { meta, children } = item;
         if (meta) {
-          const { key, label, icon, disabled } = meta;
+          const { key, label, icon, disabled, suffix } = meta;
+
           menuItem.key = key;
-          menuItem.label = t(label!);
           menuItem.disabled = disabled;
+
+          menuItem.label = (
+            <div
+              className={`inline-flex w-full items-center ${
+                themeLayout === ThemeLayout.Horizontal ? 'justify-start' : 'justify-between'
+              } `}
+            >
+              <span>{t(label!)}</span>
+              {suffix}
+            </div>
+          );
+
           if (icon) {
             if (typeof icon === 'string') {
               menuItem.icon = (
@@ -34,7 +50,7 @@ export function useRouteToMenu() {
         return menuItem as ItemType;
       });
     },
-    [t],
+    [t, themeLayout],
   );
   return routeToMenu;
 }

@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import Card from '@/components/card';
-import { SvgIcon } from '@/components/icon';
+import { Iconify, SvgIcon } from '@/components/icon';
+import { ProTag } from '@/components/antd-ui';
 import { AppRouteObject } from '#/router';
 
 const ExternalLink = lazy(() => import('@/pages/sys/iframe/external-link'));
@@ -14,6 +15,20 @@ const others: AppRouteObject[] = [
       icon: <SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />,
       disabled: true,
       key: '/disabled',
+    },
+  },
+  {
+    path: 'label',
+    element: <div />,
+    meta: {
+      label: 'sys.menu.label',
+      icon: <SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />,
+      suffix: (
+        <ProTag color="cyan" icon={<Iconify icon="solar:rocket-bold-duotone" size={14} />}>
+          NEW
+        </ProTag>
+      ),
+      key: '/label',
     },
   },
   {

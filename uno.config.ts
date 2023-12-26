@@ -15,6 +15,7 @@ export default defineConfig({
   ],
   transformers: [transformerDirectives(), transformerVariantGroup(), transformerAttributifyJsx()],
   theme: {
+    // 解决 screens: {} 配置在 unocss 无效
     breakpoints: {
       xs: '480px',
       sm: '576px',
@@ -23,15 +24,6 @@ export default defineConfig({
       xl: '1200px',
       '2xl': '1600px',
     },
-    // 在 unocss 无效
-    /* screens: {
-      'xs': '480px',
-      'sm': '576px',
-      'md': '768px',
-      'lg': '992px',
-      'xl': '1200px',
-      '2xl': '1600px',
-    }, */
     colors: {
       black: '#000000',
       green: '#00A76F',
@@ -40,7 +32,15 @@ export default defineConfig({
       pink: '#ff49db',
       orange: '#ff7849',
       yellow: '#ffc82c',
+
+      success: '#22c55e',
+      warning: '#ffab00',
+      error: '#ff5630',
+      info: '#00b8d9',
+
       gray: '#637381',
+      hover: '#63738114',
+
       'gray-100': '#F9FAFB',
       'gray-200': '#F4F6F8',
       'gray-300': '#DFE3E8',
@@ -50,13 +50,6 @@ export default defineConfig({
       'gray-700': '#454F5B',
       'gray-800': '#212B36',
       'gray-900': '#161C24',
-
-      hover: '#63738114',
-      'primary-lighter': '#C8FAD6',
-      'primary-light': '#5BE49B',
-      primary: '#00A76F',
-      'primary-dark': '#007867',
-      'primary-darker': '#004B50',
     },
     extend: {
       transitionProperty: {

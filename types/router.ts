@@ -6,8 +6,10 @@ export type RouteMeta = {
   key: string;
   /** 菜单栏标题 */
   label?: string;
-  /** 菜单栏图标，传入string时使用 SvgIcon 组件渲染   */
+  /** 菜单栏前缀图标，传入string时使用 SvgIcon 组件渲染 */
   icon?: ReactNode;
+  /** 菜单栏后缀图标 */
+  suffix?: ReactNode;
   // show in tab
   hideTab?: boolean;
   // show in menu
