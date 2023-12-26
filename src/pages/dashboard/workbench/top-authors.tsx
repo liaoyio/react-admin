@@ -4,7 +4,7 @@ import Color from 'color';
 
 import Card from '@/components/card';
 import { Iconify, SvgIcon } from '@/components/icon';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function TopAuthor() {
   const themeToken = useThemeToken();

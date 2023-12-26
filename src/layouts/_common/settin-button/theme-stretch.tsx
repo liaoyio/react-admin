@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, Tooltip } from 'antd';
 import { LeftOutlined, QuestionCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { useSettingActions, useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function ThemeContentStretch() {
   const { colorPrimary, colorTextSecondary } = useThemeToken();

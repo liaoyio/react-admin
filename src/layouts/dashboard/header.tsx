@@ -1,7 +1,7 @@
 import { Drawer } from 'antd';
 import { CSSProperties, useState } from 'react';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import Color from 'color';
 
 import Logo from '@/components/logo';

@@ -2,7 +2,7 @@ import { Card, Pagination, Radio, Space, Typography } from 'antd';
 
 import { SvgIcon } from '@/components/icon';
 import useLocale from '@/locales/useLocale';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 import { LocalEnum } from '#/enum';
 

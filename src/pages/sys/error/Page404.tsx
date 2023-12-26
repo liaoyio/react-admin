@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import MotionContainer from '@/components/animate/motion-container';
 import { varBounce } from '@/components/animate/variants/bounce';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 import Character6 from '@/assets/images/characters/character_6.png';
 

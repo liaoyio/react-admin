@@ -2,7 +2,7 @@ import { Card, Typography } from 'antd';
 import { useState } from 'react';
 
 import Editor from '@/components/editor';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function EditorPage() {
   const [quillSimple, setQuillSimple] = useState('');

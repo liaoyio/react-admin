@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { SignInReq } from '@/api/user';
 import { useSignIn } from '@/store/userStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export const DEFAULT_USER = { username: 'demo@gmail.com', password: 'demo1234' };
 

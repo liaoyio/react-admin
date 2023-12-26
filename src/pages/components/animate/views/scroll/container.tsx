@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import MotionViewport from '@/components/animate/motion-viewport';
 import { getVariant } from '@/components/animate/variants';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 type Props = {
   variant: string;

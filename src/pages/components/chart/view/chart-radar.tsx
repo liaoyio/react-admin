@@ -1,6 +1,6 @@
 import Chart from '@/components/chart/chart';
 import useChart from '@/components/chart/useChart';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 const series = [
   {

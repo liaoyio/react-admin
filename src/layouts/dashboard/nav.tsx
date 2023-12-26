@@ -10,7 +10,7 @@ import Logo from '@/components/logo';
 import { getMenuRoutes } from '@/router/utils';
 import { AppRouteObject } from '#/router';
 import { ThemeLayout } from '#/enum';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { SvgIcon } from '@/components/icon';
 

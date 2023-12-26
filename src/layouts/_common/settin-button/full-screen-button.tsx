@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { SvgIcon } from '@/components/icon';
 import { useFullscreen } from 'ahooks';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 /** 全屏切换按钮 */
 export default function FullScreenButton() {

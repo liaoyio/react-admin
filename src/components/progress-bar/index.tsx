@@ -3,7 +3,7 @@ import 'nprogress/nprogress.css';
 import { useEffect, useState } from 'react';
 
 import { usePathname } from '@/router/hooks';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function ProgressBar() {
   const pathname = usePathname();

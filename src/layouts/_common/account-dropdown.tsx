@@ -9,7 +9,7 @@ import { IconButton } from '@/components/icon';
 import userService from '@/api/user';
 import { useLoginStateContext } from '@/context/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 /** 用户头像点击下拉菜单 */
 export default function UserAvatar() {

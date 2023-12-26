@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import Cover3 from '@/assets/images/cover/cover_3.jpg';
 import { getVariant } from '@/components/animate/variants';
 import MotionContainer from '@/components/animate/motion-container';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 const TEXT = 'YiAdmin';
 

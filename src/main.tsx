@@ -4,11 +4,8 @@ import { Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
 import 'virtual:uno.css';
-import '@/styles/reset.css';
-import '@/styles/index.css';
+import '@/styles/global.css';
 import 'virtual:svg-icons-register';
-import 'react-quill/dist/quill.snow.css'; /** 富文本 */
-import 'simplebar-react/dist/simplebar.min.css'; /** 滚动条 */
 
 import App from '@/App';
 import '@/locales/i18n';

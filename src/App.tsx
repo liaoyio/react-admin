@@ -1,6 +1,6 @@
 import { App as AntdApp } from 'antd';
 import { RouterProvider } from 'react-router-dom';
-import AntdConfig from './common/theme';
+import AntdConfig from '@/theme/antd';
 import { MotionLazy } from '@/components/animate/motion-lazy';
 import router from '@/router';
 import axios from 'axios';

@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderSimple from '../_common/header-simple';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 type Props = { children: React.ReactNode };
 

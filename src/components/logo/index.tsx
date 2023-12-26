@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function Logo({ className = '' }: { className?: string }) {
   const { colorPrimary, colorPrimaryBg } = useThemeToken();

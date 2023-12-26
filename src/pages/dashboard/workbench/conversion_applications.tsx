@@ -1,6 +1,6 @@
 import { Progress } from 'antd';
 import { Iconify } from '@/components/icon';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export function Conversion() {
   const { colorPrimaryActive, colorPrimaryBorder } = useThemeToken();

@@ -1,6 +1,6 @@
 import { Progress } from 'antd';
 import { useEffect, useState } from 'react';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import Color from 'color';
 
 export default function LineLoading() {

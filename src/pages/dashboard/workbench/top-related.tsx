@@ -4,7 +4,7 @@ import Card from '@/components/card';
 import { Iconify } from '@/components/icon';
 import Scrollbar from '@/components/scrollbar';
 import { ProRate, ProTag } from '@/components/antd-ui';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 const dataSource = [
   {

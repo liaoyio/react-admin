@@ -9,7 +9,7 @@ import NavHorizontal from './nav-horizontal';
 
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import { ThemeLayout } from '#/enum';
 
 export default function DashboardLayout() {

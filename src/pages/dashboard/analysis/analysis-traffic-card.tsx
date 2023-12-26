@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 type Props = {
   icon: ReactNode;

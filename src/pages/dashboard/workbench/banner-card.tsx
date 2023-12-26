@@ -3,7 +3,7 @@ import Color from 'color';
 
 import Character3 from '@/assets/images/characters/character_3.png';
 import { useUserInfo } from '@/store/userStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function BannerCard() {
   const { username } = useUserInfo();

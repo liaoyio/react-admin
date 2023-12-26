@@ -4,7 +4,7 @@ import BackgroundView from './views/background';
 import Inview from './views/inview';
 import ScrollView from './views/scroll';
 
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 const TABS: TabsProps['items'] = [
   { key: 'inview', label: 'In View', children: <Inview /> },

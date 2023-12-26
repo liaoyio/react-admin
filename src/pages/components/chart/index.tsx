@@ -13,7 +13,7 @@ import ChartPie from './view/chart-pie';
 import ChartRadar from './view/chart-radar';
 import ChartRadial from './view/chart-radial';
 
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function ChartPage() {
   const { colorPrimary } = useThemeToken();

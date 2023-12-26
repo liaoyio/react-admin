@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import Cover3 from '@/assets/images/cover/cover_3.jpg';
 import MotionContainer from '@/components/animate/motion-container';
 import { getVariant } from '@/components/animate/variants';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 type Props = {
   variant: string;

@@ -11,7 +11,7 @@ import ResetForm from './ResetForm';
 import { Navigate } from 'react-router-dom';
 import { LoginStateProvider } from '@/context/LoginStateProvider';
 import { useUserToken } from '@/store/userStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 import DashboardImg from '@/assets/images/background/dashboard.png';
 import Overlay2 from '@/assets/images/background/overlay_2.jpg';

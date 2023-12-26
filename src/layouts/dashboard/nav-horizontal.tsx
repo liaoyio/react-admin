@@ -3,7 +3,7 @@ import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback, useState, useEffect, CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import { SvgIcon } from '@/components/icon';
 
 import { getMenuRoutes } from '@/router/utils';

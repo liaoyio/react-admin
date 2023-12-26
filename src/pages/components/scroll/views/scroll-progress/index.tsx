@@ -3,7 +3,7 @@ import { useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
 import ScrollProgress from '@/components/scroll-progress';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import { faker } from '@faker-js/faker';
 
 const TEXT = faker.lorem.paragraphs({ min: 20, max: 30 });

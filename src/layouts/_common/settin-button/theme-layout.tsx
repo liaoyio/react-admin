@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { ThemeLayout } from '#/enum';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 /** 全局 Layout 布局设置 */
 export default function ThemeLayoutSettings() {

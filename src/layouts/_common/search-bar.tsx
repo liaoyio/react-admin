@@ -11,7 +11,7 @@ import { IconButton, SvgIcon } from '@/components/icon';
 import Scrollbar from '@/components/scrollbar';
 import { useRouter } from '@/router/hooks';
 import { flattenMenuRoutes, getMenuRoutes } from '@/router/utils';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 import Color from 'color';
 

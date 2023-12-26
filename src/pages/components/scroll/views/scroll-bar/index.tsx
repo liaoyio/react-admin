@@ -1,7 +1,7 @@
 import { Card, Col, Row, Typography } from 'antd';
 
 import Scrollbar from '@/components/scrollbar';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import { faker } from '@faker-js/faker';
 
 const TEXT = faker.lorem.paragraphs({ min: 20, max: 30 });

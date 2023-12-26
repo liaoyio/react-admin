@@ -1,9 +1,9 @@
 import { Card } from 'antd';
 import { ThemeColorPresets } from '#/enum';
 import { useSettingActions, useSettings } from '@/store/settingStore';
-import { colorPrimarys } from '@/common/theme/antd';
+import { colorPrimarys } from '@/theme/theme';
 import { MdCircle } from 'react-icons/md';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 /** 全局主题色预设选择 */
 const ThemeColorPresetsToggle = () => {

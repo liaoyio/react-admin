@@ -2,7 +2,7 @@ import { Card } from 'antd';
 import { SvgIcon } from '@/components/icon';
 import { ThemeMode } from '#/enum';
 import { useSettingActions, useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 /** 暗黑模式切换 */
 const DarkModeToggle = () => {

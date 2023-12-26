@@ -11,7 +11,7 @@ import ChartBar from '@/pages/components/chart/view/chart-bar';
 import ChartMixed from '@/pages/components/chart/view/chart-mixed';
 import ChartPie from '@/pages/components/chart/view/chart-pie';
 import ChartRadar from '@/pages/components/chart/view/chart-radar';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 import AnalysisCard from './analysis-card';
 import AnalysisNews from './analysis-news';

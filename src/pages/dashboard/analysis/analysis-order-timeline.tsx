@@ -1,5 +1,5 @@
 import { Timeline, Typography } from 'antd';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function AnalysisOrderTimeline() {
   const theme = useThemeToken();

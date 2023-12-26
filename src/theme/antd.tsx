@@ -8,7 +8,7 @@ import {
   themeModeToken,
   colorPrimarys,
   customComponentConfig,
-} from './antd';
+} from './theme';
 
 import { ThemeMode } from '#/enum';
 

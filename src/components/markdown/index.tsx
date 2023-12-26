@@ -7,7 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm'; // add support for strikethrough, tables, tasklists and URLs directly
 
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import StyledMarkdown from './styles';
 
 export default function Markdown({ children }: any) {

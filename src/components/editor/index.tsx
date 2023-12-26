@@ -2,7 +2,7 @@ import '@/utils/highlight';
 import ReactQuill, { ReactQuillProps } from 'react-quill';
 import Toolbar, { formats } from './toolbar';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import { StyledEditor } from './styles';
 
 interface Props extends ReactQuillProps {

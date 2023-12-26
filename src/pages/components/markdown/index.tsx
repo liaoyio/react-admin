@@ -1,7 +1,7 @@
 import { Row, Col, Card, Button, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useState } from 'react';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 import Markdown from '@/components/markdown';
 
 const TEXT = `

@@ -1,7 +1,7 @@
 import { Card, Space, Typography } from 'antd';
 
 import { Iconify, SvgIcon } from '@/components/icon';
-import { useThemeToken } from '@/common/theme/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function IconPage() {
   const { colorPrimary, colorInfo, colorSuccess, colorWarning, colorError } = useThemeToken();
