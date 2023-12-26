@@ -1,5 +1,5 @@
 import { useScroll } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import Color from 'color';
 
 import Header from './header';
@@ -7,6 +7,7 @@ import Main from './main';
 import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
 
+import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
@@ -68,7 +69,7 @@ export default function DashboardLayout() {
         className="flex h-screen overflow-hidden"
         style={{ color: colorTextBase, background: colorBgElevated }}
       >
-        {layout}
+        <Suspense fallback={<CircleLoading />}>{layout}</Suspense>
       </div>
     </>
   );

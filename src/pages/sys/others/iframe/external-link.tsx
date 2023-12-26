@@ -1,10 +1,8 @@
 import { useLayoutEffect } from 'react';
-
 import { useRouter } from '@/router/hooks';
 
-type Props = {
-  to: string;
-};
+type Props = { to: string };
+
 export default function ExternalLink({ to }: Props) {
   const { back } = useRouter();
   useLayoutEffect(() => {
