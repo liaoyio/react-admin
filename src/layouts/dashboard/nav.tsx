@@ -2,62 +2,29 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 
 import { ItemType } from 'antd/es/menu/hooks/useItems';
-import { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import { getMenuRoutes } from '@/router/utils';
-import { AppRouteObject } from '#/router';
 import { ThemeLayout } from '#/enum';
 import { useThemeToken } from '@/theme/hooks';
+import { useRouteToMenu } from '@/router/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
-import { SvgIcon } from '@/components/icon';
 
-type Props = {
-  closeSideBarDrawer?: () => void;
-};
+type Props = { closeSideBarDrawer?: () => void };
 
 export default function Nav(props: Props) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const matches = useMatches();
-
-  const { t } = useTranslation();
   const { colorTextBase, colorBgElevated } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;
   const { setSettings } = useSettingActions();
 
-  // router -> menu
-  const routeToMenu = useCallback(
-    (items: AppRouteObject[]) => {
-      return items.map((item) => {
-        const menuItem: any = {};
-        const { meta, children } = item;
-        if (meta) {
-          const { key, title, icon } = meta;
-          menuItem.key = key;
-          menuItem.label = t(title as any);
-          if (icon) {
-            if (typeof icon === 'string') {
-              menuItem.icon = (
-                <SvgIcon icon={icon} className="ant-menu-item-icon mr-2" size="24px" />
-              );
-            } else {
-              menuItem.icon = icon;
-            }
-          }
-        }
-        if (children) {
-          menuItem.children = routeToMenu(children);
-        }
-        return menuItem;
-      });
-    },
-    [t],
-  );
+  const routeToMenu = useRouteToMenu();
 
   /** state */
   const [collapsed, setCollapsed] = useState(false);

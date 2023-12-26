@@ -15,14 +15,8 @@ const functions: AppRouteObject = {
     </Suspense>
   ),
   meta: {
-    title: 'sys.menu.functions',
-    icon: (
-      <Iconify
-        icon="fluent-mdl2:functional-manager-dashboard"
-        className="ant-menu-item-icon"
-        size="24"
-      />
-    ),
+    label: 'sys.menu.functions',
+    icon: <Iconify icon="ic:twotone-featured-play-list" className="ant-menu-item-icon" size="24" />,
     key: '/functions',
   },
   children: [
@@ -33,7 +27,7 @@ const functions: AppRouteObject = {
     {
       path: 'clipboard',
       element: <ClipboardPage />,
-      meta: { title: 'sys.menu.clipboard', key: '/functions/clipboard' },
+      meta: { label: 'sys.menu.clipboard', key: '/functions/clipboard' },
     },
   ],
 };

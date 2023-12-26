@@ -1,50 +1,19 @@
 import { Menu, MenuProps } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
-import { useCallback, useState, useEffect, CSSProperties } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect, CSSProperties } from 'react';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 import { useThemeToken } from '@/theme/hooks';
-import { SvgIcon } from '@/components/icon';
 
 import { getMenuRoutes } from '@/router/utils';
-import { AppRouteObject } from '#/router';
+import { useRouteToMenu } from '@/router/hooks';
 
 /** layout 布局隐藏左侧竖向(列)菜单栏时，顶部显示横向(行)菜单栏 */
 export default function NavHorizontal() {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();
-  const { t } = useTranslation();
   const { colorBgElevated } = useThemeToken();
-
-  // router -> menu
-  const routeToMenu = useCallback(
-    (items: AppRouteObject[]) => {
-      return items.map((item) => {
-        const menuItem: any = {};
-        const { meta, children } = item;
-        if (meta) {
-          const { key, title, icon } = meta;
-          menuItem.key = key;
-          menuItem.label = t(title as any);
-          if (icon) {
-            if (typeof icon === 'string') {
-              menuItem.icon = (
-                <SvgIcon icon={icon} className="ant-menu-item-icon mr-2" size="24px" />
-              );
-            } else {
-              menuItem.icon = icon;
-            }
-          }
-        }
-        if (children) {
-          menuItem.children = routeToMenu(children);
-        }
-        return menuItem;
-      });
-    },
-    [t],
-  );
+  const routeToMenu = useRouteToMenu();
 
   /** state */
   const [openKeys, setOpenKeys] = useState<string[]>([]);

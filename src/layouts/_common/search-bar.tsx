@@ -38,7 +38,7 @@ export default function SearchBar() {
   useEffect(() => {
     const result = flattenedRoutes.filter(
       (item) =>
-        t(item.title as any)
+        t(item.label as any)
           .toLowerCase()
           .indexOf(searchQuery.toLowerCase()) !== -1 ||
         item.key.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1,
@@ -170,8 +170,8 @@ export default function SearchBar() {
         ) : (
           <Scrollbar>
             <div ref={listRef} className="py-2">
-              {searchResult.map(({ key, title }, index) => {
-                const partsTitle = parse(t(title), match(t(title), searchQuery));
+              {searchResult.map(({ key, label }, index) => {
+                const partsTitle = parse(t(label), match(t(label), searchQuery));
                 const partsKey = parse(key, match(key, searchQuery));
                 return (
                   <StyledListItemButton
