@@ -6,6 +6,7 @@ interface SvgIconProps {
   color?: string;
   size?: string | number;
   className?: string;
+  style?: CSSProperties;
 }
 
 export default function SvgIcon({
@@ -14,6 +15,7 @@ export default function SvgIcon({
   color = 'currentColor',
   size = '1em',
   className = '',
+  style = {},
 }: SvgIconProps) {
   const symbolId = `#${prefix}-${icon}`;
 
@@ -22,6 +24,7 @@ export default function SvgIcon({
     height: size,
     verticalAlign: 'middle',
     color,
+    ...style,
   };
 
   return (

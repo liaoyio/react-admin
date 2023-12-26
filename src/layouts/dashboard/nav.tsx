@@ -45,8 +45,9 @@ export default function Nav(props: Props) {
               menuItem.icon = (
                 <SvgIcon icon={icon} className="ant-menu-item-icon mr-2" size="24px" />
               );
+            } else {
+              menuItem.icon = icon;
             }
-            menuItem.icon = icon;
           }
         }
         if (children) {
