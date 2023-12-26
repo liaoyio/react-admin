@@ -1,12 +1,10 @@
 import { Upload } from 'antd';
-import { RcFile, UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload';
+import { UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload';
 import { useState } from 'react';
 
 import { Iconify } from '../icon';
-
 import { StyledUploadAvatar } from './styles';
-import { beforeAvatarUpload, getBase64 } from './utils';
-import { faker } from '@faker-js/faker';
+import { beforeAvatarUpload, getBlobUrl } from './utils';
 
 interface Props extends UploadProps {
   helperText?: React.ReactElement | string;
@@ -24,14 +22,9 @@ export default function UploadAvatar({ helperText, ...other }: Props) {
     if (info.file.status === 'uploading') {
       return;
     }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setImageUrl(url);
-      });
-    }
-    if (info.file.status === 'error') {
-      setImageUrl(faker.image.avatar());
+    if (['done', 'error'].includes(info.file.status!)) {
+      // TODO: Get this url from response in real world.
+      setImageUrl(getBlobUrl(info.file.originFileObj!));
     }
   };
 

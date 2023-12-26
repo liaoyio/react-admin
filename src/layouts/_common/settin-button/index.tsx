@@ -1,5 +1,5 @@
 import { Drawer } from 'antd';
-import { useState } from 'react';
+import { useState, CSSProperties } from 'react';
 
 import SettingIcon from './setting-icon';
 import FullScreenButton from './full-screen-button';
@@ -9,12 +9,25 @@ import ThemeContentStretch from './theme-stretch';
 import ThemeColorPresetsToggle from './theme-color-presets-toggle';
 import { CloseOutlined } from '@ant-design/icons';
 import { IconButton } from '@/components/icon';
+import Color from 'color';
 
-import { BG_STYLE } from '@/styles/ui';
+import CyanBlur from '@/assets/images/background/cyan-blur.png';
+import RedBlur from '@/assets/images/background/red-blur.png';
+import { useThemeToken } from '@/theme/hooks';
 
 /** App Setting */
 export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { colorBgContainer } = useThemeToken();
+
+  const style: CSSProperties = {
+    backdropFilter: 'blur(20px)',
+    backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
+    backgroundRepeat: 'no-repeat, no-repeat',
+    backgroundColor: Color(colorBgContainer).alpha(0.9).toString(),
+    backgroundPosition: 'right top, left bottom',
+    backgroundSize: '50, 50%',
+  };
 
   return (
     <>
@@ -27,7 +40,7 @@ export default function SettingButton() {
         closable={false}
         width={280}
         maskStyle={{ backgroundColor: 'transparent' }}
-        style={BG_STYLE}
+        style={style}
         styles={{ body: { padding: 0 } }}
         extra={
           <IconButton onClick={() => setDrawerOpen(false)} className="h-9 w-9 hover:scale-105">

@@ -12,6 +12,7 @@ import BreadCrumb from '../_common/bread-crumb';
 import LocalePicker from '@/components/locale-picker';
 import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/settin-button';
+import NoticeButton from '../_common/notice';
 import ProSider from './nav';
 
 import { ThemeLayout } from '#/enum';
@@ -61,6 +62,7 @@ export default function Header({ className, offsetTop = false }: Props) {
           <div className="flex">
             <SearchBar />
             <LocalePicker />
+            <NoticeButton />
             <SettingButton />
             <AccountDropdown />
           </div>

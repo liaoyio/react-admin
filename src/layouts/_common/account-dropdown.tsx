@@ -50,6 +50,7 @@ export default function UserAvatar() {
 
   const items: MenuProps['items'] = [
     { label: <NavLink to="/dashboard">{t('sys.menu.dashboard')}</NavLink>, key: '0' },
+    { label: <NavLink to="https://github.com/liaoyio/react-admin">Github</NavLink>, key: '1' },
     { type: 'divider' },
     {
       label: <button className="font-bold text-orange">{t('sys.login.logout')}</button>,

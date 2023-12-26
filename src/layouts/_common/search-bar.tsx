@@ -8,6 +8,7 @@ import { useKeyPress, useBoolean } from 'ahooks';
 import styled from 'styled-components';
 
 import { IconButton, SvgIcon } from '@/components/icon';
+import { ProTag } from '@/components/antd-ui';
 import Scrollbar from '@/components/scrollbar';
 import { useRouter } from '@/router/hooks';
 import { flattenMenuRoutes, getMenuRoutes } from '@/router/utils';
@@ -141,7 +142,6 @@ export default function SearchBar() {
         open={search}
         centered
         onCancel={handleCancel}
-        footer={null}
         closeIcon={false}
         afterOpenChange={handleAfterOpenChange}
         styles={{
@@ -167,6 +167,23 @@ export default function SearchBar() {
               </IconButton>
             }
           />
+        }
+        footer={
+          <div className="flex">
+            <div className="flex">
+              <ProTag color="cyan">↑</ProTag>
+              <ProTag color="cyan">↓</ProTag>
+              <span>to navigate</span>
+            </div>
+            <div className="flex">
+              <ProTag color="cyan">↵</ProTag>
+              <span>to select</span>
+            </div>
+            <div className="flex">
+              <ProTag color="cyan">ESC</ProTag>
+              <span>to close</span>
+            </div>
+          </div>
         }
       >
         {searchResult.length === 0 ? (
