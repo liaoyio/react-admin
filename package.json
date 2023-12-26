@@ -82,6 +82,7 @@
     "swr": "^2.2.4",
     "typescript": "^5.2.2",
     "vite-plugin-mock": "^3.0.0",
-    "vite-plugin-svg-icons": "^2.0.1"
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-tsconfig-paths": "^4.2.2"
   }
 }
