@@ -53,7 +53,7 @@ export default function UserAvatar() {
     { label: <NavLink to="https://github.com/liaoyio/react-admin">Github</NavLink>, key: '1' },
     { type: 'divider' },
     {
-      label: <button className="font-bold text-orange">{t('sys.login.logout')}</button>,
+      label: <button className="font-bold text-warning">{t('sys.login.logout')}</button>,
       key: '3',
       onClick: logout,
     },

@@ -1,11 +1,11 @@
 import { CSSProperties, ReactNode } from 'react';
+import { ButtonProps } from 'antd';
 
 type Props = {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
-  onClick?: () => void;
-};
+} & ButtonProps;
 
 export default function IconButton({ children, className, style, onClick }: Props) {
   return (

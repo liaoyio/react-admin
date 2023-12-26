@@ -34,7 +34,7 @@ export default defineConfig({
       yellow: '#ffc82c',
 
       success: '#22c55e',
-      warning: '#ffab00',
+      warning: '#ff7849',
       error: '#ff5630',
       info: '#00b8d9',
 

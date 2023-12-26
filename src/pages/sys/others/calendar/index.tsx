@@ -39,13 +39,13 @@ export default function Calendar() {
   const [eventFormType, setEventFormType] = useState<'add' | 'edit'>('add');
 
   const { themeMode } = useSettings();
-  const { currentScreen } = useResponsive();
+  const { screenMap } = useResponsive();
 
   useEffect(() => {
-    if (['sm', 'xs'].includes(currentScreen!)) {
+    if (screenMap.xs) {
       setView('listWeek');
     }
-  }, [currentScreen]);
+  }, [screenMap]);
 
   /** ============== calendar header events ============== */
   const handleMove = (action: HandleMoveArg) => {
@@ -192,7 +192,7 @@ export default function Calendar() {
             ref={fullCalendarRef}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
             initialDate={date}
-            initialView={['sm', 'xs'].includes(currentScreen!) ? 'listWeek' : view}
+            initialView={screenMap.xs ? 'listWeek' : view}
             events={INITIAL_EVENTS}
             eventContent={CalendarEvent}
             editable

@@ -4,7 +4,7 @@ import { ThemeColorPresets } from '#/enum';
 /** Antd theme editor: https://ant.design/theme-editor-cn */
 const customThemeTokenConfig: ThemeConfig['token'] = {
   colorSuccess: '#22c55e',
-  colorWarning: '#ffab00',
+  colorWarning: '#ff7849',
   colorError: '#ff5630',
   colorInfo: '#00b8d9',
 

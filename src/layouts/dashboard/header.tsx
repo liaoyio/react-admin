@@ -1,7 +1,7 @@
 import { Drawer } from 'antd';
 import { CSSProperties, useState } from 'react';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/theme/hooks';
+import { useThemeToken, useResponsive } from '@/theme/hooks';
 import Color from 'color';
 
 import Logo from '@/components/logo';
@@ -16,6 +16,7 @@ import NoticeButton from '../_common/notice';
 import ProSider from './nav';
 
 import { ThemeLayout } from '#/enum';
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 
 type Props = { className?: string; offsetTop?: boolean };
 
@@ -23,15 +24,28 @@ export default function Header({ className, offsetTop = false }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
   const { colorBgElevated, colorBorder } = useThemeToken();
+  const { screenMap } = useResponsive();
 
   const headerStyle: CSSProperties = {
-    position: themeLayout === ThemeLayout.Horizontal ? 'relative' : 'absolute',
+    position: themeLayout === ThemeLayout.Horizontal ? 'relative' : 'fixed',
     borderBottom:
       themeLayout === ThemeLayout.Horizontal
         ? `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`
         : '',
     backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
   };
+
+  if (themeLayout === ThemeLayout.Horizontal) {
+    headerStyle.width = '100vw';
+  } else if (screenMap.md) {
+    headerStyle.right = '0px';
+    headerStyle.left = 'auto';
+    headerStyle.width = `calc(100% - ${
+      themeLayout === ThemeLayout.Vertical ? NAV_WIDTH : NAV_COLLAPSED_WIDTH
+    }`;
+  } else {
+    headerStyle.width = '100vw';
+  }
 
   return (
     <>
@@ -43,11 +57,11 @@ export default function Header({ className, offsetTop = false }: Props) {
             transition: 'height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           }}
         >
-          <div className="flex items-center">
-            {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
+          <div className="flex items-baseline">
+            {/* hidden when screen width > lg, when click show Sidebar Drawer */}
 
             {themeLayout !== ThemeLayout.Horizontal ? (
-              <IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 lg:hidden">
+              <IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 md:hidden">
                 <SvgIcon icon="ic-menu" size="24" />
               </IconButton>
             ) : (
@@ -73,7 +87,7 @@ export default function Header({ className, offsetTop = false }: Props) {
         onClose={() => setDrawerOpen(false)}
         open={drawerOpen}
         closeIcon={false}
-        styles={{ body: { padding: 0 }, header: { display: 'none' } }}
+        styles={{ body: { padding: 0, overflow: 'hidden' }, header: { display: 'none' } }}
         width="auto"
       >
         <ProSider closeSideBarDrawer={() => setDrawerOpen(false)} />

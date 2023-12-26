@@ -23,7 +23,7 @@ type Props = {
 };
 
 export default function CalendarHeader({ now, view, onMove, onCreate, onViewTypeChange }: Props) {
-  const { currentScreen } = useResponsive();
+  const { screenMap } = useResponsive();
 
   const items = useMemo<ViewTypeMenu[]>(
     () => [
@@ -73,7 +73,7 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 
   return (
     <div className="relative flex items-center justify-between py-5">
-      {!['sm', 'xs'].includes(currentScreen!) && (
+      {screenMap.lg && (
         <Dropdown menu={{ items, onClick: handleMenuClick }}>
           <Button type="text" size="small">
             {viewTypeMenu(view)}

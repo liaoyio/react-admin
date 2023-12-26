@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
+import Scrollbar from '@/components/scrollbar';
 import { getMenuRoutes } from '@/router/utils';
 import { ThemeLayout } from '#/enum';
 import { useThemeToken } from '@/theme/hooks';
 import { useRouteToMenu } from '@/router/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import Color from 'color';
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 
 type Props = { closeSideBarDrawer?: () => void };
 
@@ -94,9 +96,9 @@ export default function Nav(props: Props) {
 
   return (
     <div
-      className="flex h-full flex-col "
+      className="flex h-full flex-col"
       style={{
-        width: collapsed ? '90px' : '260px',
+        width: collapsed ? NAV_COLLAPSED_WIDTH : NAV_WIDTH,
         borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
       }}
     >
@@ -109,7 +111,7 @@ export default function Nav(props: Props) {
 
         <button
           onClick={toggleCollapsed}
-          className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
+          className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray md:block"
           style={{ color: colorTextBase, borderColor: colorTextBase, fontSize: 16 }}
         >
           {collapsed ? <MenuUnfoldOutlined size={20} /> : <MenuFoldOutlined size={20} />}
@@ -117,7 +119,7 @@ export default function Nav(props: Props) {
       </div>
 
       {/* Sidebar Menu  */}
-      <div className="h-full overflow-y-scroll">
+      <Scrollbar>
         <Menu
           mode={menuMode}
           items={menuList}
@@ -131,7 +133,7 @@ export default function Nav(props: Props) {
           style={{ background: colorBgElevated }}
           inlineCollapsed={collapsed}
         />
-      </div>
+      </Scrollbar>
     </div>
   );
 }
