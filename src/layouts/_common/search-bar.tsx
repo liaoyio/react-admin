@@ -1,17 +1,16 @@
 import { Empty, GlobalToken, Input, InputRef, Modal } from 'antd';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useKeyPress, useBoolean } from 'ahooks';
+import { useBoolean, useEvent, useKeyPressEvent } from 'react-use';
 import styled from 'styled-components';
 
 import { IconButton, SvgIcon } from '@/components/icon';
 import { ProTag } from '@/components/antd-ui';
 import Scrollbar from '@/components/scrollbar';
-import { useRouter } from '@/router/hooks';
-import { flattenMenuRoutes, getMenuRoutes } from '@/router/utils';
+import { useFlattenedRoutes, useRouter } from '@/router/hooks';
 import { useThemeToken } from '@/theme/hooks';
 
 import Color from 'color';
@@ -22,15 +21,10 @@ export default function SearchBar() {
   const inputRef = useRef<InputRef>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const [search, { toggle }] = useBoolean(false);
+  const [search, toggle] = useBoolean(false);
   const themeToken = useThemeToken();
 
-  const flattenRoutes = useCallback(flattenMenuRoutes, []);
-
-  const flattenedRoutes = useMemo(() => {
-    const menuRoutes = getMenuRoutes();
-    return flattenRoutes(menuRoutes);
-  }, [flattenRoutes]);
+  const flattenedRoutes = useFlattenedRoutes();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResult, setSearchResult] = useState(flattenedRoutes);
@@ -55,9 +49,9 @@ export default function SearchBar() {
     }
   };
 
-  useKeyPress('keydown', handleMetaK);
+  useEvent('keydown', handleMetaK);
 
-  useKeyPress('ArrowUp', (event) => {
+  useKeyPressEvent('ArrowUp', (event) => {
     if (!search) return;
     event.preventDefault();
     let nextIndex = selectedItemIndex - 1;
@@ -68,7 +62,7 @@ export default function SearchBar() {
     scrollSelectedItemIntoView(nextIndex);
   });
 
-  useKeyPress('ArrowDown', (event) => {
+  useKeyPressEvent('ArrowDown', (event) => {
     if (!search) return;
     event.preventDefault();
     let nextIndex = selectedItemIndex + 1;
@@ -79,23 +73,24 @@ export default function SearchBar() {
     scrollSelectedItemIntoView(nextIndex);
   });
 
-  useKeyPress('Enter', (event) => {
+  useKeyPressEvent('Enter', (event) => {
     if (!search || searchResult.length === 0) return;
     event.preventDefault();
     const selectItem = searchResult[selectedItemIndex].key;
     if (selectItem) {
       handleSelect(selectItem);
-      toggle();
+      toggle(false);
     }
   });
 
   const handleOpen = () => {
-    toggle();
+    toggle(true);
     setSearchQuery('');
+    setSelectedItemIndex(0);
   };
 
   const handleCancel = () => {
-    toggle();
+    toggle(false);
   };
 
   const handleAfterOpenChange = (open: boolean) => {

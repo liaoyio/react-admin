@@ -5,6 +5,7 @@ import { useSettings } from '@/store/settingStore';
 import { ThemeLayout } from '#/enum';
 import { useResponsive } from '@/theme/hooks';
 import { NAV_WIDTH, NAV_COLLAPSED_WIDTH } from './config';
+import MultiTabs from './multi-tabs';
 
 const Main = forwardRef<HTMLDivElement>((_, ref) => {
   const { themeStretch, themeLayout } = useSettings();
@@ -32,6 +33,7 @@ const Main = forwardRef<HTMLDivElement>((_, ref) => {
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >
+        {/* <MultiTabs /> */}
         <Outlet />
       </div>
     </Content>

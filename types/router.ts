@@ -18,6 +18,10 @@ export type RouteMeta = {
   disabled?: boolean;
   // need to auth,
   auth?: boolean;
+  // react router outlet
+  outlet?: any;
+  // use to refresh tab
+  timeStamp?: string;
 };
 
 export type AppRouteObject = {

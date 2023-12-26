@@ -1,10 +1,12 @@
 import { Breadcrumb } from 'antd';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches, Link } from 'react-router-dom';
-import { getMenuRoutes, flattenMenuRoutes } from '@/router/utils';
-import { AppRouteObject, RouteMeta } from '#/router';
+
+import { useFlattenedRoutes } from '@/router/hooks';
+import { getMenuRoutes } from '@/router/utils';
+import { AppRouteObject } from '#/router';
 
 /**
  * 动态面包屑
@@ -15,12 +17,7 @@ export default function BreadCrumb() {
   const matches = useMatches();
   const [breadCrumbs, setBreadCrumbs] = useState<ItemType[]>([]);
 
-  const flattenRoutes = useCallback(flattenMenuRoutes, []);
-
-  const flattenedRoutes = useMemo(() => {
-    const menuRoutes = getMenuRoutes();
-    return flattenRoutes(menuRoutes);
-  }, [flattenRoutes]);
+  const flattenedRoutes = useFlattenedRoutes();
 
   useEffect(() => {
     const menuRoutes = getMenuRoutes();
@@ -28,13 +25,13 @@ export default function BreadCrumb() {
 
     console.log('🚀 BreadCrumb -> useEffect -> paths', paths);
 
-    const pathRouteMetas = flattenedRoutes.filter((item: any) => paths.indexOf(item.key) !== -1);
+    const pathRouteMeats = flattenedRoutes.filter((item: any) => paths.indexOf(item.key) !== -1);
 
-    console.log('🚀 BreadCrumb -> useEffect -> pathRouteMetas', pathRouteMetas);
+    console.log('🚀 BreadCrumb -> useEffect -> pathRouteMeats', pathRouteMeats);
 
     let items: AppRouteObject[] | undefined = [...menuRoutes];
 
-    const breadCrumbs = pathRouteMetas.map((routeMeta: any) => {
+    const breadCrumbs = pathRouteMeats.map((routeMeta: any) => {
       const { key, title: label } = routeMeta;
       items = items!.find((item) => item.meta?.key === key)?.children;
       const result: ItemType = {
