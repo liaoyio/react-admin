@@ -1,17 +1,26 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import Card from '@/components/card';
 import { Iconify, SvgIcon } from '@/components/icon';
 import { ProTag } from '@/components/antd-ui';
+import { CircleLoading } from '@/components/loading';
 import { AppRouteObject } from '#/router';
 
 const ExternalLink = lazy(() => import('@/pages/sys/others/iframe/external-link'));
 const Iframe = lazy(() => import('@/pages/sys/others/iframe'));
 const Calendar = lazy(() => import('@/pages/sys/others/calendar'));
 
+function Wrapper({ children }: any) {
+  return <Suspense fallback={<CircleLoading />}>{children}</Suspense>;
+}
+
 const others: AppRouteObject[] = [
   {
     path: 'calendar',
-    element: <Calendar />,
+    element: (
+      <Wrapper>
+        <Calendar />
+      </Wrapper>
+    ),
     meta: {
       label: 'sys.menu.calendar',
       icon: <Iconify icon="solar:calendar-bold-duotone" size={24} />,
@@ -19,7 +28,11 @@ const others: AppRouteObject[] = [
     },
   },
   {
-    element: <div />,
+    element: (
+      <Wrapper>
+        <div />
+      </Wrapper>
+    ),
     meta: {
       label: 'sys.menu.disabled',
       icon: <SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />,
@@ -29,7 +42,11 @@ const others: AppRouteObject[] = [
   },
   {
     path: 'label',
-    element: <div />,
+    element: (
+      <Wrapper>
+        <div />
+      </Wrapper>
+    ),
     meta: {
       label: 'sys.menu.label',
       icon: <SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />,
@@ -52,7 +69,11 @@ const others: AppRouteObject[] = [
     children: [
       {
         path: 'external_link',
-        element: <ExternalLink to="https://ant.design/index-cn" />,
+        element: (
+          <Wrapper>
+            <ExternalLink to="https://ant.design/index-cn" />
+          </Wrapper>
+        ),
         meta: {
           label: 'sys.menu.external_link',
           key: '/frame/external_link',
@@ -60,7 +81,11 @@ const others: AppRouteObject[] = [
       },
       {
         path: 'iframe',
-        element: <Iframe src="https://ant.design/index-cn" />,
+        element: (
+          <Wrapper>
+            <Iframe src="https://ant.design/index-cn" />
+          </Wrapper>
+        ),
         meta: {
           label: 'sys.menu.iframe',
           key: '/frame/iframe',
@@ -70,7 +95,11 @@ const others: AppRouteObject[] = [
   },
   {
     path: 'blank',
-    element: <Card />,
+    element: (
+      <Wrapper>
+        <Card />
+      </Wrapper>
+    ),
     meta: {
       label: 'sys.menu.blank',
       icon: <SvgIcon icon="ic_blank" className="ant-menu-item-icon" size="24" />,

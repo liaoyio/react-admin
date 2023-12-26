@@ -11,6 +11,7 @@ import { ThemeLayout } from '#/enum';
 import { useThemeToken } from '@/theme/hooks';
 import { useRouteToMenu } from '@/router/hooks';
 import { useSettingActions, useSettings } from '@/store/settingStore';
+import Color from 'color';
 
 type Props = { closeSideBarDrawer?: () => void };
 
@@ -18,7 +19,7 @@ export default function Nav(props: Props) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const matches = useMatches();
-  const { colorTextBase, colorBgElevated } = useThemeToken();
+  const { colorTextBase, colorBgElevated, colorBorder } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;
@@ -92,7 +93,13 @@ export default function Nav(props: Props) {
   };
 
   return (
-    <div style={{ width: collapsed ? '90px' : '260px' }}>
+    <div
+      className="flex h-full flex-col "
+      style={{
+        width: collapsed ? '90px' : '260px',
+        borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
+      }}
+    >
       <div className="relative flex h-20 items-center justify-center py-4">
         {themeLayout === ThemeLayout.Mini ? (
           <Logo className="text-lg" />
@@ -110,19 +117,21 @@ export default function Nav(props: Props) {
       </div>
 
       {/* Sidebar Menu  */}
-      <Menu
-        mode={menuMode}
-        items={menuList}
-        className="!border-none"
-        defaultOpenKeys={openKeys}
-        defaultSelectedKeys={selectedKeys}
-        selectedKeys={selectedKeys}
-        openKeys={openKeys}
-        onOpenChange={onOpenChange}
-        onClick={onClick}
-        style={{ background: colorBgElevated }}
-        inlineCollapsed={collapsed}
-      />
+      <div className="h-full overflow-y-scroll">
+        <Menu
+          mode={menuMode}
+          items={menuList}
+          className="h-full !border-none"
+          defaultOpenKeys={openKeys}
+          defaultSelectedKeys={selectedKeys}
+          selectedKeys={selectedKeys}
+          openKeys={openKeys}
+          onOpenChange={onOpenChange}
+          onClick={onClick}
+          style={{ background: colorBgElevated }}
+          inlineCollapsed={collapsed}
+        />
+      </div>
     </div>
   );
 }

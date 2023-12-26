@@ -22,7 +22,6 @@ export default function NoticeButton() {
     backgroundPosition: 'right top, left bottom',
     backgroundSize: '50, 50%',
   };
-  const bodyStyle: CSSProperties = { padding: 0 };
 
   return (
     <div>
@@ -42,7 +41,13 @@ export default function NoticeButton() {
         maskStyle={{ backgroundColor: 'transparent' }}
         style={style}
         extra={
-          <IconButton style={{ color: themeToken.colorPrimary }} onClick={() => setCount(0)}>
+          <IconButton
+            style={{ color: themeToken.colorPrimary }}
+            onClick={() => {
+              setCount(0);
+              setDrawerOpen(false);
+            }}
+          >
             <Iconify icon="solar:check-read-broken" size={20} />
           </IconButton>
         }

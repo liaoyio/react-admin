@@ -1,11 +1,10 @@
 import { Button, Dropdown, MenuProps } from 'antd';
-import dayjs from 'dayjs';
-import { ReactNode, useMemo } from 'react';
-
 import { IconButton, Iconify } from '@/components/icon';
+import { ReactNode, useMemo } from 'react';
+import { useResponsive } from '@/theme/hooks';
+import dayjs from 'dayjs';
 
 export type HandleMoveArg = 'next' | 'prev' | 'today';
-
 export type ViewType = 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listWeek';
 
 type ViewTypeMenu = {
@@ -19,10 +18,13 @@ type Props = {
   now: Date;
   view: ViewType;
   onMove: (action: HandleMoveArg) => void;
+  onCreate: VoidFunction;
   onViewTypeChange: (view: ViewType) => void;
 };
 
-export default function CalendarHeader({ now, view, onMove, onViewTypeChange }: Props) {
+export default function CalendarHeader({ now, view, onMove, onCreate, onViewTypeChange }: Props) {
+  const { currentScreen } = useResponsive();
+
   const items = useMemo<ViewTypeMenu[]>(
     () => [
       {
@@ -71,11 +73,13 @@ export default function CalendarHeader({ now, view, onMove, onViewTypeChange }: 
 
   return (
     <div className="relative flex items-center justify-between py-5">
-      <Dropdown menu={{ items, onClick: handleMenuClick }}>
-        <Button type="text" size="small">
-          {viewTypeMenu(view)}
-        </Button>
-      </Dropdown>
+      {!['sm', 'xs'].includes(currentScreen!) && (
+        <Dropdown menu={{ items, onClick: handleMenuClick }}>
+          <Button type="text" size="small">
+            {viewTypeMenu(view)}
+          </Button>
+        </Dropdown>
+      )}
 
       <div className="flex cursor-pointer items-center justify-center">
         <IconButton>
@@ -87,9 +91,17 @@ export default function CalendarHeader({ now, view, onMove, onViewTypeChange }: 
         </IconButton>
       </div>
 
-      <Button type="primary" size="small" onClick={() => onMove('today')}>
-        Today
-      </Button>
+      <div className="flex items-center">
+        <Button type="primary" onClick={() => onMove('today')}>
+          Today
+        </Button>
+        <Button className="ml-2" type="primary" onClick={() => onCreate()}>
+          <div className=" flex items-center justify-center">
+            <Iconify icon="material-symbols:add" size={24} />
+            New Event
+          </div>
+        </Button>
+      </div>
     </div>
   );
 }

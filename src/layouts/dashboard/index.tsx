@@ -14,7 +14,7 @@ import { useThemeToken } from '@/theme/hooks';
 import { ThemeLayout } from '#/enum';
 
 export default function DashboardLayout() {
-  const { colorBgElevated, colorTextBase, colorBorder } = useThemeToken();
+  const { colorBgElevated, colorTextBase } = useThemeToken();
 
   const { themeLayout } = useSettings();
   const mainEl = useRef<HTMLDivElement>(null);
@@ -38,10 +38,7 @@ export default function DashboardLayout() {
 
   const verticalLayout = (
     <>
-      <div
-        className="hidden h-full lg:block"
-        style={{ borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}` }}
-      >
+      <div className="hidden h-full lg:block">
         <Nav />
       </div>
 

@@ -1,4 +1,4 @@
-import { useReponsive } from './useReponsive';
-import { useThemeToken } from './useThemeToken';
+import { useResponsive } from './use-responsive';
+import { useThemeToken } from './use-theme-token';
 
-export { useReponsive, useThemeToken };
+export { useResponsive, useThemeToken };

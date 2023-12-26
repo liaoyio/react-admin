@@ -1,7 +1,7 @@
 import { Grid, theme } from 'antd';
 import { Breakpoint, ScreenMap, ScreenSizeMap } from 'antd/es/_util/responsiveObserver';
 
-export function useReponsive() {
+export function useResponsive() {
   const { useBreakpoint } = Grid;
   const {
     token: { screenXS, screenSM, screenMD, screenLG, screenXL, screenXXL },
@@ -18,7 +18,7 @@ export function useReponsive() {
   };
   const screens: ScreenMap = useBreakpoint();
 
-  const currentScrren = screenArray.findLast((item) => {
+  const currentScreen = screenArray.findLast((item) => {
     const result = screens[item];
     return result === true;
   });
@@ -26,6 +26,6 @@ export function useReponsive() {
   return {
     screenEnum,
     screens,
-    currentScrren,
+    currentScreen,
   };
 }
