@@ -34,7 +34,7 @@
   "devDependencies": {
     "@ant-design/cssinjs": "^1.18.1",
     "@ant-design/icons": "^5.2.6",
-    "@faker-js/faker": "^8.3.1",
+    "@faker-js/faker": "^8.1.0",
     "@fullcalendar/common": "^5.11.5",
     "@fullcalendar/core": "^6.1.10",
     "@fullcalendar/daygrid": "^6.1.10",

@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { CircleLoading } from '@/components/loading';
 import { SvgIcon } from '@/components/icon';
 
-const IndexPage = lazy(() => import('@/pages/management/user'));
+const ProfilePage = lazy(() => import('@/pages/management/user/profile/index'));
 const Blog = lazy(() => import('@/pages/management/blog'));
 
 const management: AppRouteObject = {
@@ -27,8 +27,23 @@ const management: AppRouteObject = {
     },
     {
       path: 'user',
-      element: <IndexPage />,
-      meta: { label: 'sys.menu.user', key: '/management/user' },
+      meta: { label: 'sys.menu.user.index', key: '/management/user' },
+      children: [
+        {
+          index: true,
+          element: <Navigate to="profile" replace />,
+        },
+        {
+          path: 'profile',
+          element: <ProfilePage />,
+          meta: { label: 'sys.menu.user.profile', key: '/management/user/profile' },
+        },
+        {
+          path: 'account',
+          element: <ProfilePage />,
+          meta: { label: 'sys.menu.user.account', key: '/management/user/account' },
+        },
+      ],
     },
     {
       path: 'blog',
