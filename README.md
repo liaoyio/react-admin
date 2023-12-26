@@ -9,11 +9,13 @@ Yi Admin 是一个现代化的后台管理模板，基于 React18、Vite、Ant D
 
 ## 预览
 
-![login.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/login.jpeg) ![analysis.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/analysis.png)
+![login.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/login.jpeg) ![login_dark.jpeg](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/login_dark.jpeg)
+
+![analysis.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/analysis.png) ![workbench-dark.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/workbench-dark.png)
 
 ## 特性
 
-- 使用 React 18 进行构建，享受hooks的好处。
+- 使用 React 18 hooks 进行构建。
 - 基于 Vite 进行快速开发和热模块替换。
 - 集成 Ant Design，提供丰富的 UI 组件和设计模式。
 - 使用 TypeScript 编写，提供类型安全性和更好的开发体验。

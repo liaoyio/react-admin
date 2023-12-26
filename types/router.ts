@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 export type RouteMeta = {
-  // unique
+  /** antd menu selectedKeys */
   key: string;
   title: string;
   /** 菜单栏图标，传入string时使用 SvgIcon 组件渲染   */
@@ -16,11 +16,10 @@ export type RouteMeta = {
 };
 
 export type AppRouteObject = {
-  index?: boolean;
-  path?: RouteObject['path'];
-  element?: RouteObject['element'];
-  children?: AppRouteObject[];
-  meta?: RouteMeta;
   /* 菜单排序 */
   order?: number;
-};
+  /** 路由源信息 */
+  meta?: RouteMeta;
+  /** 子路由数组 */
+  children?: AppRouteObject[];
+} & Omit<RouteObject, 'children'>;
