@@ -175,7 +175,7 @@ export default function SearchBar() {
           <Scrollbar>
             <div ref={listRef} className="py-2">
               {searchResult.map(({ key, label }, index) => {
-                const partsTitle = parse(t(label), match(t(label), searchQuery));
+                const partsTitle = parse(t(label!), match(t(label!), searchQuery));
                 const partsKey = parse(key, match(key, searchQuery));
                 return (
                   <StyledListItemButton
