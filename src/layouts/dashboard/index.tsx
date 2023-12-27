@@ -11,6 +11,7 @@ import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
+import { useFullscreen, useToggle } from 'react-use';
 import { ThemeLayout } from '#/enum';
 
 export default function DashboardLayout() {
@@ -36,11 +37,15 @@ export default function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
+  const [show, toggle] = useToggle(false);
+  useFullscreen(mainEl, show, { onClose: () => toggle(false) });
+  const MultiTab = multiTab ? <MultiTabs offsetTop={offsetTop} onFullScreen={toggle} /> : '';
+
   const verticalLayout = (
     <>
       <Header offsetTop={offsetTop} />
       {/* 多标签页组件 */}
-      {multiTab ? <MultiTabs offsetTop={offsetTop} /> : ''}
+      {MultiTab}
       <div className="z-50 hidden h-full flex-shrink-0 md:block">
         <Nav />
       </div>
@@ -52,9 +57,8 @@ export default function DashboardLayout() {
     <div className="relative flex flex-1 flex-col">
       <Header />
       <NavHorizontal />
-      {multiTab ? <MultiTabs offsetTop={offsetTop} /> : ''}
-      <MultiTabs offsetTop={offsetTop} />
-      <Main />
+      {MultiTab}
+      <Main ref={mainEl} />
     </div>
   );
 

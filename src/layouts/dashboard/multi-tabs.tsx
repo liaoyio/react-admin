@@ -9,6 +9,7 @@ import { Iconify } from '@/components/icon';
 import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
 import { useResponsive, useThemeToken } from '@/theme/hooks';
+
 import { useSettings } from '@/store/settingStore';
 import { MultiTabOperation, ThemeLayout } from '#/enum';
 
@@ -21,9 +22,9 @@ import {
   NAV_HORIZONTAL_HEIGHT,
 } from './config';
 
-type Props = { offsetTop?: boolean };
+type Props = { offsetTop?: boolean; onFullScreen: (nextVal?: any) => void };
 
-export default function MultiTabs({ offsetTop = false }: Props) {
+export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
   const { t } = useTranslation();
   const { push } = useRouter();
   /** 多个标签选项卡滚动进入视图 */
@@ -123,12 +124,13 @@ export default function MultiTabs({ offsetTop = false }: Props) {
           closeAll();
           break;
         case MultiTabOperation.FULLSCREEN:
+          onFullScreen();
           break;
         default:
           break;
       }
     },
-    [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight],
+    [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight, onFullScreen],
   );
 
   /** 当前显示 dorpdown 的tab */
@@ -150,6 +152,8 @@ export default function MultiTabs({ offsetTop = false }: Props) {
         borderStyle: 'solid',
         borderColor: themeToken.colorBorderSecondary,
         backgroundColor: themeToken.colorBgLayout,
+        transition:
+          'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       };
 
       if (isActive) {
@@ -270,7 +274,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 
   const renderTabBar: TabsProps['renderTabBar'] = () => {
     return (
-      <div style={multiTabsStyle} className="z-20 w-full px-2">
+      <div style={multiTabsStyle} className="z-20 w-full pl-[270px]">
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="tabsDroppable" direction="horizontal">
             {(provided) => (
