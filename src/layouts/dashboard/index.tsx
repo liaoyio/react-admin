@@ -5,24 +5,23 @@ import Header from './header';
 import Main from './main';
 import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
-import MultiTabs from './multi-tabs';
 
 import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
-import { useFullscreen, useToggle } from 'react-use';
 import { ThemeLayout } from '#/enum';
 
 export default function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
 
-  const { themeLayout, multiTab } = useSettings();
+  const { themeLayout } = useSettings();
   const mainEl = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll({ container: mainEl });
-  const [offsetTop, setOffsetTop] = useState(false);
 
+  /** y轴是否滚动 */
+  const [offsetTop, setOffsetTop] = useState(false);
   const onOffSetTop = useCallback(() => {
     scrollY.on('change', (scrollHeight) => {
       if (scrollHeight > 0) {
@@ -37,19 +36,13 @@ export default function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
-  const [show, toggle] = useToggle(false);
-  useFullscreen(mainEl, show, { onClose: () => toggle(false) });
-  const MultiTab = multiTab ? <MultiTabs offsetTop={offsetTop} onFullScreen={toggle} /> : '';
-
   const verticalLayout = (
     <>
       <Header offsetTop={offsetTop} />
-      {/* 多标签页组件 */}
-      {MultiTab}
       <div className="z-50 hidden h-full flex-shrink-0 md:block">
         <Nav />
       </div>
-      <Main ref={mainEl} />
+      <Main ref={mainEl} offsetTop={offsetTop} />
     </>
   );
 
@@ -57,8 +50,7 @@ export default function DashboardLayout() {
     <div className="relative flex flex-1 flex-col">
       <Header />
       <NavHorizontal />
-      {MultiTab}
-      <Main ref={mainEl} />
+      <Main ref={mainEl} offsetTop={offsetTop} />
     </div>
   );
 

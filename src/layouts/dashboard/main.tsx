@@ -5,8 +5,11 @@ import { useSettings } from '@/store/settingStore';
 import { ThemeLayout } from '#/enum';
 import { useResponsive } from '@/theme/hooks';
 import { NAV_WIDTH, NAV_COLLAPSED_WIDTH, HEADER_HEIGHT, MULTI_TABS_HEIGHT } from './config';
+import MultiTabs from './multi-tabs';
 
-const Main = forwardRef<HTMLDivElement>((_, ref) => {
+type Props = { offsetTop?: boolean };
+
+const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   const { themeStretch, themeLayout, multiTab } = useSettings();
   const { screenMap } = useResponsive();
 
@@ -33,7 +36,7 @@ const Main = forwardRef<HTMLDivElement>((_, ref) => {
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >
-        <Outlet />
+        {multiTab ? <MultiTabs offsetTop={offsetTop} /> : <Outlet />}
       </div>
     </Content>
   );

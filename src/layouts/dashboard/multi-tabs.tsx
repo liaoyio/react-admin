@@ -9,6 +9,7 @@ import { Iconify } from '@/components/icon';
 import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
 import { useResponsive, useThemeToken } from '@/theme/hooks';
+import { useToggle, useFullscreen } from 'react-use';
 
 import { useSettings } from '@/store/settingStore';
 import { MultiTabOperation, ThemeLayout } from '#/enum';
@@ -22,9 +23,9 @@ import {
   NAV_HORIZONTAL_HEIGHT,
 } from './config';
 
-type Props = { offsetTop?: boolean; onFullScreen: (nextVal?: any) => void };
+type Props = { offsetTop?: boolean };
 
-export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
+export default function MultiTabs({ offsetTop = false }: Props) {
   const { t } = useTranslation();
   const { push } = useRouter();
   /** 多个标签选项卡滚动进入视图 */
@@ -32,6 +33,10 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
   const [hoveringTabKey, setHoveringTabKey] = useState('');
   const [openDropdownTabKey, setopenDropdownTabKey] = useState('');
   const themeToken = useThemeToken();
+
+  const tabContentRef = useRef(null);
+  const [fullScreen, toggleFullScreen] = useToggle(false);
+  useFullscreen(tabContentRef, fullScreen, { onClose: () => toggleFullScreen(false) });
 
   const {
     tabs,
@@ -124,13 +129,13 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
           closeAll();
           break;
         case MultiTabOperation.FULLSCREEN:
-          onFullScreen();
+          toggleFullScreen();
           break;
         default:
           break;
       }
     },
-    [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight, onFullScreen],
+    [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight, toggleFullScreen],
   );
 
   /** 当前显示 dorpdown 的tab */
@@ -222,7 +227,12 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
       label: renderTabLabel(tab),
       key: tab.key,
       closable: tabs.length > 1, // 保留一个
-      // children: <div key={tab.timeStamp}>{tab.children}</div>,
+      children: (
+        <div ref={tabContentRef} key={tab.timeStamp}>
+          {' '}
+          {tab.children}{' '}
+        </div>
+      ),
     }));
   }, [tabs, renderTabLabel]);
 
@@ -246,22 +256,21 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
   /** 渲染 tabbar */
 
   const { themeLayout } = useSettings();
-  const { colorBgElevated, colorBorder } = useThemeToken();
+  const { colorBorder, colorBgElevated } = useThemeToken();
   const { screenMap } = useResponsive();
 
   const multiTabsStyle: CSSProperties = {
     position: 'fixed',
-    top: offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT,
+    top: offsetTop ? OFFSET_HEADER_HEIGHT - 2 : HEADER_HEIGHT,
+    left: 0,
     height: MULTI_TABS_HEIGHT,
-    borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
     backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
+    borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
     transition: 'top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   };
 
   if (themeLayout === ThemeLayout.Horizontal) {
-    multiTabsStyle.width = '100vw';
-    multiTabsStyle.top = (offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT) + NAV_HORIZONTAL_HEIGHT;
-    multiTabsStyle.paddingTop = 4;
+    multiTabsStyle.top = HEADER_HEIGHT + NAV_HORIZONTAL_HEIGHT - 2;
   } else if (screenMap.md) {
     multiTabsStyle.right = '0px';
     multiTabsStyle.left = 'auto';
@@ -274,12 +283,12 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
 
   const renderTabBar: TabsProps['renderTabBar'] = () => {
     return (
-      <div style={multiTabsStyle} className="z-20 w-full pl-[270px]">
+      <div style={multiTabsStyle} className="z-20 w-full">
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="tabsDroppable" direction="horizontal">
             {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
-                <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full pr-1">
+                <div ref={scrollContainer} className="hide-scrollbar flex w-full">
                   {tabs.map((tab, index) => (
                     <div
                       id={`tab-${index}`}
@@ -352,6 +361,7 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
 }
 
 const StyledMultiTabs = styled.div`
+  height: 100%;
   margin-top: 2px;
   .anticon {
     margin: 0px !important;
@@ -365,14 +375,6 @@ const StyledMultiTabs = styled.div`
       height: 100%;
       & > div {
         height: 100%;
-      }
-    }
-    .ant-tabs-content-holder {
-      width: 0px;
-      height: 0px;
-      .ant-tabs-content {
-        width: 0px;
-        height: 0px;
       }
     }
   }
