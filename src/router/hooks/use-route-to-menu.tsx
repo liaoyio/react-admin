@@ -14,7 +14,8 @@ export function useRouteToMenu() {
 
   const routeToMenu = useCallback(
     (items: AppRouteObject[]) => {
-      return items.map((item) => {
+      const list = items.filter((item) => !item.meta?.hideMenu);
+      return list.map((item) => {
         const menuItem: any = [];
         const { meta, children } = item;
         if (meta) {

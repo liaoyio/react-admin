@@ -29,7 +29,7 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeMode: ThemeMode.Light,
     themeLayout: ThemeLayout.Vertical,
     themeStretch: false,
-    breadCrumb: false,
+    breadCrumb: true,
     multiTab: true,
   },
   actions: {

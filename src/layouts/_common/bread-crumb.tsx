@@ -25,19 +25,21 @@ export default function BreadCrumb() {
 
     console.log('🚀 BreadCrumb -> useEffect -> paths', paths);
 
-    const pathRouteMeats = flattenedRoutes.filter((item: any) => paths.indexOf(item.key) !== -1);
+    const pathRouteMeats = flattenedRoutes.filter((item) => paths.indexOf(item.key) !== -1);
 
     console.log('🚀 BreadCrumb -> useEffect -> pathRouteMeats', pathRouteMeats);
 
     let items: AppRouteObject[] | undefined = [...menuRoutes];
 
-    const breadCrumbs = pathRouteMeats.map((routeMeta: any) => {
-      const { key, title: label } = routeMeta;
-      items = items!.find((item) => item.meta?.key === key)?.children;
-      const result: ItemType = {
-        key,
-        title: t(label),
-      };
+    const breadCrumbs = pathRouteMeats.map((routeMeta) => {
+      const { key, label } = routeMeta;
+
+      items = items!
+        .find((item) => item.meta?.key === key)
+        ?.children?.filter((item) => !item.meta?.hideMenu);
+
+      const result: ItemType = { key, title: t(label ?? '') };
+
       if (items) {
         result.menu = {
           items: items.map((item) => ({
