@@ -16,7 +16,7 @@ export default function ThemeContentStretch() {
 
   return (
     <div>
-      <div className=" mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+      <div className=" mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
         <span className="mr-2">Stretch</span>
         <Tooltip title="Only available at large resolutions > 1600px (xl)">
           <QuestionCircleOutlined />

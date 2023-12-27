@@ -11,6 +11,8 @@ type SettingsType = {
   themeLayout: ThemeLayout;
   /** 页面布局是否拉伸 */
   themeStretch: boolean;
+  breadCrumb: boolean;
+  multiTab: boolean;
 };
 
 type SettingStore = {
@@ -27,6 +29,8 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeMode: ThemeMode.Light,
     themeLayout: ThemeLayout.Vertical,
     themeStretch: false,
+    breadCrumb: false,
+    multiTab: true,
   },
   actions: {
     setSettings: (settings) => {

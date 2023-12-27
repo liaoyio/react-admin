@@ -119,7 +119,7 @@ export default function Nav(props: Props) {
       </div>
 
       {/* Sidebar Menu  */}
-      <Scrollbar>
+      <Scrollbar style={{ height: 'calc(100vh - 70px)' }}>
         <Menu
           mode={menuMode}
           items={menuList}

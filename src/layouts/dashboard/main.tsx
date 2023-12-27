@@ -8,7 +8,7 @@ import { NAV_WIDTH, NAV_COLLAPSED_WIDTH } from './config';
 import MultiTabs from './multi-tabs';
 
 const Main = forwardRef<HTMLDivElement>((_, ref) => {
-  const { themeStretch, themeLayout } = useSettings();
+  const { themeStretch, themeLayout, multiTab } = useSettings();
   const { screenMap } = useResponsive();
 
   let mainWith = '100%';
@@ -33,8 +33,7 @@ const Main = forwardRef<HTMLDivElement>((_, ref) => {
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >
-        {/* <MultiTabs /> */}
-        <Outlet />
+        {multiTab ? <MultiTabs /> : <Outlet />}
       </div>
     </Content>
   );

@@ -7,6 +7,8 @@ import DarkModeToggle from './dark-mode-toggle';
 import ThemeLayoutSettings from './theme-layout';
 import ThemeContentStretch from './theme-stretch';
 import ThemeColorPresetsToggle from './theme-color-presets-toggle';
+import ThemePageConfig from './theme-page-config';
+
 import { CloseOutlined } from '@ant-design/icons';
 import { IconButton } from '@/components/icon';
 import Color from 'color';
@@ -58,6 +60,8 @@ export default function SettingButton() {
           <ThemeContentStretch />
           {/* 全局主题颜色选择 */}
           <ThemeColorPresetsToggle />
+          {/* Page config  */}
+          <ThemePageConfig />
         </div>
       </Drawer>
     </>

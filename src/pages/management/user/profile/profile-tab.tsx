@@ -8,16 +8,7 @@ import { IconButton, Iconify, SvgIcon } from '@/components/icon';
 import { useUserInfo } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
 
-interface DataType {
-  avatar: string;
-  name: string;
-  date: string;
-  leader: string;
-  team: string[];
-  status: number;
-}
-
-import { connectionsItems, TeamItems, fakeProjectItems, AboutItems } from './_mock.data';
+import { connectionsItems, teamItems, fakeProjectItems, AboutItems, DataType } from './_mock.data';
 
 export default function ProfileTab() {
   const { username } = useUserInfo();
@@ -49,10 +40,10 @@ export default function ProfileTab() {
     {
       title: 'TEAM',
       dataIndex: 'team',
-      render: (val) => (
+      render: (val: string[]) => (
         <Avatar.Group>
-          {val.map((item: string) => (
-            <Avatar src={item} />
+          {val.map((item, index) => (
+            <Avatar src={item} key={index} />
           ))}
         </Avatar.Group>
       ),
@@ -87,8 +78,8 @@ export default function ProfileTab() {
               <Typography.Text>{faker.lorem.paragraph()}</Typography.Text>
 
               <div className="mt-2 flex flex-col gap-4">
-                {aboutItemList.map((item) => (
-                  <div className="flex">
+                {aboutItemList.map((item, index) => (
+                  <div className="flex" key={index}>
                     <div className="mr-2">{item.icon}</div>
                     <div className="mr-2">{item.label}:</div>
                     <div className="opacity-50">{item.val}</div>
@@ -188,8 +179,8 @@ export default function ProfileTab() {
               </IconButton>
             </div>
             <div className="mt-2 flex w-full flex-col gap-4">
-              {connectionsItems.map((item) => (
-                <div className="flex">
+              {connectionsItems.map((item, index) => (
+                <div className="flex" key={index}>
                   <img alt="" src={item.avatar} className="h-10 w-10 flex-none rounded-full" />
                   <div className="ml-4 flex flex-1 flex-col">
                     <span className="font-semibold">{item.name}</span>
@@ -229,8 +220,8 @@ export default function ProfileTab() {
               </IconButton>
             </div>
             <div className="mt-2 flex w-full flex-col gap-4">
-              {TeamItems.map((item) => (
-                <div className="flex">
+              {teamItems.map((item, index) => (
+                <div className="flex" key={index}>
                   {item.avatar}
                   <div className="ml-4 flex flex-1 flex-col">
                     <span className="font-semibold">{item.name}</span>

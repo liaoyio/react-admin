@@ -3,7 +3,8 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { AppRouteObject } from '#/router';
 import { CircleLoading } from '@/components/loading';
 
-const IndexPage = lazy(() => import('@/pages/dashboard/workbench'));
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+const HomePage = lazy(() => import('@/pages/dashboard/workbench'));
 const Analysis = lazy(() => import('@/pages/dashboard/analysis'));
 
 const dashboard: AppRouteObject = {
@@ -22,8 +23,8 @@ const dashboard: AppRouteObject = {
     },
     {
       path: 'workbench',
-      element: <IndexPage />,
-      meta: { label: 'sys.menu.workbench', key: '/dashboard/workbench' },
+      element: <HomePage />,
+      meta: { label: 'sys.menu.workbench', key: HOMEPAGE },
     },
     {
       path: 'analysis',

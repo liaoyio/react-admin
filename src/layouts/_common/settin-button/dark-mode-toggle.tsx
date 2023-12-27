@@ -22,7 +22,7 @@ const DarkModeToggle = () => {
 
   return (
     <div>
-      <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+      <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
         Mode
       </div>
       <div className="flex flex-row gap-4">

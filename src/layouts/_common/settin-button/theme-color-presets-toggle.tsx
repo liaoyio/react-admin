@@ -22,7 +22,7 @@ const ThemeColorPresetsToggle = () => {
 
   return (
     <div>
-      <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+      <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
         Presets
       </div>
       <div className="grid grid-cols-3 gap-x-4 gap-y-3">

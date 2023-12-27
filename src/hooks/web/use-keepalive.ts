@@ -5,6 +5,7 @@ import { RouteMeta } from '#/router';
 
 export type KeepAliveTab = RouteMeta & { children: any };
 export default function useKeepAlive() {
+  const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
   const { push } = useRouter();
   // tabs
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
@@ -18,17 +19,14 @@ export default function useKeepAlive() {
     (path = activeTabRoutePath) => {
       if (tabs.length === 1) return;
       const deleteTabIndex = tabs.findIndex((item) => item.key === path);
-      if (tabs[deleteTabIndex].key === activeTabRoutePath) {
-        if (deleteTabIndex > 0) {
-          push(tabs[deleteTabIndex - 1].key);
-        } else {
-          push(tabs[deleteTabIndex + 1].key);
-        }
+      if (deleteTabIndex > 0) {
+        push(tabs[deleteTabIndex - 1].key);
+      } else {
+        push(tabs[deleteTabIndex + 1].key);
       }
 
-      const newTabs = Array.from(tabs);
-      newTabs.splice(deleteTabIndex, 1);
-      setTabs([...newTabs]);
+      tabs.splice(deleteTabIndex, 1);
+      setTabs([...tabs]);
     },
     [activeTabRoutePath],
   );
@@ -43,31 +41,31 @@ export default function useKeepAlive() {
 
   /** Close all tabs then navigate to the home page */
   const closeAll = useCallback(() => {
-    // setTabs([tabHomePage]);
     setTabs([]);
-    push('/dashboard/workbench');
+    push(HOMEPAGE);
   }, [push]);
 
   /** Close all tabs in the left of specified tab */
   const closeLeft = useCallback(
     (path: string) => {
       const currentTabIndex = tabs.findIndex((item) => item.key === path);
-      const newTabs = Array.from(tabs);
-      newTabs.splice(0, currentTabIndex);
+      const newTabs = tabs.slice(currentTabIndex);
       setTabs(newTabs);
+      push(path);
     },
-    [tabs],
+    [push, tabs],
   );
 
   /** Close all tabs in the right of specified tab */
   const closeRight = useCallback(
     (path: string) => {
       const currentTabIndex = tabs.findIndex((item) => item.key === path);
-      const newTabs = Array.from(tabs);
-      newTabs.splice(currentTabIndex + 1, -1);
+      // 多个选项卡右键关闭其他选项卡时,需要至少保留一个选项卡
+      const newTabs = tabs.slice(0, currentTabIndex + 1);
       setTabs(newTabs);
+      push(path);
     },
-    [tabs],
+    [push, tabs],
   );
 
   /** Refresh specified tab */
@@ -87,22 +85,22 @@ export default function useKeepAlive() {
   );
 
   useEffect(() => {
-    if (currentRouteMeta) {
-      const existed = tabs.find((item) => item.key === currentRouteMeta.key);
+    if (!currentRouteMeta) return;
 
-      if (!existed) {
-        setTabs((prev) => [
-          ...prev,
-          { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() },
-        ]);
-      }
+    const existed = tabs.find((item) => item.key === currentRouteMeta.key);
 
-      setActiveTabRoutePath(currentRouteMeta.key);
+    if (!existed) {
+      setTabs((prev) => [
+        ...prev,
+        { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() },
+      ]);
     }
+    setActiveTabRoutePath(currentRouteMeta.key);
   }, [currentRouteMeta]);
 
   return {
     tabs,
+    setTabs,
     activeTabRoutePath,
     closeTab,
     closeOthersTab,

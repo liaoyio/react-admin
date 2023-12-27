@@ -25,7 +25,7 @@ export default function ThemeLayoutSettings() {
 
   return (
     <div>
-      <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+      <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
         Layout
       </div>
       <div className="grid grid-cols-3 gap-4">

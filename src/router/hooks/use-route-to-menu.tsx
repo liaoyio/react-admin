@@ -29,7 +29,7 @@ export function useRouteToMenu() {
                 themeLayout === ThemeLayout.Horizontal ? 'justify-start' : 'justify-between'
               } `}
             >
-              <span>{t(label!)}</span>
+              <div>{t(label!)}</div>
               {suffix}
             </div>
           );

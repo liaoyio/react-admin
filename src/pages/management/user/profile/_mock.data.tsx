@@ -3,6 +3,7 @@ import { Iconify } from '@/components/icon';
 import { ProTag } from '@/components/antd-ui';
 
 export interface DataType {
+  key: string;
   avatar: string;
   name: string;
   date: string;
@@ -48,7 +49,7 @@ export const connectionsItems = [
   },
 ];
 
-export const TeamItems = [
+export const teamItems = [
   {
     avatar: <Iconify icon="devicon:react" size={36} />,
     name: 'React Developers',
@@ -105,6 +106,7 @@ export const fakeProjectItems = () => {
   const arr: DataType[] = [];
   for (let i = 0; i <= 25; i += 1) {
     arr.push({
+      key: faker.string.uuid(),
       avatar: faker.image.urlPicsumPhotos(),
       name: faker.company.buzzPhrase(),
       date: faker.date.past().toDateString(),

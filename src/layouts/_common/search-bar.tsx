@@ -83,6 +83,10 @@ export default function SearchBar() {
     }
   });
 
+  useKeyPressEvent('Escape', () => {
+    handleCancel();
+  });
+
   const handleOpen = () => {
     toggle(true);
     setSearchQuery('');
