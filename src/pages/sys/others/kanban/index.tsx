@@ -247,12 +247,12 @@ export default function Kanban() {
                 e.stopPropagation();
                 setAddingColumn(true);
               }}
-              className="!inline-flex !w-full items-center justify-center !text-xs !font-semibold"
-              block
               size="large"
             >
-              <Iconify icon="carbon:add" size={20} />
-              <div>Add Column</div>
+              <div className="flex items-center justify-center text-xs font-500 gap-1">
+                <Iconify icon="carbon:add" size={20} />
+                <div>Add Column</div>
+              </div>
             </Button>
           )}
         </div>

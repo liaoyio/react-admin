@@ -1,4 +1,4 @@
-import { Alert, App, Button, Checkbox, Col, Divider, Form, Input, Row } from 'antd';
+import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row } from 'antd';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';
 import { LoginStateEnum, useLoginStateContext } from '@/context/LoginStateProvider';
 
@@ -16,7 +16,6 @@ function LoginForm() {
   const themeToken = useThemeToken();
   const [loading, setLoading] = useState(false);
   const { loginState, setLoginState } = useLoginStateContext();
-  const { notification } = App.useApp();
 
   const signIn = useSignIn();
   if (loginState !== LoginStateEnum.LOGIN) return null;
@@ -25,11 +24,6 @@ function LoginForm() {
     setLoading(true);
     try {
       await signIn({ username, password });
-      notification.success({
-        message: t('sys.login.loginSuccessTitle'),
-        description: `${t('sys.login.loginSuccessDesc')}: ${username}`,
-        duration: 3,
-      });
     } finally {
       setLoading(false);
     }

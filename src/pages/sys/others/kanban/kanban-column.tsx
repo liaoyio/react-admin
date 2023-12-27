@@ -160,13 +160,15 @@ export default function KanbanColumn({
                     e.stopPropagation();
                     setAddingTask(true);
                   }}
-                  className="!flex items-center justify-center !text-xs !font-medium"
                   type="text"
+                  className="!flex !w-full"
                   block
                   size="large"
                 >
-                  <Iconify icon="carbon:add" size={20} />
-                  <span>Add Task</span>
+                  <div className="flex items-center justify-center text-xs font-medium gap-1">
+                    <Iconify icon="carbon:add" size={20} />
+                    <span>Add Task</span>
+                  </div>
                 </Button>
               )}
             </footer>

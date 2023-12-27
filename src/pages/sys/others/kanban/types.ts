@@ -35,6 +35,7 @@ export type Task = {
   date?: Date;
   description?: string;
   comments?: TaskComment[];
+  content?: string;
   attachments?: string[];
 };
 

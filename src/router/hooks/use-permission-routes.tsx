@@ -17,7 +17,6 @@ const pages = import.meta.glob('/src/pages/**/*.tsx');
 
 // 构建绝对路径的函数
 function resolveComponent(path: string) {
-  console.log('path', path);
   return pages[`/src/pages${path}`];
 }
 
