@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client';
-import { ReactQueryProvider } from '@/context/QueryClientProvider';
 import { Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -14,10 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <HelmetProvider>
-    <ReactQueryProvider>
-      <Suspense>
-        <App />
-      </Suspense>
-    </ReactQueryProvider>
+    <Suspense>
+      <App />
+    </Suspense>
   </HelmetProvider>,
 );

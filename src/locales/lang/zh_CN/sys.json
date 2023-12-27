@@ -87,8 +87,9 @@
       "system": {
         "index": "系统",
         "organization": "组织",
+        "permission": "权限",
         "role": "角色",
-        "menu": "菜单"
+        "user": "用户"
       },
       "blog": "博客",
       "components": "组件",

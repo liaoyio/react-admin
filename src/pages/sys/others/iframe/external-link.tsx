@@ -1,12 +1,13 @@
 import { useLayoutEffect } from 'react';
 import { useRouter } from '@/router/hooks';
 
-type Props = { to: string };
-
-export default function ExternalLink({ to }: Props) {
+type Props = {
+  src: string;
+};
+export default function ExternalLink({ src }: Props) {
   const { back } = useRouter();
   useLayoutEffect(() => {
-    window.open(to, '_black');
+    window.open(src, '_black');
     back();
   });
   return <div />;

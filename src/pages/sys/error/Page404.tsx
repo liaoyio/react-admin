@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom';
 import MotionContainer from '@/components/animate/motion-container';
 import { varBounce } from '@/components/animate/variants/bounce';
 import { useThemeToken } from '@/theme/hooks';
-
 import Character6 from '@/assets/images/characters/character_6.png';
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function Page404() {
   const {
@@ -104,7 +104,7 @@ export default function Page404() {
           </m.div>
 
           <NavLink
-            to="/dashboard"
+            to={HOMEPAGE}
             style={{ background: colorTextBase, color: colorBgBase }}
             className="rounded-md p-4"
           >

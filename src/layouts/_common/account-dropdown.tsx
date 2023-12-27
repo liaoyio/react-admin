@@ -6,10 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { IconButton } from '@/components/icon';
 
-import userService from '@/api/user';
 import { useLoginStateContext } from '@/context/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
+import { useRouter } from '@/router/hooks';
+
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 /** 用户头像点击下拉菜单 */
 export default function UserAvatar() {
@@ -17,16 +19,18 @@ export default function UserAvatar() {
   const { clearUserInfoAndToken } = useUserActions();
   const { backToLogin } = useLoginStateContext();
   const { t } = useTranslation();
-  const logoutMutation = useMutation(userService.logout);
+
+  const { replace } = useRouter();
 
   const logout = () => {
     try {
-      logoutMutation.mutateAsync();
+      clearUserInfoAndToken();
+      backToLogin();
     } catch (error) {
       console.log(error);
+    } finally {
+      replace('/login');
     }
-    clearUserInfoAndToken();
-    backToLogin();
   };
 
   const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken();
@@ -49,7 +53,7 @@ export default function UserAvatar() {
   );
 
   const items: MenuProps['items'] = [
-    { label: <NavLink to="/dashboard">{t('sys.menu.dashboard')}</NavLink>, key: '0' },
+    { label: <NavLink to={HOMEPAGE}>{t('sys.menu.dashboard')}</NavLink>, key: '0' },
     {
       label: <NavLink to="/management/user/profile">{t('sys.menu.user.profile')}</NavLink>,
       key: '1',

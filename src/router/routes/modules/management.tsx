@@ -7,6 +7,7 @@ import { SvgIcon } from '@/components/icon';
 const ProfilePage = lazy(() => import('@/pages/management/user/profile'));
 const AccountPage = lazy(() => import('@/pages/management/user/account'));
 const OrganizationPage = lazy(() => import('@/pages/management/system/organization'));
+const PermissionPage = lazy(() => import('@/pages/management/system/permission'));
 const Blog = lazy(() => import('@/pages/management/blog'));
 
 const management: AppRouteObject = {
@@ -55,6 +56,11 @@ const management: AppRouteObject = {
           path: 'organization',
           element: <OrganizationPage />,
           meta: { label: 'sys.menu.system.organization', key: '/management/system/organization' },
+        },
+        {
+          path: 'permission',
+          element: <PermissionPage />,
+          meta: { label: 'sys.menu.system.permission', key: '/management/system/permission' },
         },
       ],
     },

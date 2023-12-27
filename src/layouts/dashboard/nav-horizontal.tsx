@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
 import { useThemeToken } from '@/theme/hooks';
-import { getMenuRoutes } from '@/router/utils';
-import { useRouteToMenu } from '@/router/hooks';
+import { menuFilter } from '@/router/utils';
+import { useRouteToMenuFn, usePermissionRoutes } from '@/router/hooks';
 
 import { NAV_HORIZONTAL_HEIGHT } from './config';
 
@@ -15,7 +15,9 @@ export default function NavHorizontal() {
   const matches = useMatches();
   const { pathname } = useLocation();
   const { colorBgElevated } = useThemeToken();
-  const routeToMenu = useRouteToMenu();
+
+  const routeToMenuFn = useRouteToMenuFn();
+  const permissionRoutes = usePermissionRoutes();
 
   /** state */
   const [openKeys, setOpenKeys] = useState<string[]>([]);
@@ -27,10 +29,10 @@ export default function NavHorizontal() {
   }, [pathname, matches]);
 
   useEffect(() => {
-    const menuRoutes = getMenuRoutes();
-    const menus = routeToMenu(menuRoutes);
+    const menuRoutes = menuFilter(permissionRoutes);
+    const menus = routeToMenuFn(menuRoutes);
     setMenuList(menus);
-  }, [routeToMenu]);
+  }, [permissionRoutes, routeToMenuFn]);
 
   /** events */
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {

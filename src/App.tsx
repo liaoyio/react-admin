@@ -1,15 +1,22 @@
 import { App as AntdApp } from 'antd';
-import { RouterProvider } from 'react-router-dom';
+import Router from '@/router';
 import AntdConfig from '@/theme/antd';
 import { MotionLazy } from '@/components/animate/motion-lazy';
-import router from '@/router';
-
+import axios from 'axios';
 export default function App() {
+  axios
+    .post('/api/auth/signin', {
+      username: 'admin@gmail.com',
+      password: 'demo1234',
+    })
+    .then((res) => {
+      console.log(res);
+    });
   return (
     <AntdConfig>
       <AntdApp>
         <MotionLazy>
-          <RouterProvider router={router} />
+          <Router />
         </MotionLazy>
       </AntdApp>
     </AntdConfig>

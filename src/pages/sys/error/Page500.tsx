@@ -8,6 +8,7 @@ import { varBounce } from '@/components/animate/variants/bounce';
 import { useThemeToken } from '@/theme/hooks';
 
 import Character8 from '@/assets/images/characters/character_8.png';
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function Page() {
   const { colorBgBase, colorTextBase, colorPrimary } = useThemeToken();
@@ -145,7 +146,7 @@ export default function Page() {
           </m.div>
 
           <NavLink
-            to="/dashboard"
+            to={HOMEPAGE}
             style={{ background: colorTextBase, color: colorBgBase }}
             className="rounded-md p-4"
           >

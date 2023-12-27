@@ -10,21 +10,18 @@ export type RouteMeta = {
   icon?: ReactNode;
   /** 菜单栏后缀图标 */
   suffix?: ReactNode;
-  // show in tab
-  hideTab?: boolean;
-  /**
-   * Show in menu
-   * @default false
-   */
+  /** hide in menu */
   hideMenu?: boolean;
+  /** hide in multi tab  */
+  hideTab?: boolean;
   // disable in menu
   disabled?: boolean;
-  // need to auth,
-  auth?: boolean;
   // react router outlet
   outlet?: any;
   // use to refresh tab
   timeStamp?: string;
+  /** external link and iframe need */
+  frameSrc?: string;
 };
 
 export type AppRouteObject = {

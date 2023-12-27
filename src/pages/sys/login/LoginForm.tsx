@@ -7,8 +7,9 @@ import { useState } from 'react';
 import { SignInReq } from '@/api/user';
 import { useSignIn } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
+import { ProTag } from '@/components/antd-ui';
 
-export const DEFAULT_USER = { username: 'demo@gmail.com', password: 'demo1234' };
+import { DEFAULT_USER, TEST_USER } from '../../../../mock/_db';
 
 function LoginForm() {
   const { t } = useTranslation();
@@ -51,16 +52,28 @@ function LoginForm() {
           <Alert
             type="info"
             description={
-              <>
-                {t('sys.login.userName')}:
-                <strong className="ml-1" style={{ color: themeToken.colorInfoTextHover }}>
-                  {DEFAULT_USER.username}
-                </strong>
-                {` / ${t('sys.login.password')}`}:
-                <strong className=" ml-1" style={{ color: themeToken.colorInfoTextHover }}>
-                  {DEFAULT_USER.password}
-                </strong>
-              </>
+              <div className="flex flex-col">
+                <div className="flex">
+                  <ProTag className="flex-shrink-0">Admin {t('sys.login.userName')}:</ProTag>
+                  <strong className="ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                    <span>{DEFAULT_USER.username}</span>
+                  </strong>
+                </div>
+
+                <div className="flex">
+                  <ProTag className="flex-shrink-0">Test {t('sys.login.userName')}:</ProTag>
+                  <strong className="ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                    <span>{TEST_USER.username}</span>
+                  </strong>
+                </div>
+
+                <div>
+                  <ProTag className="flex-shrink-0">{t('sys.login.password')}:</ProTag>
+                  <strong className=" ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                    {DEFAULT_USER.password}
+                  </strong>
+                </div>
+              </div>
             }
             showIcon
           />

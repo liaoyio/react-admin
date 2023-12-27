@@ -16,6 +16,8 @@ import { useThemeToken } from '@/theme/hooks';
 import DashboardImg from '@/assets/images/background/dashboard.png';
 import Overlay2 from '@/assets/images/background/overlay_2.jpg';
 
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+
 function Login() {
   const { t } = useTranslation();
   const token = useUserToken();
@@ -24,7 +26,7 @@ function Login() {
   // 判断用户是否有权限
   if (token.accessToken) {
     // 如果有授权，则跳转到首页
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to={HOMEPAGE} replace />;
   }
 
   const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
@@ -54,7 +56,7 @@ function Login() {
           <ResetForm />
         </LoginStateProvider>
       </div>
-      <div className="absolute right-0 top-0">
+      <div className="absolute right-2 top-0">
         <LocalePicker />
       </div>
     </Layout>

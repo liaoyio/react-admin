@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { Iconify } from '@/components/icon';
 import { CircleLoading } from '@/components/loading';
@@ -24,10 +24,7 @@ const errors: AppRouteObject[] = [
       key: '/error',
     },
     children: [
-      {
-        index: true,
-        element: <Navigate to="403" replace />,
-      },
+      // { index: true, element: <Navigate to="403" replace /> },
       {
         path: '403',
         element: <Page403 />,

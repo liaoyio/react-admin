@@ -88,8 +88,9 @@
       "system": {
         "index": "System",
         "organization": "Organization",
+        "permission": "Permission",
         "role": "Role",
-        "menu": "Menu"
+        "user": "User"
       },
       "blog": "Blog",
       "components": "Components",

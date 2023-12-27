@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches, Link } from 'react-router-dom';
 
-import { useFlattenedRoutes } from '@/router/hooks';
-import { getMenuRoutes } from '@/router/utils';
+import { useFlattenedRoutes, usePermissionRoutes } from '@/router/hooks';
+import { getMenuRoutes, menuFilter } from '@/router/utils';
 import { AppRouteObject } from '#/router';
 
 /**
@@ -18,9 +18,10 @@ export default function BreadCrumb() {
   const [breadCrumbs, setBreadCrumbs] = useState<ItemType[]>([]);
 
   const flattenedRoutes = useFlattenedRoutes();
+  const permissionRoutes = usePermissionRoutes();
 
   useEffect(() => {
-    const menuRoutes = getMenuRoutes();
+    const menuRoutes = menuFilter(permissionRoutes);
     const paths = matches.filter((item) => item.pathname !== '/').map((item) => item.pathname);
 
     console.log('🚀 BreadCrumb -> useEffect -> paths', paths);
@@ -53,7 +54,7 @@ export default function BreadCrumb() {
 
     setBreadCrumbs(breadCrumbs);
     console.log('🚀 BreadCrumb -> useEffect -> after setBreadCrumbs ', breadCrumbs);
-  }, [matches, flattenedRoutes, t]);
+  }, [matches, flattenedRoutes, t, permissionRoutes]);
 
   return <Breadcrumb items={breadCrumbs} className="!text-sm" />;
 }

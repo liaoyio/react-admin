@@ -9,6 +9,7 @@ import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserToken, UserInfo } from '#/entity';
 import { StorageEnum } from '#/enum';
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
@@ -42,6 +43,7 @@ const useUserStore = create<UserStore>((set) => ({
 
 export const useUserInfo = () => useUserStore((state) => state.userInfo);
 export const useUserToken = () => useUserStore((state) => state.userToken);
+export const useUserPermission = () => useUserStore((state) => state.userInfo.permissions);
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
@@ -56,7 +58,7 @@ export const useSignIn = () => {
       const { user, accessToken, refreshToken } = res;
       setUserToken({ accessToken, refreshToken });
       setUserInfo(user);
-      navigate('/dashboard', { replace: true });
+      navigate(HOMEPAGE, { replace: true });
 
       notification.success({
         message: t('sys.login.loginSuccessTitle'),

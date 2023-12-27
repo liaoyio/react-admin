@@ -24,7 +24,7 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   } else if (screenMap.md) {
     mainStyle.width = `calc(100% - ${
       themeLayout === ThemeLayout.Vertical ? NAV_WIDTH : NAV_COLLAPSED_WIDTH
-    }`;
+    })`;
   } else {
     mainStyle.width = '100vw';
   }
@@ -32,7 +32,7 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   return (
     <Content ref={ref} style={mainStyle} className="flex overflow-auto">
       <div
-        className={`m-auto h-full w-full flex-grow sm:px-2 ${
+        className={`m-auto h-full w-full flex-grow sm:p-2 ${
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >

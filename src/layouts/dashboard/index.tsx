@@ -5,17 +5,18 @@ import Header from './header';
 import Main from './main';
 import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
+import styled from 'styled-components';
 
 import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
-import { ThemeLayout } from '#/enum';
+import { ThemeLayout, ThemeMode } from '#/enum';
 
 export default function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
 
-  const { themeLayout } = useSettings();
+  const { themeLayout, themeMode } = useSettings();
   const mainEl = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll({ container: mainEl });
@@ -57,7 +58,7 @@ export default function DashboardLayout() {
   const layout = themeLayout !== ThemeLayout.Horizontal ? verticalLayout : horizontalLayout;
 
   return (
-    <>
+    <StyleWrapper $themeMode={themeMode}>
       <ProgressBar />
       <div
         className="flex h-screen overflow-hidden"
@@ -70,6 +71,31 @@ export default function DashboardLayout() {
       >
         <Suspense fallback={<CircleLoading />}>{layout}</Suspense>
       </div>
-    </>
+    </StyleWrapper>
   );
 }
+
+// set scrollbar style
+const StyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
+  /* 设置滚动条的整体样式 */
+  ::-webkit-scrollbar {
+    width: 8px; /* 设置滚动条宽度 */
+  }
+
+  /* 设置滚动条轨道的样式 */
+  ::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#2c2c2c' : '#FAFAFA')};
+  }
+
+  /* 设置滚动条滑块的样式 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#6b6b6b' : '#C1C1C1')};
+  }
+
+  /* 设置鼠标悬停在滚动条上的样式 */
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#939393' : '##7D7D7D')};
+  }
+`;

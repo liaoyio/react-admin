@@ -1,3 +1,8 @@
+export enum BasicStatus {
+  DISABLE,
+  ENABLE,
+}
+
 export enum ResultEnum {
   SUCCESS = 0,
   ERROR = -1,
@@ -44,4 +49,10 @@ export enum MultiTabOperation {
   CLOSEALL = 'closeAll',
   CLOSELEFT = 'closeLeft',
   CLOSERIGHT = 'closeRight',
+}
+
+export enum PermissionType {
+  CATALOGUE,
+  MENU,
+  BUTTON,
 }

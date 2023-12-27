@@ -1,6 +1,6 @@
-import { SvgIcon } from '@/components/icon';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback } from 'react';
+import { Iconify, SvgIcon } from '@/components/icon';
 import { useTranslation } from 'react-i18next';
 import { useSettings } from '@/store/settingStore';
 
@@ -8,11 +8,11 @@ import { AppRouteObject } from '#/router';
 import { ThemeLayout } from '#/enum';
 
 /** routes -> menus */
-export function useRouteToMenu() {
+export function useRouteToMenuFn() {
   const { t } = useTranslation();
   const { themeLayout } = useSettings();
 
-  const routeToMenu = useCallback(
+  const routeToMenuFn = useCallback(
     (items: AppRouteObject[]) => {
       const list = items.filter((item) => !item.meta?.hideMenu);
       return list.map((item) => {
@@ -37,19 +37,23 @@ export function useRouteToMenu() {
 
           if (icon) {
             if (typeof icon === 'string') {
-              menuItem.icon = <SvgIcon icon={icon} className="ant-menu-item-icon" size="24px" />;
+              if (icon.startsWith('ic')) {
+                menuItem.icon = <SvgIcon icon={icon} size={24} className="ant-menu-item-icon" />;
+              } else {
+                menuItem.icon = <Iconify icon={icon} size={24} className="ant-menu-item-icon" />;
+              }
             } else {
               menuItem.icon = icon;
             }
           }
         }
         if (children) {
-          menuItem.children = routeToMenu(children);
+          menuItem.children = routeToMenuFn(children);
         }
         return menuItem as ItemType;
       });
     },
     [t, themeLayout],
   );
-  return routeToMenu;
+  return routeToMenuFn;
 }

@@ -7,13 +7,14 @@ import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import Scrollbar from '@/components/scrollbar';
-import { getMenuRoutes } from '@/router/utils';
-import { ThemeLayout } from '#/enum';
+
 import { useThemeToken } from '@/theme/hooks';
-import { useRouteToMenu } from '@/router/hooks';
+import { useRouteToMenuFn, usePermissionRoutes } from '@/router/hooks';
+import { menuFilter } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import Color from 'color';
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
+import { ThemeLayout } from '#/enum';
 
 type Props = { closeSideBarDrawer?: () => void };
 
@@ -27,7 +28,8 @@ export default function Nav(props: Props) {
   const { themeLayout } = settings;
   const { setSettings } = useSettingActions();
 
-  const routeToMenu = useRouteToMenu();
+  const routeToMenuFn = useRouteToMenuFn();
+  const permissionRoutes = usePermissionRoutes();
 
   /** state */
   const [collapsed, setCollapsed] = useState(false);
@@ -47,10 +49,10 @@ export default function Nav(props: Props) {
   }, [pathname, matches, collapsed, themeLayout]);
 
   useEffect(() => {
-    const menuRoutes = getMenuRoutes();
-    const menus = routeToMenu(menuRoutes);
+    const menuRoutes = menuFilter(permissionRoutes);
+    const menus = routeToMenuFn(menuRoutes);
     setMenuList(menus);
-  }, [routeToMenu]);
+  }, [permissionRoutes, routeToMenuFn]);
 
   useEffect(() => {
     if (themeLayout === ThemeLayout.Vertical) {
