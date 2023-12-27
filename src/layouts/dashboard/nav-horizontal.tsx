@@ -2,10 +2,12 @@ import { Menu, MenuProps } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useState, useEffect } from 'react';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
-import { useThemeToken } from '@/theme/hooks';
 
+import { useThemeToken } from '@/theme/hooks';
 import { getMenuRoutes } from '@/router/utils';
 import { useRouteToMenu } from '@/router/hooks';
+
+import { NAV_HORIZONTAL_HEIGHT } from './config';
 
 /** layout 布局隐藏左侧竖向(列)菜单栏时，顶部显示横向(行)菜单栏 */
 export default function NavHorizontal() {
@@ -44,7 +46,7 @@ export default function NavHorizontal() {
   };
 
   return (
-    <div className="w-screen">
+    <div className="w-screen" style={{ height: NAV_HORIZONTAL_HEIGHT }}>
       <Menu
         mode="horizontal"
         items={menuList}

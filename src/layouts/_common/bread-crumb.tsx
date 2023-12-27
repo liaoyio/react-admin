@@ -55,5 +55,5 @@ export default function BreadCrumb() {
     console.log('🚀 BreadCrumb -> useEffect -> after setBreadCrumbs ', breadCrumbs);
   }, [matches, flattenedRoutes, t]);
 
-  return <Breadcrumb items={breadCrumbs} />;
+  return <Breadcrumb items={breadCrumbs} className="!text-sm" />;
 }

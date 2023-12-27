@@ -11,7 +11,9 @@ type SettingsType = {
   themeLayout: ThemeLayout;
   /** 页面布局是否拉伸 */
   themeStretch: boolean;
+  /** 是否显示面包屑导航 */
   breadCrumb: boolean;
+  /** 是否开启多标签页 */
   multiTab: boolean;
 };
 

@@ -12,7 +12,7 @@ export const menuFilter = (items: AppRouteObject[]) => {
       }
       return show;
     })
-    .sort(ascend((item) => item.order!));
+    .sort(ascend((item) => item.order || Infinity));
 };
 
 /** 基于 src/router/routes/modules 文件结构动态生成路由 */

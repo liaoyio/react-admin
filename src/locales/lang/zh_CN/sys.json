@@ -45,7 +45,6 @@
       "sendSmsText": "{{second}}秒后重新获取",
       "sendEmailButton": "发送邮件",
       "loginSuccessTitle": "登录成功",
-      "logout": "退出",
       "loginSuccessDesc": "欢迎回来",
       "accountPlaceholder": "请输入账号",
       "passwordPlaceholder": "请输入密码",
@@ -63,7 +62,17 @@
       "mobile": "手机号码",
       "registerAndAgree": "注册即我同意",
       "termsOfService": " 服务条款 ",
-      "privacyPolicy": " 隐私政策 "
+      "privacyPolicy": " 隐私政策 ",
+      "logout": "退出"
+    },
+    "tab": {
+      "fullscreen": "内容全屏",
+      "refresh": "刷新",
+      "close": "关闭标签页",
+      "closeOthers": "关闭其它标签页",
+      "closeAll": "关闭所有标签页",
+      "closeLeft": "关闭左侧标签页",
+      "closeRight": "关闭右侧标签页"
     },
     "menu": {
       "dashboard": "仪表",

@@ -46,7 +46,6 @@
       "sendSmsText": "Reacquire in {{second}}s",
       "sendEmailButton": "Send Email",
       "loginSuccessTitle": "Login successful",
-      "logout": "Logout",
       "loginSuccessDesc": "Welcome back",
       "accountPlaceholder": "Please input username",
       "passwordPlaceholder": "Please input password",
@@ -64,7 +63,17 @@
       "mobile": "Mobile",
       "registerAndAgree": "By signing up, I agree to",
       "termsOfService": " Terms of service ",
-      "privacyPolicy": " Privacy policy "
+      "privacyPolicy": " Privacy policy ",
+      "logout": "Logout"
+    },
+    "tab": {
+      "fullscreen": "FullScreen",
+      "refresh": "Refresh",
+      "close": "Close",
+      "closeOthers": "Close Others",
+      "closeAll": "Close All",
+      "closeLeft": "Close Left",
+      "closeRight": "Close Right"
     },
     "menu": {
       "dashboard": "Dashboard",
