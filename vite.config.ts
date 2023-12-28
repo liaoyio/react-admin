@@ -17,7 +17,12 @@ export default defineConfig({
   },
   plugins: [
     UnoCSS(),
-    viteMockServe(),
+    viteMockServe({
+      mockPath: 'mock',
+      // eslint-disable-next-line no-useless-escape
+      ignore: /^\_/, // 忽略下划线开头的文件
+      enable: true,
+    }),
     react(),
     // 同步tsconfig.json的path设置alias
     tsconfigPaths(),
@@ -63,3 +68,6 @@ export default defineConfig({
     } /** 生产环境移除 console */,
   },
 });
+function resolve(arg0: string) {
+  throw new Error('Function not implemented.');
+}
