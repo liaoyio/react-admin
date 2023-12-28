@@ -10,7 +10,7 @@ import { Role } from '#/entity';
 import { BasicStatus } from '#/enum';
 
 // mock data
-import { ROLE_LIST } from '../../../../../mock/_db';
+import { ROLE_LIST } from '../../../../api/_db';
 const ROLES: Role[] = ROLE_LIST;
 
 const DEFAULT_ROLE_VALUE: Role = {

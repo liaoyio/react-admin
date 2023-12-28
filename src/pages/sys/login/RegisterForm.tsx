@@ -1,11 +1,8 @@
 import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useRequest } from 'ahooks';
 
 import { ReturnButton } from './components/ReturnButton';
 import { LoginStateEnum, useLoginStateContext } from '@/context/LoginStateProvider';
-
-import userApi from '@/api/user';
 
 function RegisterForm() {
   const { t } = useTranslation();
@@ -14,7 +11,6 @@ function RegisterForm() {
 
   const onFinish = async (values: any) => {
     try {
-      await userApi.signup(values);
       backToLogin();
     } catch (err) {
       console.log(err);

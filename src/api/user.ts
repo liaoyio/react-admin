@@ -1,6 +1,5 @@
-import http from '@/utils/request';
 import { UserInfo, UserToken } from '#/entity';
-
+import { USER_LIST } from './_db';
 export interface SignInReq {
   username: string;
   password: string;
@@ -12,14 +11,20 @@ export interface SignUpReq extends SignInReq {
 
 export type SignInRes = UserToken & { user: UserInfo };
 
-const sign = (data: SignInReq) => http.post<SignInRes>({ url: '/auth/signin', data });
-const signup = (data: SignUpReq) => http.post<SignInRes>({ url: '/auth/signup', data });
-const logout = () => http.get({ url: '/auth/logout' });
-const findById = (id: string) => http.get<UserInfo[]>({ url: `/users/id` });
-
-export default {
-  sign,
-  signup,
-  findById,
-  logout,
-};
+export function usersLogin(body: SignInReq) {
+  const data = new Promise((resolve) =>
+    setTimeout(() => {
+      const { username, password } = body;
+      const user = USER_LIST.find((item) => item.username === username);
+      if (!user || user.password !== password) {
+        return { status: 10001, message: 'Incorrect username or password.' };
+      }
+      return {
+        status: 0,
+        message: '',
+        data: { user, accessToken: '@id_11123', refreshToken: '@id_67745454545jip' },
+      };
+    }, 700),
+  );
+  return data as Promise<SignInRes>;
+}

@@ -9,7 +9,7 @@ import { useSignIn } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
 import { ProTag } from '@/components/antd-ui';
 
-import { DEFAULT_USER, TEST_USER } from '../../../../mock/_db';
+import { DEFAULT_USER, TEST_USER } from '../../../api/_db';
 
 function LoginForm() {
   const { t } = useTranslation();

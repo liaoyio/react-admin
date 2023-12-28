@@ -1,28 +1,15 @@
 import path from 'path';
-
 import react from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import UnoCSS from 'unocss/vite';
-import { viteMockServe } from 'vite-plugin-mock';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   base: './',
-  // esbuild: { drop: ['console', 'debugger'] },
-  css: {
-    // 开css sourcemap方便找css
-    devSourcemap: true,
-  },
+  esbuild: { drop: ['console', 'debugger'] },
   plugins: [
     UnoCSS(),
-    viteMockServe({
-      mockPath: 'mock',
-      // eslint-disable-next-line no-useless-escape
-      ignore: /^\_/, // 忽略下划线开头的文件
-      enable: true,
-    }),
     react(),
     // 同步tsconfig.json的path设置alias
     tsconfigPaths(),
@@ -32,27 +19,17 @@ export default defineConfig({
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
     }),
-    visualizer({
-      open: false,
-    }),
   ],
   server: {
     // 自动打开浏览器
     open: true,
     host: true,
     port: 3001,
-    /*  proxy: {
-       '/api': {
-         target: 'http://localhost:3000',
-         changeOrigin: true,
-         rewrite: (path) => path.replace(/^\/api/, ''),
-       },
-     }, */
   },
   build: {
     target: 'esnext',
     minify: 'terser',
-    /* rollupOptions: {
+    rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
@@ -62,12 +39,6 @@ export default defineConfig({
           return null;
         },
       },
-    }, */
-    terserOptions: {
-      compress: { drop_console: true, drop_debugger: true },
-    } /** 生产环境移除 console */,
+    },
   },
 });
-function resolve(arg0: string) {
-  throw new Error('Function not implemented.');
-}

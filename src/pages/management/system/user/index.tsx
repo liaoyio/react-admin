@@ -9,7 +9,7 @@ import { Role, UserInfo } from '#/entity';
 import { BasicStatus } from '#/enum';
 
 // mock data
-import { USER_LIST } from '../../../../../mock/_db';
+import { USER_LIST } from '../../../../api/_db';
 const USERS: UserInfo[] = USER_LIST;
 
 export default function RolePage() {

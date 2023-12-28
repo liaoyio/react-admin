@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { BasicStatus, PermissionType } from '../types/enum';
+import { BasicStatus, PermissionType } from '../../types/enum';
 
 /**
  * Organization data mock

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
-import userApi, { SignInReq } from '@/api/user';
+import { SignInReq, usersLogin } from '@/api/user';
 import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserToken, UserInfo } from '#/entity';
@@ -54,7 +54,7 @@ export const useSignIn = () => {
 
   const signIn = async (data: SignInReq) => {
     try {
-      const res = await userApi.sign(data);
+      const res = await usersLogin(data);
       const { user, accessToken, refreshToken } = res;
       setUserToken({ accessToken, refreshToken });
       setUserInfo(user);
