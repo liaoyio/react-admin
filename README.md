@@ -9,9 +9,9 @@ Yi Admin 是一个现代化的后台管理模板，基于 React18、Vite、Ant D
 
 ## 预览
 
-![login.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/login.jpeg) ![login_dark.jpeg](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/login_dark.jpeg)
+![](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/yi-admin-login-light.png) ![](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/yi-admin-login-dark.png)
 
-![analysis.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/analysis.png) ![workbench-dark.png](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/workbench-dark.png)
+![](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/light-ch.png) ![](https://cdn.jsdelivr.net/gh/liaoyio/imgHosting/Next.js/dark-en.png)
 
 ## 特性
 
