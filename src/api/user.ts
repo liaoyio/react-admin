@@ -12,19 +12,14 @@ export interface SignUpReq extends SignInReq {
 export type SignInRes = UserToken & { user: UserInfo };
 
 export function usersLogin(body: SignInReq) {
-  const data = new Promise((resolve) =>
-    setTimeout(() => {
-      const { username, password } = body;
-      const user = USER_LIST.find((item) => item.username === username);
-      if (!user || user.password !== password) {
-        return { status: 10001, message: 'Incorrect username or password.' };
-      }
-      return {
-        status: 0,
-        message: '',
-        data: { user, accessToken: '@id_11123', refreshToken: '@id_67745454545jip' },
-      };
-    }, 700),
-  );
-  return data as Promise<SignInRes>;
+  const { username, password } = body;
+  const user = USER_LIST.find((item) => item.username === username);
+  if (!user || user.password !== password) {
+    return { status: 10001, message: 'Incorrect username or password.' };
+  }
+  return {
+    status: 0,
+    message: '',
+    data: { user, accessToken: '@id_11123', refreshToken: '@id_67745454545jip' },
+  };
 }

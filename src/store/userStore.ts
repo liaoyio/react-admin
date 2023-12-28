@@ -54,17 +54,19 @@ export const useSignIn = () => {
 
   const signIn = async (data: SignInReq) => {
     try {
-      const res = await usersLogin(data);
-      const { user, accessToken, refreshToken } = res;
-      setUserToken({ accessToken, refreshToken });
-      setUserInfo(user);
-      navigate(HOMEPAGE, { replace: true });
+      const res = usersLogin(data);
+      if (res.data) {
+        const { user, accessToken, refreshToken } = res.data;
+        setUserToken({ accessToken, refreshToken });
+        setUserInfo(user);
+        navigate(HOMEPAGE, { replace: true });
 
-      notification.success({
-        message: t('sys.login.loginSuccessTitle'),
-        description: `${t('sys.login.loginSuccessDesc')}: ${data.username}`,
-        duration: 3,
-      });
+        notification.success({
+          message: t('sys.login.loginSuccessTitle'),
+          description: `${t('sys.login.loginSuccessDesc')}: ${data.username}`,
+          duration: 3,
+        });
+      }
     } catch (err: any) {
       message.warning({
         content: err.message,

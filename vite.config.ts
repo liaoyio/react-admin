@@ -7,7 +7,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   base: './',
-  esbuild: { drop: ['console', 'debugger'] },
+  // esbuild: { drop: ['console', 'debugger'] },
   plugins: [
     UnoCSS(),
     react(),
