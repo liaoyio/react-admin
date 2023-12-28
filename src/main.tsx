@@ -9,9 +9,6 @@ import 'virtual:svg-icons-register';
 import App from '@/App';
 import '@/locales/i18n';
 
-import { setupProdMockServer } from '../mock/_createProductionServer';
-setupProdMockServer();
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
